@@ -1,0 +1,24 @@
+---
+layout: template/page.vto
+---
+{{# <h2>{{ title }}</h2> #}}
+{{# {{ map |> JSON.stringify() }} #}}
+{{ set dump = map |> JSON.stringify() }}
+
+{{ comp.info({
+    attribution: map.data.attribution,
+    notes: map.notes
+    }) 
+}}
+<table>
+{{ for key, value of map.data.constituencies }}
+    <tr>
+        <td>{{ value.Name || key }}</td>
+        <td>{{ value |> JSON.stringify() }}</td>
+    </tr>
+{{ /for }}
+</table>
+{{# {{ dump }} #}}
+{{# {{ for c in map.data }}
+    {{ c }}
+{{ /for }} #}}

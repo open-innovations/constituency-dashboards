@@ -1,0 +1,22 @@
+---
+layout: template/base.vto
+---
+{{ if url != '/' }}
+  <ul class='breadcrumb'>
+    {{ for item of nav.breadcrumb(url) }}
+      <li>
+        {{ if item.data }}
+          <a href="{{ item.data.url }}">
+            {{ item.data.title }}
+          </a>
+        {{ else }}
+          <span>{{ item.slug }}</span>
+        {{ /if }}
+      </li>
+    {{ /for }}
+  </ul>
+{{ /if }}
+<h2>{{ title }}</h2>
+{{ content }}
+
+
