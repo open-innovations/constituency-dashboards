@@ -1,70 +1,61 @@
-// let url = "https://constituencies.open-innovations.org/themes/society/child-poverty/map_1.json";
-import { fetchAll, fetchOne } from "./assets/js/fetch.js"
+import { fetchAll, fetchIt } from "./assets/js/fetch.js"
 
-// Define URLs with data we want to grab
-// let myUrls = [
-//     "https://constituencies.open-innovations.org/themes/society/child-poverty/map_1.json",
-//     "https://constituencies.open-innovations.org/themes/society/child-poverty/map_2.json",
-//     "https://constituencies.open-innovations.org/themes/economy/broadband/average_download_speeds.json"
-// ];
-
-// async function fetchData() {
-//     try {
-//         let res = await fetch(url);
-//         let jsonData = await res.json();
-//         return jsonData;
-//     } catch (err) {
-//         console.log("Error: ", err);
-//         return null;
-//     }
-// }
-
-// export default async function* () {
-//     let map = await fetchData();
-//     const title = map.title;
-//     const notes = map.notes;
-//     yield {
-//         url: `/child-poverty/`,
-//         layout: "template/layout.vto",
-//         content: `<h1>${title}</h1><p>${notes}</p>`
-//     }
-// }
-
-
-// async function fetchAll(urls) {
-//     let promises = urls.map(url => fetch(url).then(res => res.json()));
-//     let results = await Promise.all(promises);
-//     return results;
-//   }
-
-// export const layout = 'template/visPage.vto';
-// export const tags = ['visualisation'];
+function slugifyString (str) {
+    return String(str)
+      .normalize('NFKD') // split accented characters into their base characters and diacritical marks
+      .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+      .trim() // trim leading or trailing whitespace
+      .toLowerCase() // convert to lowercase
+      .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
+      .replace(/\s+/g, '-') // replace spaces with hyphens
+      .replace(/-+/g, '-'); // remove consecutive hyphens
+}
 
 export default async function* () {
-    let index = await fetchOne("https://constituencies.open-innovations.org/themes/index.json");
+    // Get the index of all API data.
+    let index = await fetchIt("https://constituencies.open-innovations.org/themes/index.json");
+    if (index == null) {
+        console.error("Failed to get index.");
+        return;
+    }
+    // Looping over each theme
     for (const [theme, themeData] of Object.entries(index.themes)) {
+        // Looping through the visualisations (which have URL, title, attribution)
+        for (const v of themeData.visualisations) {
+            // Adding a URL for the individual page
+            v.slug = "/" + slugifyString(theme) + "/" + slugifyString(v.title) + "/";
+            // Add the JSON data for that visualisation
+            v.json = await fetchIt(v.url);
+        }
+        // Now yield each theme page.
         yield {
-            url: `/${themeData.title}/`,
+            url: `/${slugifyString(theme)}/`,
             title: themeData.title,
             layout: 'template/themePage.vto',
             tags: 'themes',
+            // This gets used in the themePage.vto to create a list of visualisations using themeData.visualisations[].slug
             themeData,
             theme
         };
-        let dataURLs = [];
-        for (const v of themeData.visualisations) {
-            dataURLs.push(v.url);
-        }
-        let mapData = await fetchAll(dataURLs);
-        for (const map of mapData) {
+        // Loop through each vis and create its page.
+        for (const vis of themeData.visualisations) {
+            const rows = [];
+            // Only build the page if there is json content
+            if (vis.json != null) {
+                //  Reshape the data to a form that OI lume viz is happy with.
+                for (const [key, value] of Object.entries(vis.json.data.constituencies)){
+                    rows.push(value);
+                }
+            }
+            // Create the visualisation page.
             yield {
-                url: `/${theme}/${map.title}/`,
-                title: map.title,
+                url: vis.slug,
+                title: vis.title,
                 layout: 'template/visPage.vto',
                 tags: 'visualisations',
-                map
+                map: vis.json,
+                rows
             };
         }
-    }
-    
+    } 
 }

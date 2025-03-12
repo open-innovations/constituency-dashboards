@@ -4,6 +4,6 @@ layout: template/page.vto
 <p>{{ themeData.description }}</p>
 <ul>
 {{ for v of themeData.visualisations }}
-    <li><a href="/{{theme}}/{{ v.title |> slugifyString() }}">{{ v.title }}</a></li>
+    <li><a href="{{v.slug}}">{{ v.title }}</a></li>
 {{ /for }}
 </ul>

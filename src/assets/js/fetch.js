@@ -4,11 +4,22 @@ export async function fetchAll(urls) {
     return results;
   }
 
-export async function fetchOne(url) {
+// export async function fetchOne(url) {
+//     try {
+//         let res = await fetch(url);
+//         let jsonData = await res.json();
+//         return jsonData;
+//     } catch (err) {
+//         console.log("Error: ", err);
+//         return null;
+//     }
+// }
+
+export async function fetchIt(url) {
     try {
-        let res = await fetch(url);
-        let jsonData = await res.json();
-        return jsonData;
+        let promise = fetch(url).then(res => res.json());
+        let result = await Promise.resolve(promise);
+        return result;
     } catch (err) {
         console.log("Error: ", err);
         return null;
