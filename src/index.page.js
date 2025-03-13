@@ -47,15 +47,17 @@ export default async function* () {
                     rows.push(value);
                 }
             }
-            // Create the visualisation page.
-            yield {
-                url: vis.slug,
-                title: vis.title,
-                layout: 'template/visPage.vto',
-                tags: 'visualisations',
-                map: vis.json,
-                rows
-            };
+            // Create the visualisation page only if it has a title to make the unique url
+            if (vis.title.length > 0) {
+                yield {
+                    url: vis.slug,
+                    title: vis.title,
+                    layout: 'template/visPage.vto',
+                    tags: 'visualisations',
+                    map: vis.json,
+                    rows
+                };
+            }
         }
     } 
 }

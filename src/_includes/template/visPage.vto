@@ -6,26 +6,22 @@ layout: template/page.vto
 <p>No data available.</p>
 
 {{ else }}
+    {{# Dynamic config based on what's available #}}
+    {{> con = {"hexjson": "hexjson." + map.hexjson.url.split('/').pop().replace('.hexjson', ''),"data": rows,"matchKey": map.key,"value": map.value,"scale": "Viridis","width": "600","legend": map.legend};}}
+    {{> if ("min" in map.scale) con.min=map.scale.min;if ("max" in map.scale) con.max=map.scale.max; }}
+    {{> if (!("items" in map.legend)) con.legend.items=[]; }}
+    
+    {{ comp.oi.map.hex_cartogram({ 
+        config: con 
+        })
+    }}
 
-{{ comp.oi.map.hex_cartogram({ 
-    config: {
-        hexjson: "hexjson." + map.hexjson.url.split('/').pop().replace('.hexjson', ''),
-        data: rows,
-        matchKey: map.key,
-        value: map.value,
-        scale: "Viridis",
-        width: "600",
-        legend: map.legend,
-        min: map.scale.min,
-        max: map.scale.max,
-        } 
-    })
-}}
-{{ comp.info({
-    dataAttribution: map.data.attribution,
-    mapAttribution: map.hexjson.attribution,
-    notes: map.notes
-    }) 
-}}
-
+    {{ if map.data.attribution && map.hexjson.attribution && map.notes }}
+    {{ comp.info({
+        dataAttribution: map.data.attribution,
+        mapAttribution: map.hexjson.attribution,
+        notes: map.notes
+        }) 
+    }}
+    {{ /if }}
 {{ /if }}
