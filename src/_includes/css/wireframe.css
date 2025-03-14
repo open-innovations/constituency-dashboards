@@ -1,4 +1,4 @@
-body { font-family: "Poppins"; font-size: 100%; max-width: 1440px; margin-left: auto; margin-right: auto;}
+body { font-family: "Poppins"; font-size: 100%; min-height: 100%!important;height: 100%!important;line-height: 1.44em;padding: 0px;margin: 0px;}
 
 .breadcrumb { list-style: none; margin: 0; text-align: center;}
 .breadcrumb li { display: inline-block; }
@@ -7,13 +7,25 @@ body { font-family: "Poppins"; font-size: 100%; max-width: 1440px; margin-left: 
 .breadcrumb li:after { content: ""; width: 0.5em; height: 0.5em; transform: rotate(45deg); border: 1px solid black; display: inline-block; border-left: 0; border-bottom: 0; margin: 0 0.25em; top: -0.1em; position: relative; }
 .breadcrumb li:last-child:after { border: 0; }
 
-.info { background-color: wheat; max-width: 60%; margin-left: auto; margin-right: auto;} 
+.info { background-color: wheat;} 
 
 .sitetitle {text-align: center;}
 .sitetitle a { text-decoration: none;}
 .sitetitle a:visited { color: unset;}
 .sitetitle a:hover, .sitetitle a:focus { text-decoration: underline; }
 
-.padded {
-    padding: 1rem;
-}
+.holder { position: relative; width: 1080px; max-width: 100%; margin: auto; }
+.padded {padding: 1rem;}
+.tallpadded {padding-top: 3em;padding-bottom: 3em;}
+
+.elsewhere { float: right; margin-top: 0; }
+.elsewhere li { display: inline-block; margin-left: 0.5em; }
+.elsewhere li:first-child { margin-left: 0; }
+.elsewhere li a { line-height: 0; display: block; }
+
+footer{ background-color: black!important; color: white!important;}
+footer .address { margin-top: 1em; }
+footer a { color: white; }
+footer hr.about { margin: 32px 0; border: 0; border-top:1px solid #444; }
+
+h1, h2, h3, h4 {margin-bottom: 1rem;}
