@@ -1,0 +1,8 @@
+---
+title: Dashboard
+---
+<ul>
+  {{ for page of search.pages("dashboard") }}
+    <li><a href="{{page.url}}">{{ page.title }}</a></li>
+  {{ /for }}
+</ul>

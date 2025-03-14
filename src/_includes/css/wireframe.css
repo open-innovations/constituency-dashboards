@@ -30,3 +30,8 @@ footer a { color: inherit; }
 footer hr.about { margin: 32px 0; border: 0; border-top:1px solid #444; }
 
 h1, h2, h3, h4 {margin-bottom: 1rem;}
+
+.dashboard {
+    background-color: aquamarine!important;
+    display: inline-block;
+}
