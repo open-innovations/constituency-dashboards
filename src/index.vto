@@ -7,3 +7,9 @@ title: Home
     <li><a href="{{page.url}}">{{ page.title }}</a></li>
   {{ /for }}
 </ul>
+<h3>Dashboard</h3>
+<ul>
+  {{ for page of search.pages("dashboard") }}
+    <li><a href="{{page.url}}">{{ page.title }}</a></li>
+  {{ /for }}
+</ul>
