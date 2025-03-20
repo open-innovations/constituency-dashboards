@@ -37,6 +37,7 @@ site.remoteFile("_data/hexjson/uk-constituencies-2024.hexjson", "https://github.
 
 site.filter("dump", (Object) => {
     return JSON.stringify(Object);
-})
+});
 
+site.copy("/assets/js/filterList.js");
 export default site;
