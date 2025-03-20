@@ -1,15 +1,6 @@
 ---
 title: Home
 ---
-<h3>Themes</h3>
-<ul>
-  {{ for page of search.pages("themes") }}
-    <li><a href="{{page.url}}">{{ page.title }}</a></li>
-  {{ /for }}
-</ul>
-<h3>Dashboard</h3>
-<ul>
-  {{ for page of search.pages("dashboard") }}
-    <li><a href="{{page.url}}">{{ page.title }}</a></li>
-  {{ /for }}
-</ul>
+<p>Browse data for all constituencies on one theme, or all themes for one constituency</p>
+<h3><a href="/themes">Themes</a></h3>
+<h3><a href="/constituencies">Constituencies</a></h3>

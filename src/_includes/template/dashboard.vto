@@ -1,4 +1,14 @@
 ---
 layout: template/page.vto
 ---
-<div class="dashboard padded">{{figureTitle}}<br /><h3>{{ figure }}</h3></div>
+{{# <div class="dashboard padded">{{figureTitle}}<br /><h3>{{ figure }}</h3></div> #}}
+
+{{# {{ figures |> dump() }} #}}
+
+<div class='grid'>
+    {{ for key, value of figures }}
+        {{ if value }}
+            <div class="dashboard padded" style="background-color: {{colour}};">{{key}}<br /><h3>{{ value }}</h3></div>
+        {{ /if }}
+    {{ /for }}
+</div>

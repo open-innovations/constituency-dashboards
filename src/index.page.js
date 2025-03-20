@@ -18,6 +18,7 @@ export default async function* () {
         console.error("Failed to get index.");
         return;
     }
+    let dashboard = {};
     // Looping over each theme
     for (const [theme, themeData] of Object.entries(index.themes)) {
         // Looping through the visualisations (which have URL, title, attribution)
@@ -38,13 +39,24 @@ export default async function* () {
             theme
         };
         // Loop through each vis and create its page.
+        // As we're looping through the visualisations, we want to store the vis data per constituency and then eventually yield a page for each one.
         for (const vis of themeData.visualisations) {
             const rows = [];
             // Only build the page if there is json content
             if (vis.json != null) {
                 //  Reshape the data to a form that OI lume viz is happy with.
-                for (const [key, value] of Object.entries(vis.json.data.constituencies)){
-                    rows.push(value);
+                for (const [PCON24CD, constituencyData] of Object.entries(vis.json.data.constituencies)){
+                    rows.push(constituencyData);
+                    // console.log(PCON24CD, vis.json.title);
+
+                    const newKey = vis.json.title;
+                    const newValue = constituencyData[vis.json.value];
+                    if (dashboard.hasOwnProperty(PCON24CD)) {
+                        dashboard[PCON24CD][newKey] = newValue;
+                    }
+                    else {
+                        dashboard[PCON24CD] = { [newKey]: newValue };
+                    }
                 }
             }
             // Create the visualisation page only if it has a title to make the unique url
@@ -60,5 +72,22 @@ export default async function* () {
                 };
             }
         }
-    } 
+    }
+    const hexjson = await fetchIt("https://open-innovations.org/projects/hexmaps/maps/uk-constituencies-2023.hexjson");
+    const hexes = hexjson.hexes;
+    for (const [code, data] of Object.entries(dashboard)){
+        // console.log(code);
+        if (hexes[code] != null) {
+            yield {
+                url: `/dashboard/${code}/`,
+                layout: 'template/dashboard.vto',
+                title: hexes[code]['n'],
+                colour: hexes[code]['colour'],
+                tags: 'dashboard',
+                figures: data,
+                region: hexes.region
+            };
+        }
+        
+    }
 }
