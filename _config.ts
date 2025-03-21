@@ -39,5 +39,10 @@ site.filter("dump", (Object) => {
     return JSON.stringify(Object);
 });
 
+site.filter("capitalise", (x: string) => {
+    if (!x) return x; // Handle empty strings
+    return x.charAt(0).toUpperCase() + x.slice(1);
+})
+
 site.copy("/assets/js/filterList.js");
 export default site;
