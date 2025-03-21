@@ -20,6 +20,24 @@ function colorIsDarkSimple(bgColor) {
 }
 // @TODO work on above to improve.
 
+function updateDictionary(dict, keys, newKey, newValue) {
+    let current = dict;
+    
+    // Traverse or create nested structure
+    for (let i = 0; i < keys.length; i++) {
+        let key = keys[i];
+        
+        if (!current.hasOwnProperty(key)) {
+            current[key] = {}; // Create a nested dictionary if it doesn't exist
+        }
+        
+        current = current[key]; // Move deeper into the structure
+    }
+    
+    // Assign the final key-value pair
+    current[newKey] = newValue;
+}
+
 export default async function* () {
     // Get the index of all API data.
     let index = await fetchIt("https://constituencies.open-innovations.org/themes/index.json");
@@ -53,19 +71,12 @@ export default async function* () {
             const rows = [];
             // Only build the page if there is json content
             if (vis.json != null) {
-                //  Reshape the data to a form that OI lume viz is happy with.
-                for (const [PCON24CD, constituencyData] of Object.entries(vis.json.data.constituencies)){
-                    rows.push(constituencyData);
-                    // console.log(PCON24CD, vis.json.title);
-
+                for (const [PCON24CD, constituencyData] of Object.entries(vis.json.data.constituencies)){ // Reshape data
+                    rows.push(constituencyData); // Reshape the data to a form that OI lume viz is happy with.
                     const newKey = vis.json.title;
-                    const newValue = constituencyData[vis.json.value];
-                    if (dashboard.hasOwnProperty(PCON24CD)) {
-                        dashboard[PCON24CD][newKey] = newValue;
-                    }
-                    else {
-                        dashboard[PCON24CD] = { [newKey]: newValue };
-                    }
+                    const newInfo = vis.json.value;
+                    const newValue = {"data": constituencyData[vis.json.value], "info": newInfo};
+                    updateDictionary(dashboard, [PCON24CD, theme], newKey, newValue); // Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
                 }
             }
             // Create the visualisation page only if it has a title to make the unique url

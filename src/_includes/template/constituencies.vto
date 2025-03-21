@@ -5,10 +5,14 @@ layout: template/page.vto
 
 {{# {{ figures |> dump() }} #}}
 
-<div class='grid'>
-    {{ for key, value of figures }}
-        {{ if value }}
-            <div class="dashboard padded" style="background-color: {{bgColour}}; color:{{fontColour}};">{{key}}<br /><h3>{{ value }}</h3></div>
-        {{ /if }}
-    {{ /for }}
-</div>
+
+{{ for theme, data of figures }}
+    <h2>{{theme |> capitalise() }}</h2>
+    <div class='grid'>
+        {{ for key, value of data }}
+            {{ if value.data }}
+                <div class="dashboard padded {{ theme }}"><h4>{{key}}</h4><div class='bigNum'>{{ value.data }}</div><details>{{ value.info }}</details></div>
+            {{ /if }}
+        {{ /for }}
+    </div>
+{{ /for }}
