@@ -4,8 +4,8 @@ name: Build site
   workflow_dispatch: {}
   schedule:
     # * is a special character in YAML so you have to quote this string
-    # Runs at 9am on a Monday
-    - cron:  '0 9 * * 1'
+    # Runs at 10am on a Monday
+    - cron:  '0 10 * * 1'
   push:
     branches: [ main ]
     paths:
