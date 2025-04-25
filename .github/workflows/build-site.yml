@@ -1,11 +1,10 @@
 name: Build site
 
 'on':
-  workflow_dispatch: {}
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    # Runs at 10am on a Monday
-    - cron:  '0 10 * * 1'
+  workflow_run:
+    workflows: ["Update data"]
+    types:
+      - completed
   push:
     branches: [ main ]
     paths:
