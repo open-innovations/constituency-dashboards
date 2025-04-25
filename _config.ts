@@ -6,7 +6,7 @@ import nav from "lume/plugins/nav.ts";
 import postcss from "lume/plugins/postcss.ts";
 
 // Importing the OI Lume charts and utilities
-import oiViz from "https://deno.land/x/oi_lume_viz@v0.16.9/mod.ts";
+import oiViz from "https://deno.land/x/oi_lume_viz@v0.16.11/mod.ts";
 import autoDependency from "https://deno.land/x/oi_lume_utils@v0.4.0/processors/auto-dependency.ts";
 import jsonLoader from "lume/core/loaders/json.ts";
 import oiVizConfig from "./oi-viz-config.ts";
@@ -42,7 +42,17 @@ site.filter("dump", (Object) => {
 site.filter("capitalise", (x: string) => {
     if (!x) return x; // Handle empty strings
     return x.charAt(0).toUpperCase() + x.slice(1);
-})
+});
+
+site.filter("formatRank", (num: number) => {
+    if (num == null) {return null};
+    const strNum = Math.abs(num).toString();
+    const n = Number(strNum.slice(-1));
+    if (n==1) {return strNum + 'st'}
+    else if (n==2) {return strNum + 'nd'}
+    else if (n==3) {return strNum + 'rd'}
+    else { return strNum + 'th'}
+});
 
 site.copy("/assets/js/filterList.js");
 export default site;
