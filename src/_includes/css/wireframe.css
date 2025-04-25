@@ -62,10 +62,10 @@ p {
 }
 
 .hr--styled {
-    border: none; /* Remove default border */
-    height: 4px; /* Set the height of the line */
-    margin: 20px 0; /* Add some space above and below the line */
-    width: 100%; /* Make the line full width */
-    background: linear-gradient(to right, #F9BC25, #E6007C, #0DBC37, #00B6FF, #722EA5, #D60303); /* Gradient of colors */
+    border: none;
+    height: 4px;
+    margin: 20px 0;
+    width: 100%;
+    background: linear-gradient(to right, #F9BC25, #E6007C, #0DBC37, #00B6FF, #722EA5, #D60303);
 }
     
