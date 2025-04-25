@@ -56,3 +56,7 @@ details {margin-top: auto;}
 	h1, .title { font-size: 1.4em; text-wrap: balance; }
 	header nav ul { font-size: 1em; }
 }
+
+p {
+	padding-bottom: 1rem;
+}
