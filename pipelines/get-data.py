@@ -1,0 +1,112 @@
+import requests
+import pandas as pd
+
+# Get the index
+# Get list of current codes.
+# Iterate through the themes
+# Iterate through the visualisations
+# If the code is in the data, add it to a dict
+# Create dataframes.
+# Do ranking
+
+# # ISSUE here is that im only getting one value per theme. rather than multiple per theme. something is being overidden.
+
+def get_url_as_json(url):
+    # Make the GET request
+    response = requests.get(url)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Parse the JSON response
+        json_data = response.json()
+        return json_data
+    else:
+        print(f"Error: {response.status_code}")
+        return None
+    
+def get_current_constituencies():
+    # Get the hexjson
+    hexjson = get_url_as_json("https://open-innovations.org/projects/hexmaps/maps/uk-constituencies-2023.hexjson")
+    # Select the hexes
+    hexes = hexjson['hexes']
+    # Create a list of codes
+    current_codes = [code for code, data in hexes.items()]
+    return current_codes
+
+def update_dictionary(dct, keys, new_key, new_value):
+    """
+    Updates a nested dictionary by traversing the given keys and setting a new key-value pair
+    at the final level. Creates intermediate dictionaries as needed.
+
+    Parameters:
+        dct (dict): The dictionary to update.
+        keys (list): A list of keys representing the path to traverse or create in the dictionary.
+        new_key (str): The key to set at the final nested level.
+        new_value (any): The value to assign to `new_key`.
+
+    Example:
+        d = {}
+        update_dictionary(d, ['x', 'y'], 'z', 100)
+        # Result: {'x': {'y': {'z': 100}}}
+    """
+    current = dct
+    # Traverse or create nested structure
+    for key in keys:
+        if key not in current:
+            current[key] = {}
+        current = current[key]
+
+    # Assign the final key-value pair
+    current[new_key] = new_value
+
+
+def make_data_dictionary(index):
+    assert index != None, "Index is none" # Ensure index has some values
+    # Iterate through "themes"
+    dashboard = {}
+    for theme, content in index['themes'].items():
+        title = content['title']
+        desc = content['description']
+        print(title, desc)
+        for v in content['visualisations']:
+            this_vis_url = v['url']
+            this_vis_data = get_url_as_json(this_vis_url)
+            # print(this_vis_data)
+            assert this_vis_data != None, "Couldnt get vis data"
+            for pconcd, con_data in this_vis_data['data']['constituencies'].items():
+                newKey = this_vis_data['title']
+                # Use the value key from this_vis_data to access the specific variable we want from each constituency
+                try:
+                    newValue = {"data": con_data[this_vis_data['value']]}
+                    update_dictionary(dashboard, [pconcd, theme], newKey, newValue)
+                except KeyError:
+                    continue
+    return dashboard
+
+def main():
+    index = get_url_as_json('https://constituencies.open-innovations.org/themes/index.json')
+    codes = get_current_constituencies()
+    db = make_data_dictionary(index)
+    # Normalize the data
+    normalized_data = {
+        'PCON24CD': [],
+        'Theme': [],
+        'Title': [],
+        'Value': []
+    }
+    for key, value in db.items():
+        for category, subcategory in value.items():
+            for subcat_name, subcat_value in subcategory.items():
+                normalized_data['PCON24CD'].append(key)
+                normalized_data['Theme'].append(category)
+                normalized_data['Title'].append(subcat_name)
+                normalized_data['Value'].append(subcat_value['data'])
+
+    # Create DataFrame
+    df = pd.DataFrame(normalized_data)
+
+    # Display the DataFrame
+    df.set_index('PCON24CD', inplace=True)
+    df.to_csv('data/constituencies.csv')
+
+main()
