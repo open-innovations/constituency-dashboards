@@ -108,7 +108,8 @@ export default async function* () {
                 fontColour: textColour,
                 tags: 'constituency',
                 figures: data,
-                region: hexes.region
+                region: hexes.region,
+                code
             };
         }
         
