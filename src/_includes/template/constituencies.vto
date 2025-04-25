@@ -19,28 +19,32 @@ layout: template/page.vto
         {{ /for }}
     </div>
 {{ /for }}
-<h3 id="notes">Notes</h3>
-<h4>Interpreting rank</h4>
-<p>
-    All statistics are ranked in <strong>descending</strong> order. This means <strong>
-        the higher the number,
-        the higher the rank
-    </strong>. Therefore, the ranking should be interpreted in the context of 
-    the statistic and what you intend to show with it.
-</p>
-<p>
-    For example, a lower child poverty rate is better. Therefore a rank of 
-    650 would be the constituency with the "best" (lowest) child poverty rate.
-</p>
-<p>
-    Conversely, for a statistic where a higher number is "better", e.g. Gigabit availability 
-    (%), a rank of 1 would be the constituency with the "best" (highest) gigabit availability.
-</p>
-<h4>Ties</h4>
-<p>
-    We use a dense ranking method. Ties are given equal rank at the minimum rank of the group. Between groups, 
-    the rank always increases by 1. For example, if the 5th, 6th, and 7th constituencies 
-    all share the same value, they will each be ranked 5th. The next highest value would then be ranked 6th.
-    This means that, for a given statistic, the lowest-ranked constituency will only have a rank of 650 if there are no ties 
-    AND if all constituencies have data.
-</p>
+<hr class='hr--styled'>
+<section>
+    <h2 id="notes">Notes</h2>
+    <h3>Rankings</h3>
+    <h4>Overview</h4>
+    <p>
+        All statistics are ranked in <strong>descending</strong> order. This means <strong>
+            the higher the number,
+            the higher the rank
+        </strong>. Therefore, the ranking should be interpreted in the context of
+        the statistic and what you intend to show with it.
+    </p>
+    <p>
+        For example, a lower child poverty rate is better. Therefore a rank of
+        650 would be the constituency with the "best" (lowest) child poverty rate.
+    </p>
+    <p>
+        Conversely, for a statistic where a higher number is "better", e.g. Gigabit availability
+        (%), a rank of 1 would be the constituency with the "best" (highest) gigabit availability.
+    </p>
+    <h4>Ties</h4>
+    <p>
+        We use a dense ranking method. Ties are given equal rank at the minimum rank of the group. Between groups,
+        the rank always increases by 1. For example, if the 5th, 6th, and 7th constituencies
+        all share the same value, they will each be ranked 5th. The next highest value would then be ranked 6th.
+        This means that, for a given statistic, the lowest-ranked constituency will only have a rank of 650 if there are no ties
+        AND if all constituencies have data.
+    </p>
+</section>
