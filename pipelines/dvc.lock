@@ -1,0 +1,30 @@
+schema: '2.0'
+stages:
+  get_data:
+    cmd: python pipelines/get-data.py
+    deps:
+    - path: pipelines/get-data.py
+      hash: md5
+      md5: 1b4d2bddd64847d34336d7a5eac2fd4c
+      size: 3883
+    outs:
+    - path: data/constituencies.csv
+      hash: md5
+      md5: 450e76ed227eb9496db80c68087f37ba
+      size: 2836550
+  rank:
+    cmd: python pipelines/rank.py
+    deps:
+    - path: data/constituencies.csv
+      hash: md5
+      md5: 450e76ed227eb9496db80c68087f37ba
+      size: 2836550
+    - path: pipelines/rank.py
+      hash: md5
+      md5: e394d0f0fbcc35e3edd288e7c6ae66ce
+      size: 1130
+    outs:
+    - path: src/_data/ranked_constituencies.json
+      hash: md5
+      md5: dd1211e07a63cdffc79632ab3dd434ce
+      size: 2414117

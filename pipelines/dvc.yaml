@@ -1,0 +1,21 @@
+stages:
+  get_data:
+    always_changed: true
+    wdir: ../
+    cmd: python pipelines/get-data.py
+    deps:
+      - pipelines/get-data.py
+    outs:
+      - data/constituencies.csv:
+          cache: false
+          persist: true
+  rank:
+    wdir: ../
+    cmd: python pipelines/rank.py
+    deps:
+      - pipelines/rank.py
+      - data/constituencies.csv
+    outs:
+      - src/_data/ranked_constituencies.json:
+          cache: false
+          persist: true
