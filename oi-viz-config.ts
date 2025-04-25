@@ -34,7 +34,14 @@ export default {
 			"Ind": "#440d54",
 			"Spk": "#909090",
 			"None": "#dfdfdf",
-
+			"Core City (London)": "#3e3e3e",
+			"Core City (outside London)": "#3e3e3e",
+			"Other City": "#b950b4",
+			"Large Town": "#c79329",
+			"Medium Town": "#3058be",
+			"Small Town": "#189657",
+			"Village or smaller": "#c1c1c1",
+			"Village or Smaller": "#c1c1c1"
 		}
 	}
 };
