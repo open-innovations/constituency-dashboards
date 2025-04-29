@@ -8,6 +8,8 @@ if __name__ == "__main__":
     data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
     # Add a rank column
     data["rank"] = data.groupby(["Theme", "Title"])['Value'].rank(ascending=False, method='dense')
+    # Count the number of "titles" for each theme, aka the number of constituencies for each statistic
+    data['count'] = data.groupby(["Theme", 'Title'])['Value'].transform('count')
     # Write to CSV
     data.to_csv('data/ranked_constituencies.csv')
     # Reset the index
@@ -27,7 +29,7 @@ if __name__ == "__main__":
             rank[cd][th] = {}
         # If ranking is not NAN, add it to the dictionary
         if not pd.isna(row['rank']):
-            rank[cd][th][ti] = {"rank": row['rank']}
+            rank[cd][th][ti] = {"rank": row['rank'], "count": row['count']}
     # Write to file
     with open("src/_data/ranked_constituencies.json", 'w') as f:
         json.dump(rank, f)
