@@ -7,14 +7,14 @@ layout: template/page.vto
     <div class='grid'>
         {{ for key, value of data }}
             {{ if value.data }}
-                <div class="dashboard padded {{ theme }}">
+                <a href="/{{theme}}/{{key |> slugify() }}/" class="card padded {{ theme }}">
                     <h4>{{key}}</h4>
                     <div class='bigNum'>{{ value.data }}</div>
                     {{ if ranked_constituencies[code][theme][key] }}
-                        <p>{{ ranked_constituencies[code][theme][key]['rank'] |> formatRank() }}</p>
+                        <p>{{ ranked_constituencies[code][theme][key]['rank'] |> formatRank() }} out of {{ ranked_constituencies[code][theme][key]['count'] }}</p>
                     {{ /if }}
-                    <details>{{ value.info }}</details>
-                </div>
+                    {{# <details>{{ value.info }}</details> #}}
+                </a>
             {{ /if }}
         {{ /for }}
     </div>

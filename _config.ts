@@ -47,12 +47,25 @@ site.filter("capitalise", (x: string) => {
 site.filter("formatRank", (num: number) => {
     if (num == null) {return null};
     const strNum = Math.abs(num).toString();
-    const n = Number(strNum.slice(-1));
-    if (n==1) {return strNum + 'st'}
-    else if (n==2) {return strNum + 'nd'}
-    else if (n==3) {return strNum + 'rd'}
-    else { return strNum + 'th'}
+    const lastDigit = strNum.slice(-1);
+    const lastTwoDigits = strNum.slice(-2);
+    if (lastTwoDigits == "11" || lastTwoDigits == "12" || lastTwoDigits == "13") {
+        return strNum + "<sup>th</sup>";}
+    else if (lastDigit=="1") {return strNum + '<sup>st</sup>'}
+    else if (lastDigit=="2") {return strNum + '<sup>nd</sup>'}
+    else if (lastDigit=="3") {return strNum + '<sup>rd</sup>'}
+    else { return strNum + '<sup>th</sup>'}
 });
+
+site.filter("slugify", (str: string) => {
+    if (!str) return str; // Handle empty strings
+    return str
+        .toLowerCase().trim() // Convert to lowercase and trim whitespace
+        .replace(/[^a-z0-9]+/g, "-") // Replace non-alphanumeric characters with hyphens
+        .replace(/^-+|-+$/g, ""); // Remove leading and trailing hyphens
+});
+
+site.filter("formatNumber");
 
 site.copy("/assets/js/filterList.js");
 export default site;
