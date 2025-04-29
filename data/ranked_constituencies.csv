@@ -52728,7 +52728,7 @@ E92000001,health,GP appointments: taking place within 2 days of booking,51.708,2
 E92000001,health,GPs: electronic prescription items,91.097,365.0,534
 E92000001,health,GPs: patients enabled to order repeat prescriptions online,50.492,289.0,534
 UKPARL.2025.BTW,society,Indicies of Multiple Deprivation,72.52446063525306,1.0,650
-UKPARL.2025.FOY,society,Indicies of Multiple Deprivation,63.659910580249026,2.0,650
+UKPARL.2025.FOY,society,Indicies of Multiple Deprivation,63.65991058024903,2.0,650
 UKPARL.2025.BTN,society,Indicies of Multiple Deprivation,60.522360315715474,3.0,650
 UKPARL.2025.WTY,society,Indicies of Multiple Deprivation,53.56612025662986,4.0,650
 UKPARL.2025.NAR,society,Indicies of Multiple Deprivation,50.73512991373751,5.0,650
@@ -52751,16 +52751,16 @@ UKPARL.2025.FST,society,Indicies of Multiple Deprivation,45.129838486129366,14.0
 UKPARL.2025.SDW,society,Indicies of Multiple Deprivation,44.987192607767,15.0,650
 UKPARL.2025.BDE,society,Indicies of Multiple Deprivation,44.63252375540858,16.0,650
 UKPARL.2025.BDE,transport,Bus service changes,-38.8,233.0,575
-UKPARL.2025.MTE,society,Indicies of Multiple Deprivation,44.556291919951974,17.0,650
+UKPARL.2025.MTE,society,Indicies of Multiple Deprivation,44.55629191995197,17.0,650
 UKPARL.2025.MTE,transport,Bus service changes,-46.7,284.0,575
 UKPARL.2025.LSO,society,Indicies of Multiple Deprivation,44.0883610070423,18.0,650
 UKPARL.2025.LSO,transport,Bus service changes,-25.9,147.0,575
-UKPARL.2025.BMS,society,Indicies of Multiple Deprivation,43.640897763855506,19.0,650
+UKPARL.2025.BMS,society,Indicies of Multiple Deprivation,43.64089776385551,19.0,650
 UKPARL.2025.BMS,transport,Bus service changes,-28.8,165.0,575
-UKPARL.2025.UBN,society,Indicies of Multiple Deprivation,43.229367888715814,20.0,650
+UKPARL.2025.UBN,society,Indicies of Multiple Deprivation,43.22936788871581,20.0,650
 UKPARL.2025.SBH,society,Indicies of Multiple Deprivation,42.5775983914671,21.0,650
 UKPARL.2025.SBH,transport,Bus service changes,-42.6,260.0,575
-UKPARL.2025.BER,society,Indicies of Multiple Deprivation,42.369586033506955,22.0,650
+UKPARL.2025.BER,society,Indicies of Multiple Deprivation,42.36958603350696,22.0,650
 UKPARL.2025.BER,transport,Bus service changes,-24.0,136.0,575
 UKPARL.2025.BDW,society,Indicies of Multiple Deprivation,42.20331413722772,23.0,650
 UKPARL.2025.BDW,transport,Bus service changes,-34.0,205.0,575
@@ -52805,7 +52805,7 @@ UKPARL.2025.BUR,transport,Bus service changes,-53.0,327.0,575
 UKPARL.2025.BTE,society,Indicies of Multiple Deprivation,38.09263646945371,45.0,650
 UKPARL.2025.MRH,society,Indicies of Multiple Deprivation,37.45673526011561,46.0,650
 UKPARL.2025.MRH,transport,Bus service changes,-28.3,162.0,575
-UKPARL.2025.SFD,society,Indicies of Multiple Deprivation,37.379141204807595,47.0,650
+UKPARL.2025.SFD,society,Indicies of Multiple Deprivation,37.3791412048076,47.0,650
 UKPARL.2025.SFD,transport,Bus service changes,-5.7,68.0,575
 UKPARL.2025.STC,society,Indicies of Multiple Deprivation,37.33224331657956,48.0,650
 UKPARL.2025.STC,transport,Bus service changes,-73.4,412.0,575
@@ -52815,7 +52815,7 @@ UKPARL.2025.OLW,society,Indicies of Multiple Deprivation,37.24852979285801,50.0,
 UKPARL.2025.OLW,transport,Bus service changes,-39.2,237.0,575
 UKPARL.2025.TIP,society,Indicies of Multiple Deprivation,37.15099511781795,51.0,650
 UKPARL.2025.TIP,transport,Bus service changes,-27.5,156.0,575
-UKPARL.2025.LEA,society,Indicies of Multiple Deprivation,37.084401596062946,52.0,650
+UKPARL.2025.LEA,society,Indicies of Multiple Deprivation,37.08440159606295,52.0,650
 UKPARL.2025.LEA,transport,Bus service changes,-24.1,137.0,575
 UKPARL.2025.EAS,society,Indicies of Multiple Deprivation,35.94000265509852,53.0,650
 UKPARL.2025.EAS,transport,Bus service changes,-69.3,405.0,575
@@ -52887,7 +52887,7 @@ UKPARL.2025.HMN,society,Indicies of Multiple Deprivation,33.097645556384,88.0,65
 UKPARL.2025.HMN,transport,Bus service changes,-14.9,98.0,575
 UKPARL.2025.BAA,society,Indicies of Multiple Deprivation,33.09452271145912,89.0,650
 UKPARL.2025.BAA,transport,Bus service changes,-59.9,360.0,575
-UKPARL.2025.OLE,society,Indicies of Multiple Deprivation,33.034219949878356,90.0,650
+UKPARL.2025.OLE,society,Indicies of Multiple Deprivation,33.03421994987836,90.0,650
 UKPARL.2025.OLE,transport,Bus service changes,-37.9,231.0,575
 UKPARL.2025.HAR,society,Indicies of Multiple Deprivation,32.98822358380009,91.0,650
 UKPARL.2025.HAR,transport,Bus service changes,-14.9,98.0,575
@@ -52925,9 +52925,9 @@ UKPARL.2025.PBO,society,Indicies of Multiple Deprivation,31.62351900352594,108.0
 UKPARL.2025.PBO,transport,Bus service changes,-44.8,275.0,575
 UKPARL.2025.HUW,society,Indicies of Multiple Deprivation,31.50524277717935,109.0,650
 UKPARL.2025.HUW,transport,Bus service changes,-69.4,406.0,575
-UKPARL.2025.SUN,society,Indicies of Multiple Deprivation,31.426763348388295,110.0,650
+UKPARL.2025.SUN,society,Indicies of Multiple Deprivation,31.42676334838829,110.0,650
 UKPARL.2025.SUN,transport,Bus service changes,-36.3,221.0,575
-UKPARL.2025.DNN,society,Indicies of Multiple Deprivation,31.413609676320274,111.0,650
+UKPARL.2025.DNN,society,Indicies of Multiple Deprivation,31.413609676320277,111.0,650
 UKPARL.2025.DNN,transport,Bus service changes,-30.0,173.0,575
 UKPARL.2025.RAC,society,Indicies of Multiple Deprivation,31.358027563700727,112.0,650
 UKPARL.2025.RAC,transport,Bus service changes,-33.0,197.0,575
@@ -52950,7 +52950,7 @@ UKPARL.2025.BNN,society,Indicies of Multiple Deprivation,30.634327368473183,121.
 UKPARL.2025.BNN,transport,Bus service changes,-42.4,258.0,575
 UKPARL.2025.HSS,society,Indicies of Multiple Deprivation,30.620697717336,122.0,650
 UKPARL.2025.HSS,transport,Bus service changes,-44.6,274.0,575
-UKPARL.2025.PCK,society,Indicies of Multiple Deprivation,30.592008877357273,123.0,650
+UKPARL.2025.PCK,society,Indicies of Multiple Deprivation,30.592008877357276,123.0,650
 UKPARL.2025.PCK,transport,Bus service changes,-31.9,188.0,575
 UKPARL.2025.WHB,society,Indicies of Multiple Deprivation,30.53510255234489,124.0,650
 UKPARL.2025.WHB,transport,Bus service changes,10.8,46.0,575
@@ -52972,7 +52972,7 @@ UKPARL.2025.BGS,society,Indicies of Multiple Deprivation,30.107252634945453,132.
 UKPARL.2025.BGS,transport,Bus service changes,-13.9,93.0,575
 UKPARL.2025.SWT,society,Indicies of Multiple Deprivation,29.884324198016607,133.0,650
 UKPARL.2025.SWT,transport,Bus service changes,-34.9,211.0,575
-UKPARL.2025.MTA,society,Indicies of Multiple Deprivation,29.853165810763997,134.0,650
+UKPARL.2025.MTA,society,Indicies of Multiple Deprivation,29.853165810764,134.0,650
 UKPARL.2025.MTA,transport,Bus service changes,-63.3,382.0,575
 UKPARL.2025.SAS,society,Indicies of Multiple Deprivation,29.67110875611479,135.0,650
 UKPARL.2025.SAS,transport,Bus service changes,-36.8,224.0,575
@@ -53023,19 +53023,19 @@ UKPARL.2025.SER,society,Indicies of Multiple Deprivation,27.887373757075498,159.
 UKPARL.2025.SER,transport,Bus service changes,-54.7,338.0,575
 UKPARL.2025.EWH,society,Indicies of Multiple Deprivation,27.86317500170567,160.0,650
 UKPARL.2025.EWH,transport,Bus service changes,-6.8,73.0,575
-UKPARL.2025.WGN,society,Indicies of Multiple Deprivation,27.844578052157452,161.0,650
+UKPARL.2025.WGN,society,Indicies of Multiple Deprivation,27.84457805215745,161.0,650
 UKPARL.2025.WGN,transport,Bus service changes,-31.7,186.0,575
 UKPARL.2025.MCL,society,Indicies of Multiple Deprivation,27.63050106053536,162.0,650
 UKPARL.2025.MCL,transport,Bus service changes,-49.4,300.0,575
-UKPARL.2025.LEE,society,Indicies of Multiple Deprivation,27.580471963178596,163.0,650
+UKPARL.2025.LEE,society,Indicies of Multiple Deprivation,27.5804719631786,163.0,650
 UKPARL.2025.LEE,transport,Bus service changes,-19.4,112.0,575
 UKPARL.2025.GNO,society,Indicies of Multiple Deprivation,27.553552280609708,164.0,650
 UKPARL.2025.GMF,society,Indicies of Multiple Deprivation,27.51459586276424,165.0,650
-UKPARL.2025.CFE,society,Indicies of Multiple Deprivation,27.482546382942957,166.0,650
+UKPARL.2025.CFE,society,Indicies of Multiple Deprivation,27.48254638294296,166.0,650
 UKPARL.2025.CFE,transport,Bus service changes,-25.7,146.0,575
 UKPARL.2025.LWT,society,Indicies of Multiple Deprivation,27.46615527164374,167.0,650
 UKPARL.2025.LWT,transport,Bus service changes,-49.0,297.0,575
-UKPARL.2025.LUS,society,Indicies of Multiple Deprivation,27.427323483302033,168.0,650
+UKPARL.2025.LUS,society,Indicies of Multiple Deprivation,27.427323483302036,168.0,650
 UKPARL.2025.LUS,transport,Bus service changes,-24.7,141.0,575
 UKPARL.2025.BKP,society,Indicies of Multiple Deprivation,27.39776462498256,169.0,650
 UKPARL.2025.BKP,transport,Bus service changes,-24.1,137.0,575
@@ -53053,14 +53053,14 @@ UKPARL.2025.BPN,society,Indicies of Multiple Deprivation,27.183355708438032,175.
 UKPARL.2025.BPN,transport,Bus service changes,-71.8,408.0,575
 UKPARL.2025.WWE,society,Indicies of Multiple Deprivation,27.14515639359328,176.0,650
 UKPARL.2025.WWE,transport,Bus service changes,-37.6,229.0,575
-UKPARL.2025.DRL,society,Indicies of Multiple Deprivation,27.077019324558716,177.0,650
+UKPARL.2025.DRL,society,Indicies of Multiple Deprivation,27.07701932455872,177.0,650
 UKPARL.2025.DRL,transport,Bus service changes,-31.2,182.0,575
 UKPARL.2025.AAS,society,Indicies of Multiple Deprivation,27.06766671274423,178.0,650
 UKPARL.2025.BRW,society,Indicies of Multiple Deprivation,26.909104718466857,179.0,650
 UKPARL.2025.BRW,transport,Bus service changes,-22.4,124.0,575
 UKPARL.2025.WHW,society,Indicies of Multiple Deprivation,26.89867453344597,180.0,650
 UKPARL.2025.WHW,transport,Bus service changes,13.9,43.0,575
-UKPARL.2025.ISS,society,Indicies of Multiple Deprivation,26.861850570487455,181.0,650
+UKPARL.2025.ISS,society,Indicies of Multiple Deprivation,26.86185057048745,181.0,650
 UKPARL.2025.ISS,transport,Bus service changes,-12.2,89.0,575
 UKPARL.2025.NAS,society,Indicies of Multiple Deprivation,26.710502471480897,182.0,650
 UKPARL.2025.NAS,transport,Bus service changes,-60.5,365.0,575
@@ -53068,7 +53068,7 @@ UKPARL.2025.DAR,society,Indicies of Multiple Deprivation,26.70482968906206,183.0
 UKPARL.2025.DAR,transport,Bus service changes,30.8,22.0,575
 UKPARL.2025.LWN,society,Indicies of Multiple Deprivation,26.70466886119602,184.0,650
 UKPARL.2025.LWN,transport,Bus service changes,21.0,35.0,575
-UKPARL.2025.SAW,society,Indicies of Multiple Deprivation,26.647152279300514,185.0,650
+UKPARL.2025.SAW,society,Indicies of Multiple Deprivation,26.647152279300517,185.0,650
 UKPARL.2025.SAW,transport,Bus service changes,-32.8,195.0,575
 UKPARL.2025.BUS,society,Indicies of Multiple Deprivation,26.589447677382086,186.0,650
 UKPARL.2025.BUS,transport,Bus service changes,-23.6,133.0,575
@@ -53079,7 +53079,7 @@ UKPARL.2025.IPS,society,Indicies of Multiple Deprivation,26.45675610531896,189.0
 UKPARL.2025.IPS,transport,Bus service changes,-8.3,77.0,575
 UKPARL.2025.WAW,society,Indicies of Multiple Deprivation,26.320405951590136,190.0,650
 UKPARL.2025.WAW,transport,Bus service changes,-19.3,111.0,575
-UKPARL.2025.WKF,society,Indicies of Multiple Deprivation,26.300450723693476,191.0,650
+UKPARL.2025.WKF,society,Indicies of Multiple Deprivation,26.30045072369348,191.0,650
 UKPARL.2025.WKF,transport,Bus service changes,-15.3,99.0,575
 UKPARL.2025.IRW,society,Indicies of Multiple Deprivation,26.16730412520529,192.0,650
 UKPARL.2025.CRR,society,Indicies of Multiple Deprivation,26.13139349662077,193.0,650
@@ -53087,7 +53087,7 @@ UKPARL.2025.CRR,transport,Bus service changes,-51.1,313.0,575
 UKPARL.2025.MWC,society,Indicies of Multiple Deprivation,26.044165626215488,194.0,650
 UKPARL.2025.RAD,society,Indicies of Multiple Deprivation,26.03317841176025,195.0,650
 UKPARL.2025.RAD,transport,Bus service changes,-63.4,383.0,575
-UKPARL.2025.GWE,society,Indicies of Multiple Deprivation,26.020807485426477,196.0,650
+UKPARL.2025.GWE,society,Indicies of Multiple Deprivation,26.02080748542648,196.0,650
 UKPARL.2025.WSL,society,Indicies of Multiple Deprivation,25.79585334478195,197.0,650
 UKPARL.2025.WSL,transport,Bus service changes,-1.3,60.0,575
 UKPARL.2025.SCU,society,Indicies of Multiple Deprivation,25.768696516950964,198.0,650
@@ -53104,7 +53104,7 @@ UKPARL.2025.NEC,society,Indicies of Multiple Deprivation,25.61847238095238,203.0
 UKPARL.2025.NEC,transport,Bus service changes,-64.3,388.0,575
 UKPARL.2025.ELP,society,Indicies of Multiple Deprivation,25.615208161835536,204.0,650
 UKPARL.2025.ELP,transport,Bus service changes,-52.4,323.0,575
-UKPARL.2025.NDH,society,Indicies of Multiple Deprivation,25.406670677036637,205.0,650
+UKPARL.2025.NDH,society,Indicies of Multiple Deprivation,25.40667067703664,205.0,650
 UKPARL.2025.NDH,transport,Bus service changes,-51.2,314.0,575
 UKPARL.2025.PDL,society,Indicies of Multiple Deprivation,25.256915188599564,206.0,650
 UKPARL.2025.PDL,transport,Bus service changes,-47.4,287.0,575
@@ -53138,12 +53138,12 @@ UKPARL.2025.STS,society,Indicies of Multiple Deprivation,24.578441604475728,221.
 UKPARL.2025.STS,transport,Bus service changes,-75.3,416.0,575
 UKPARL.2025.BOL,society,Indicies of Multiple Deprivation,24.543053181778028,222.0,650
 UKPARL.2025.BOL,transport,Bus service changes,-60.6,366.0,575
-UKPARL.2025.TOR,society,Indicies of Multiple Deprivation,24.533779595572575,223.0,650
+UKPARL.2025.TOR,society,Indicies of Multiple Deprivation,24.53377959557257,223.0,650
 UKPARL.2025.TOR,transport,Bus service changes,-54.7,338.0,575
 UKPARL.2025.PAL,society,Indicies of Multiple Deprivation,24.518292938271607,224.0,650
 UKPARL.2025.PAL,transport,Bus service changes,-3.2,64.0,575
 UKPARL.2025.PRS,society,Indicies of Multiple Deprivation,24.50688863284878,225.0,650
-UKPARL.2025.HAY,society,Indicies of Multiple Deprivation,24.471897395550737,226.0,650
+UKPARL.2025.HAY,society,Indicies of Multiple Deprivation,24.471897395550734,226.0,650
 UKPARL.2025.HAY,transport,Bus service changes,28.1,26.0,575
 UKPARL.2025.LLE,society,Indicies of Multiple Deprivation,24.45943143511944,227.0,650
 UKPARL.2025.LLE,transport,Bus service changes,-68.7,404.0,575
@@ -53156,7 +53156,7 @@ UKPARL.2025.IWE,society,Indicies of Multiple Deprivation,24.335993820278844,231.
 UKPARL.2025.IWE,transport,Bus service changes,4.8,53.0,575
 UKPARL.2025.SNQ,society,Indicies of Multiple Deprivation,24.283252015758247,232.0,650
 UKPARL.2025.SNQ,transport,Bus service changes,-24.7,141.0,575
-UKPARL.2025.CTM,society,Indicies of Multiple Deprivation,24.275248203437215,233.0,650
+UKPARL.2025.CTM,society,Indicies of Multiple Deprivation,24.27524820343721,233.0,650
 UKPARL.2025.CTM,transport,Bus service changes,-50.1,305.0,575
 UKPARL.2025.BOS,society,Indicies of Multiple Deprivation,24.257412221864712,234.0,650
 UKPARL.2025.BOS,transport,Bus service changes,3.4,54.0,575
@@ -53164,7 +53164,7 @@ UKPARL.2025.BNE,society,Indicies of Multiple Deprivation,24.223274201493183,235.
 UKPARL.2025.BNE,transport,Bus service changes,-49.1,298.0,575
 UKPARL.2025.LNC,society,Indicies of Multiple Deprivation,24.191095675883524,236.0,650
 UKPARL.2025.LNC,transport,Bus service changes,-6.5,71.0,575
-UKPARL.2025.STV,society,Indicies of Multiple Deprivation,24.16079730963143,237.0,650
+UKPARL.2025.STV,society,Indicies of Multiple Deprivation,24.160797309631437,237.0,650
 UKPARL.2025.STV,transport,Bus service changes,-33.0,197.0,575
 UKPARL.2025.MKF,society,Indicies of Multiple Deprivation,24.15220767216687,238.0,650
 UKPARL.2025.MKF,transport,Bus service changes,-37.3,227.0,575
@@ -53181,7 +53181,7 @@ UKPARL.2025.HAV,society,Indicies of Multiple Deprivation,23.868802876594508,244.
 UKPARL.2025.HAV,transport,Bus service changes,-41.5,253.0,575
 UKPARL.2025.BAB,society,Indicies of Multiple Deprivation,23.82405164761757,245.0,650
 UKPARL.2025.BAB,transport,Bus service changes,-14.9,98.0,575
-UKPARL.2025.HSP,society,Indicies of Multiple Deprivation,23.816104791778734,246.0,650
+UKPARL.2025.HSP,society,Indicies of Multiple Deprivation,23.81610479177873,246.0,650
 UKPARL.2025.HSP,transport,Bus service changes,-23.0,128.0,575
 UKPARL.2025.BUN,society,Indicies of Multiple Deprivation,23.754124687200136,247.0,650
 UKPARL.2025.BUN,transport,Bus service changes,-33.3,200.0,575
@@ -53197,7 +53197,7 @@ UKPARL.2025.CAE,transport,Bus service changes,-29.9,172.0,575
 UKPARL.2025.RGN,society,Indicies of Multiple Deprivation,23.53307870091648,253.0,650
 UKPARL.2025.NCR,society,Indicies of Multiple Deprivation,23.4881972784562,254.0,650
 UKPARL.2025.NCR,transport,Bus service changes,24.1,31.0,575
-UKPARL.2025.BWT,society,Indicies of Multiple Deprivation,23.472225515451196,255.0,650
+UKPARL.2025.BWT,society,Indicies of Multiple Deprivation,23.4722255154512,255.0,650
 UKPARL.2025.BWT,transport,Bus service changes,-81.1,420.0,575
 UKPARL.2025.ELN,society,Indicies of Multiple Deprivation,23.414300871889203,256.0,650
 UKPARL.2025.ELN,transport,Bus service changes,14.3,41.0,575
@@ -53207,22 +53207,22 @@ UKPARL.2025.PPD,society,Indicies of Multiple Deprivation,23.34550983066508,258.0
 UKPARL.2025.PPD,transport,Bus service changes,-54.9,340.0,575
 UKPARL.2025.DAD,society,Indicies of Multiple Deprivation,23.147416966995447,259.0,650
 UKPARL.2025.DAD,transport,Bus service changes,-22.5,125.0,575
-UKPARL.2025.DEN,society,Indicies of Multiple Deprivation,23.096751889711356,260.0,650
+UKPARL.2025.DEN,society,Indicies of Multiple Deprivation,23.09675188971136,260.0,650
 UKPARL.2025.DEN,transport,Bus service changes,-52.2,322.0,575
-UKPARL.2025.LUN,society,Indicies of Multiple Deprivation,23.088325836903433,261.0,650
+UKPARL.2025.LUN,society,Indicies of Multiple Deprivation,23.088325836903437,261.0,650
 UKPARL.2025.LUN,transport,Bus service changes,-42.9,262.0,575
 UKPARL.2025.GAR,society,Indicies of Multiple Deprivation,23.00294566339952,262.0,650
 UKPARL.2025.GAR,transport,Bus service changes,-44.1,269.0,575
 UKPARL.2025.BED,society,Indicies of Multiple Deprivation,22.92099868345788,263.0,650
 UKPARL.2025.BED,transport,Bus service changes,-46.6,283.0,575
-UKPARL.2025.SWG,society,Indicies of Multiple Deprivation,22.906618150203975,264.0,650
+UKPARL.2025.SWG,society,Indicies of Multiple Deprivation,22.906618150203972,264.0,650
 UKPARL.2025.SWG,transport,Bus service changes,2.7,56.0,575
 UKPARL.2025.CAY,society,Indicies of Multiple Deprivation,22.878644900176084,265.0,650
 UKPARL.2025.SAU,society,Indicies of Multiple Deprivation,22.861490841283445,266.0,650
 UKPARL.2025.SAU,transport,Bus service changes,-19.1,110.0,575
 UKPARL.2025.SBT,society,Indicies of Multiple Deprivation,22.790128400184415,267.0,650
 UKPARL.2025.SBT,transport,Bus service changes,-30.2,175.0,575
-UKPARL.2025.WYF,society,Indicies of Multiple Deprivation,22.784010227957076,268.0,650
+UKPARL.2025.WYF,society,Indicies of Multiple Deprivation,22.78401022795708,268.0,650
 UKPARL.2025.WYF,transport,Bus service changes,-54.9,340.0,575
 UKPARL.2025.SCN,society,Indicies of Multiple Deprivation,22.7834844930555,269.0,650
 UKPARL.2025.SCN,transport,Bus service changes,16.7,38.0,575
@@ -53236,9 +53236,9 @@ UKPARL.2025.LNE,society,Indicies of Multiple Deprivation,22.540361123451746,273.
 UKPARL.2025.LNE,transport,Bus service changes,-30.1,174.0,575
 UKPARL.2025.CRE,society,Indicies of Multiple Deprivation,22.512995417911057,274.0,650
 UKPARL.2025.CRE,transport,Bus service changes,22.6,33.0,575
-UKPARL.2025.CNW,society,Indicies of Multiple Deprivation,22.509101999251836,275.0,650
+UKPARL.2025.CNW,society,Indicies of Multiple Deprivation,22.50910199925184,275.0,650
 UKPARL.2025.CNW,transport,Bus service changes,-31.0,181.0,575
-UKPARL.2025.THK,society,Indicies of Multiple Deprivation,22.503282557163317,276.0,650
+UKPARL.2025.THK,society,Indicies of Multiple Deprivation,22.50328255716332,276.0,650
 UKPARL.2025.THK,transport,Bus service changes,-31.0,181.0,575
 UKPARL.2025.RAS,society,Indicies of Multiple Deprivation,22.27044077741473,277.0,650
 UKPARL.2025.RAS,transport,Bus service changes,-31.7,186.0,575
@@ -53256,7 +53256,7 @@ UKPARL.2025.SPV,society,Indicies of Multiple Deprivation,22.080131434315724,283.
 UKPARL.2025.SPV,transport,Bus service changes,-13.5,91.0,575
 UKPARL.2025.ILS,society,Indicies of Multiple Deprivation,21.965556023915635,284.0,650
 UKPARL.2025.ILS,transport,Bus service changes,41.4,11.0,575
-UKPARL.2025.CSO,society,Indicies of Multiple Deprivation,21.945152650452975,285.0,650
+UKPARL.2025.CSO,society,Indicies of Multiple Deprivation,21.94515265045297,285.0,650
 UKPARL.2025.CSO,transport,Bus service changes,-31.8,187.0,575
 UKPARL.2025.ECA,society,Indicies of Multiple Deprivation,21.93587598920728,286.0,650
 UKPARL.2025.ECA,transport,Bus service changes,10.7,47.0,575
@@ -53288,15 +53288,15 @@ UKPARL.2025.CFP,society,Indicies of Multiple Deprivation,21.45509458326992,299.0
 UKPARL.2025.CFP,transport,Bus service changes,-48.0,291.0,575
 UKPARL.2025.BWE,society,Indicies of Multiple Deprivation,21.38803068691296,300.0,650
 UKPARL.2025.BWE,transport,Bus service changes,47.0,8.0,575
-UKPARL.2025.TYN,society,Indicies of Multiple Deprivation,21.256712409178196,301.0,650
+UKPARL.2025.TYN,society,Indicies of Multiple Deprivation,21.2567124091782,301.0,650
 UKPARL.2025.TYN,transport,Bus service changes,-47.6,289.0,575
 UKPARL.2025.BNW,society,Indicies of Multiple Deprivation,21.239602463512902,302.0,650
 UKPARL.2025.BNW,transport,Bus service changes,-41.2,250.0,575
 UKPARL.2025.BRL,society,Indicies of Multiple Deprivation,21.18346472805108,303.0,650
 UKPARL.2025.BRL,transport,Bus service changes,-63.3,382.0,575
-UKPARL.2025.NRN,society,Indicies of Multiple Deprivation,21.14625336783391,304.0,650
+UKPARL.2025.NRN,society,Indicies of Multiple Deprivation,21.146253367833918,304.0,650
 UKPARL.2025.NRN,transport,Bus service changes,-5.8,69.0,575
-UKPARL.2025.AAG,society,Indicies of Multiple Deprivation,21.142606399080517,305.0,650
+UKPARL.2025.AAG,society,Indicies of Multiple Deprivation,21.14260639908052,305.0,650
 UKPARL.2025.BAC,society,Indicies of Multiple Deprivation,21.137878886214896,306.0,650
 UKPARL.2025.BAC,transport,Bus service changes,-32.7,194.0,575
 UKPARL.2025.NNF,society,Indicies of Multiple Deprivation,20.99694332270634,307.0,650
@@ -53331,7 +53331,7 @@ UKPARL.2025.NDV,society,Indicies of Multiple Deprivation,20.403279736476403,322.
 UKPARL.2025.NDV,transport,Bus service changes,-36.9,225.0,575
 UKPARL.2025.CRK,society,Indicies of Multiple Deprivation,20.40104462957733,323.0,650
 UKPARL.2025.CRK,transport,Bus service changes,-57.4,350.0,575
-UKPARL.2025.HBS,society,Indicies of Multiple Deprivation,20.320262622531892,324.0,650
+UKPARL.2025.HBS,society,Indicies of Multiple Deprivation,20.32026262253189,324.0,650
 UKPARL.2025.HBS,transport,Bus service changes,-16.3,102.0,575
 UKPARL.2025.WRE,society,Indicies of Multiple Deprivation,20.28741524687335,325.0,650
 UKPARL.2025.WRE,transport,Bus service changes,-42.5,259.0,575
@@ -53365,7 +53365,7 @@ UKPARL.2025.MCH,transport,Bus service changes,-57.1,349.0,575
 UKPARL.2025.DAG,society,Indicies of Multiple Deprivation,19.70129900899086,340.0,650
 UKPARL.2025.DFD,society,Indicies of Multiple Deprivation,19.677732590113813,341.0,650
 UKPARL.2025.DFD,transport,Bus service changes,-31.9,188.0,575
-UKPARL.2025.NHS,society,Indicies of Multiple Deprivation,19.649242421789996,342.0,650
+UKPARL.2025.NHS,society,Indicies of Multiple Deprivation,19.64924242179,342.0,650
 UKPARL.2025.NHS,transport,Bus service changes,-32.2,191.0,575
 UKPARL.2025.SNS,society,Indicies of Multiple Deprivation,19.647076374211803,343.0,650
 UKPARL.2025.SNS,transport,Bus service changes,-28.0,159.0,575
@@ -53375,7 +53375,7 @@ UKPARL.2025.TIV,society,Indicies of Multiple Deprivation,19.431136588286524,345.
 UKPARL.2025.TIV,transport,Bus service changes,-49.4,300.0,575
 UKPARL.2025.NWC,society,Indicies of Multiple Deprivation,19.38318128439107,346.0,650
 UKPARL.2025.NWC,transport,Bus service changes,-42.9,262.0,575
-UKPARL.2025.NUL,society,Indicies of Multiple Deprivation,19.34546613969211,347.0,650
+UKPARL.2025.NUL,society,Indicies of Multiple Deprivation,19.345466139692117,347.0,650
 UKPARL.2025.NUL,transport,Bus service changes,-72.3,409.0,575
 UKPARL.2025.HRS,society,Indicies of Multiple Deprivation,19.315908773678963,348.0,650
 UKPARL.2025.HRS,transport,Bus service changes,-62.5,377.0,575
@@ -53391,7 +53391,7 @@ UKPARL.2025.MAM,society,Indicies of Multiple Deprivation,19.02199715994875,354.0
 UKPARL.2025.MAM,transport,Bus service changes,42.2,10.0,575
 UKPARL.2025.NNU,society,Indicies of Multiple Deprivation,19.0074156817134,355.0,650
 UKPARL.2025.NNU,transport,Bus service changes,-39.5,238.0,575
-UKPARL.2025.VOG,society,Indicies of Multiple Deprivation,18.995035810181175,356.0,650
+UKPARL.2025.VOG,society,Indicies of Multiple Deprivation,18.99503581018117,356.0,650
 UKPARL.2025.VOG,transport,Bus service changes,-52.8,325.0,575
 UKPARL.2025.CKH,society,Indicies of Multiple Deprivation,18.98079592482565,357.0,650
 UKPARL.2025.HLW,society,Indicies of Multiple Deprivation,18.98029161612251,358.0,650
@@ -53412,12 +53412,12 @@ UKPARL.2025.HFB,society,Indicies of Multiple Deprivation,18.807216359447004,365.
 UKPARL.2025.HFB,transport,Bus service changes,-2.1,62.0,575
 UKPARL.2025.KET,society,Indicies of Multiple Deprivation,18.80350099522836,366.0,650
 UKPARL.2025.KET,transport,Bus service changes,-51.3,315.0,575
-UKPARL.2025.BSC,society,Indicies of Multiple Deprivation,18.753987439017553,367.0,650
+UKPARL.2025.BSC,society,Indicies of Multiple Deprivation,18.753987439017557,367.0,650
 UKPARL.2025.BSC,transport,Bus service changes,-42.8,261.0,575
 UKPARL.2025.MID,society,Indicies of Multiple Deprivation,18.74626192330813,368.0,650
 UKPARL.2025.DHM,society,Indicies of Multiple Deprivation,18.74230964696754,369.0,650
 UKPARL.2025.DHM,transport,Bus service changes,-46.0,280.0,575
-UKPARL.2025.BAL,society,Indicies of Multiple Deprivation,18.609324586583593,370.0,650
+UKPARL.2025.BAL,society,Indicies of Multiple Deprivation,18.609324586583597,370.0,650
 UKPARL.2025.CSR,society,Indicies of Multiple Deprivation,18.60689475352951,371.0,650
 UKPARL.2025.GOS,society,Indicies of Multiple Deprivation,18.55886677025841,372.0,650
 UKPARL.2025.GOS,transport,Bus service changes,-35.3,215.0,575
@@ -53425,7 +53425,7 @@ UKPARL.2025.SVG,society,Indicies of Multiple Deprivation,18.54521097016368,373.0
 UKPARL.2025.SVG,transport,Bus service changes,-36.4,222.0,575
 UKPARL.2025.BRC,society,Indicies of Multiple Deprivation,18.476658327660413,374.0,650
 UKPARL.2025.BRC,transport,Bus service changes,-48.7,295.0,575
-UKPARL.2025.CDP,society,Indicies of Multiple Deprivation,18.432816403047596,375.0,650
+UKPARL.2025.CDP,society,Indicies of Multiple Deprivation,18.4328164030476,375.0,650
 UKPARL.2025.CDP,transport,Bus service changes,-59.0,355.0,575
 UKPARL.2025.BEX,society,Indicies of Multiple Deprivation,18.309708491355703,376.0,650
 UKPARL.2025.BEX,transport,Bus service changes,3.4,54.0,575
@@ -53437,7 +53437,7 @@ UKPARL.2025.WRK,society,Indicies of Multiple Deprivation,18.204167521495748,379.
 UKPARL.2025.WRK,transport,Bus service changes,-40.9,248.0,575
 UKPARL.2025.DMD,society,Indicies of Multiple Deprivation,18.20063930423509,380.0,650
 UKPARL.2025.DMD,transport,Bus service changes,-44.1,269.0,575
-UKPARL.2025.ASH,society,Indicies of Multiple Deprivation,18.185787176795433,381.0,650
+UKPARL.2025.ASH,society,Indicies of Multiple Deprivation,18.185787176795436,381.0,650
 UKPARL.2025.ASH,transport,Bus service changes,6.5,50.0,575
 UKPARL.2025.OXE,society,Indicies of Multiple Deprivation,18.13859991857356,382.0,650
 UKPARL.2025.OXE,transport,Bus service changes,-25.6,145.0,575
@@ -53447,13 +53447,13 @@ UKPARL.2025.TAW,society,Indicies of Multiple Deprivation,18.131992520073776,384.
 UKPARL.2025.TAW,transport,Bus service changes,-75.2,415.0,575
 UKPARL.2025.HWC,society,Indicies of Multiple Deprivation,18.08441105150024,385.0,650
 UKPARL.2025.HWC,transport,Bus service changes,-24.4,139.0,575
-UKPARL.2025.MNF,society,Indicies of Multiple Deprivation,18.077760841993292,386.0,650
+UKPARL.2025.MNF,society,Indicies of Multiple Deprivation,18.07776084199329,386.0,650
 UKPARL.2025.MNF,transport,Bus service changes,-33.2,199.0,575
 UKPARL.2025.NHR,society,Indicies of Multiple Deprivation,18.07067103027378,387.0,650
 UKPARL.2025.NHR,transport,Bus service changes,-52.0,320.0,575
 UKPARL.2025.CRL,society,Indicies of Multiple Deprivation,18.06188421905411,388.0,650
 UKPARL.2025.CRL,transport,Bus service changes,-22.5,125.0,575
-UKPARL.2025.PEN,society,Indicies of Multiple Deprivation,18.044757519018116,389.0,650
+UKPARL.2025.PEN,society,Indicies of Multiple Deprivation,18.04475751901812,389.0,650
 UKPARL.2025.PEN,transport,Bus service changes,-11.6,87.0,575
 UKPARL.2025.TRF,society,Indicies of Multiple Deprivation,18.040795619425595,390.0,650
 UKPARL.2025.TRF,transport,Bus service changes,-41.4,252.0,575
@@ -53944,11 +53944,11 @@ UKPARL.2025.YOO,society,Indicies of Multiple Deprivation,7.495827210250658,645.0
 UKPARL.2025.YOO,transport,Bus service changes,-41.1,249.0,575
 UKPARL.2025.RCF,society,Indicies of Multiple Deprivation,7.166617491235671,646.0,650
 UKPARL.2025.RCF,transport,Bus service changes,-67.3,397.0,575
-UKPARL.2025.CAA,society,Indicies of Multiple Deprivation,6.8228731144012915,647.0,650
+UKPARL.2025.CAA,society,Indicies of Multiple Deprivation,6.822873114401292,647.0,650
 UKPARL.2025.CAA,transport,Bus service changes,-47.2,286.0,575
 UKPARL.2025.HAB,society,Indicies of Multiple Deprivation,6.600332395873779,648.0,650
 UKPARL.2025.HAB,transport,Bus service changes,-17.0,104.0,575
-UKPARL.2025.NEH,society,Indicies of Multiple Deprivation,6.0500887379405395,649.0,650
+UKPARL.2025.NEH,society,Indicies of Multiple Deprivation,6.05008873794054,649.0,650
 UKPARL.2025.NEH,transport,Bus service changes,-81.8,421.0,575
 UKPARL.2025.WKM,society,Indicies of Multiple Deprivation,5.732661845759454,650.0,650
 UKPARL.2025.WKM,transport,Bus service changes,-57.4,350.0,575
