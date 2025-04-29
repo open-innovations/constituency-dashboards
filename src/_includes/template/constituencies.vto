@@ -3,7 +3,7 @@ layout: template/page.vto
 ---
 <p>See the <a href="#notes">notes</a> for more information about rankings.</p>
 {{ for theme, data of figures }}
-    <h2>{{theme |> capitalise() }}</h2>
+    <h2 id="{{theme}}">{{theme |> capitalise() }}</h2>
     <div class='grid'>
         {{ for key, value of data }}
             {{ if value.data }}

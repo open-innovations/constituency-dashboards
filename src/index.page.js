@@ -88,7 +88,8 @@ export default async function* () {
                     tags: 'visualisations',
                     map: vis.json,
                     columns: vis.json.data.virtualColumns,
-                    rows
+                    rows,
+                    theme
                 };
             }
         }
