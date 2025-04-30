@@ -6,7 +6,6 @@ layout: template/page.vto
 <p>No data available.</p>
 
 {{ else }}
-    {{ theme }}
     {{# Dynamic config based on what's available #}}
     {{> con = {"hexjson": "hexjson." + map.hexjson.url.split('/').pop().replace('.hexjson', ''),"data": rows, "columns": columns, "matchKey": map.key,"value": map.value,"scale": "Viridis","width": "600","legend": map.legend, "tools": { "filter": {"label": "filterLabel"} }, "tooltip": `<strong><a href="/constituencies/{{ ${map.key} }}/{{ ${theme} }}">{{ n }}{{ map.theme }}</a></strong><br />${map.value}: {{ ${map.value} }}<br />` }; }}
     {{> if ("min" in map.scale) con.min=map.scale.min;if ("max" in map.scale) con.max=map.scale.max; }}
