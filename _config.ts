@@ -67,5 +67,5 @@ site.filter("slugify", (str: string) => {
 
 site.filter("formatNumber");
 
-site.copy("/assets/js/filterList.js");
+site.copy("/assets/js");
 export default site;
