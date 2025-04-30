@@ -70,12 +70,12 @@ export default async function* () {
         for (const vis of themeData.visualisations) {
             const rows = [];
             // Only build the page if there is json content
-            if (vis.json != null) {
+            if (vis.json != null && vis.json.values.length == 1) {
                 for (const [PCON24CD, constituencyData] of Object.entries(vis.json.data.constituencies)){ // Reshape data
                     rows.push(constituencyData); // Reshape the data to a form that OI lume viz is happy with.
                     const newKey = vis.json.title;
-                    const newInfo = vis.json.value;
-                    const newValue = {"data": constituencyData[vis.json.value], "info": newInfo};
+                    const newInfo = vis.json.values[0];
+                    const newValue = {"data": constituencyData[vis.json.values[0]], "info": newInfo, "date": vis.json.data.date};
                     updateDictionary(dashboard, [PCON24CD, theme], newKey, newValue); // Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
                 }
             }
