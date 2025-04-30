@@ -13,6 +13,9 @@ layout: template/page.vto
                     {{ if ranked_constituencies[code][theme][key] }}
                         <p>{{ ranked_constituencies[code][theme][key]['rank'] |> formatRank() }} out of {{ ranked_constituencies[code][theme][key]['count'] }}</p>
                     {{ /if }}
+                    {{ if value.date }}
+                        <p>{{ value.date }}</p>
+                    {{ /if }}
                     {{# <details>{{ value.info }}</details> #}}
                 </a>
             {{ /if }}
