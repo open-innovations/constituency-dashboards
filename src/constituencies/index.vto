@@ -9,7 +9,7 @@ title: Constituencies
 </div>
 <ul id='searchable'>
   {{ for page of search.pages("constituency") }}
-    <li><a href="{{page.url}}">{{ page.title }}</a></li>
+    <li style='display: none'><a href="{{page.url}}">{{ page.title }}</a></li>
   {{ /for }}
 </ul>
 <script src="/assets/js/filterList.js"></script>

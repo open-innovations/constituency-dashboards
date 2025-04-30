@@ -5,7 +5,12 @@ function filterList() {
     filter = input.value.toUpperCase();
     ul = document.getElementById("searchable");
     li = ul.getElementsByTagName('li');
-  
+    if(input.value.length == 0) {
+        ul.style.display = "none";
+        return;
+    } else {
+        ul.style.display = "block";
+    }
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
       a = li[i].getElementsByTagName("a")[0];
