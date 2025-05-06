@@ -70,14 +70,35 @@ export default async function* () {
         for (const vis of themeData.visualisations) {
             const rows = [];
             // Only build the page if there is json content
-            if (vis.json != null && vis.json.values.length == 1) {
+            if (vis.json != null) {
                 for (const [PCON24CD, constituencyData] of Object.entries(vis.json.data.constituencies)){ // Reshape data
                     rows.push(constituencyData); // Reshape the data to a form that OI lume viz is happy with.
-                    const newKey = vis.json.title;
-                    const newInfo = vis.json.values[0];
-                    const newValue = {"data": constituencyData[vis.json.values[0]], "info": newInfo, "date": vis.json.data.date};
-                    updateDictionary(dashboard, [PCON24CD, theme], newKey, newValue); // Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
+                    let myArr = [];
+                    const titleKey = vis.json.title;
+                    for (let i=0;i<vis.json.values.length;i++) {
+                        const newKey = vis.json.values[i].label;
+                        let unit = "units" in vis.json && newKey in vis.json.units ? vis.json.units[newKey] : {};
+                        if (unit.category == 'currency' && unit.value=='GBP'){ 
+                            unit = {'pre':'&pound;'};
+                        } else if (unit.value=='percent') {
+                            unit = {'post':'%'};
+                        } 
+                        else {
+                            unit={};
+                        }
+                        const newValue = {
+                            "measure": newKey, 
+                            "x": i,
+                            "value": constituencyData[vis.json.values[i].value], 
+                            "preunit": unit.pre,
+                            "postunit": unit.post,
+                            "metadata": {"date": vis.json.data.date} };
+                        myArr.push(newValue);
+                    }
+                    updateDictionary(dashboard, [PCON24CD, theme], titleKey, myArr); // Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
                 }
+            } else {
+                console.log(vis);
             }
             // Create the visualisation page only if it has a title to make the unique url
             if (vis.title.length > 0) {
@@ -87,7 +108,7 @@ export default async function* () {
                     layout: 'template/visPage.vto',
                     tags: 'visualisations',
                     map: vis.json,
-                    columns: vis.json.data.virtualColumns,
+                    columns: vis.json.data.virtualColumns || [],
                     rows,
                     theme
                 };
