@@ -3,21 +3,66 @@ layout: template/page.vto
 ---
 <p>See the <a href="#notes">notes</a> for more information about rankings.</p>
 {{ for theme, data of figures }}
-    <h2 id="{{theme}}">{{theme |> capitalise() }}</h2>
+    {{# Create the theme title #}}
+    {{# <h2 id="{{theme}}">{{theme |> capitalise() }}</h2> #}}
+    {{ comp.dashboards.themeTitle({ theme }) }}
     <div class='grid'>
         {{ for key, value of data }}
-            {{ if value.data }}
-                <a href="/{{theme}}/{{key |> slugify() }}/" class="card padded {{ theme }}">
-                    <h4>{{key}}</h4>
-                    <div class='bigNum'>{{ value.data }}</div>
-                    {{ if ranked_constituencies[code][theme][key] }}
-                        <p>{{ ranked_constituencies[code][theme][key]['rank'] |> formatRank() }} out of {{ ranked_constituencies[code][theme][key]['count'] }}</p>
+            {{ if value.length <= 3 }}
+                {{ if value.length > 1 }}
+                    {{ set subtitle = true }}
+                {{ else }}
+                    {{ set subtitle = false }}
+                {{ /if }}
+               {{ for item of value }}
+                    {{ if item.value }}
+                        {{ comp.dashboards.card({
+                            code,
+                            theme,
+                            key,
+                            subtitle,
+                            title: item.measure, 
+                            number: item.value,
+                            visDate: item.metadata.date })
+                        }}
                     {{ /if }}
-                    {{ if value.date }}
-                        <p>{{ value.date }}</p>
-                    {{ /if }}
-                    {{# <details>{{ value.info }}</details> #}}
-                </a>
+                {{ /for }}    
+            {{ else }}
+                {{# {{ value |> JSON.stringify }} #}}
+                {{# {{> console.log(value); }} #}}
+                {{# {{> if (!value.value){console.log(value);} }} #}}
+                
+                <div class="card padded {{ theme }}">
+                    <h4><a href="/{{theme}}/{{key |> slugify() }}/">{{ key }}</a></h4>
+                    {{ comp.oi.chart.line({
+                        config: {
+                            data: value,
+                            axis: { 
+                                x: { 
+                                    grid: { 
+                                        show: false 
+                                    },
+                                    ticks: [] 
+                                }, 
+                                y: { 
+                                    grid: { 
+                                        show: false 
+                                    },
+                                    ticks: []
+                                }
+                            },
+                            series: [{
+                                title: key,
+                                x: "x",
+                                y: "value",
+                                colour: fontColour,
+                                tooltip: '{{ measure }}: <strong>{{preunit}}{{ value }}{{postunit}}</strong>'
+                                }],
+                            legend: { show: false }
+                            }
+                        }) 
+                    }}
+                </div>
             {{ /if }}
         {{ /for }}
     </div>
