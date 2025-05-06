@@ -1,0 +1,25 @@
+{{# <a href="/{{theme}}/{{key |> slugify() }}/" class="card padded {{ theme }}">
+    <h4>{{key}}</h4>
+    <div class='bigNum'>{{ value[0].data }}</div>
+    {{ if ranked_constituencies[code][theme][key] }}
+        <p>{{ ranked_constituencies[code][theme][key]['rank'] |> formatRank() }} out of {{ ranked_constituencies[code][theme][key]['count'] }}</p>
+    {{ /if }}
+    {{ if value.date }}
+        <p>{{ value.date }}</p>
+    {{ /if }}
+</a> #}}
+
+<a href="/{{theme}}/{{key |> slugify() }}/" class="card padded {{ theme }}">
+    <h4>{{ key }}</h4>
+    {{ if subtitle }}
+        <p>{{ title }}</p>
+    {{ /if }}
+    <div class='bigNum'>{{ number }}</div>
+    {{# {{ set rankKey = ranked_constituencies[code][theme][key] }} #}}
+    {{ if rankKey }}
+        {{# <p>{{ rankKey['rank'] |> formatRank() }} out of {{ rankKey['count'] }}</p> #}}
+    {{ /if }}
+    {{ if visDate }}
+        <p>{{ visDate }}</p>
+    {{ /if }}
+</a>
