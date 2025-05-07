@@ -9,8 +9,6 @@ import pandas as pd
 # Create dataframes.
 # Do ranking
 
-# # ISSUE here is that im only getting one value per theme. rather than multiple per theme. something is being overidden.
-
 def get_url_as_json(url):
     # Make the GET request
     response = requests.get(url)
@@ -74,13 +72,23 @@ def make_data_dictionary(index):
             # print(this_vis_data)
             assert this_vis_data != None, "Couldnt get vis data"
             for pconcd, con_data in this_vis_data['data']['constituencies'].items():
-                newKey = this_vis_data['title']
+                # print(this_vis_data['values'][0]['label'])
+                myArr = []
+                titleKey = this_vis_data['title']
                 # Use the value key from this_vis_data to access the specific variable we want from each constituency
-                try:
-                    newValue = {"data": con_data[this_vis_data['value']]}
-                    update_dictionary(dashboard, [pconcd, theme], newKey, newValue)
-                except KeyError:
-                    continue
+                for i in range(len(this_vis_data['values'])):
+                    newKey = this_vis_data['values'][i]['label']
+                    try:
+                        newValue = {
+                            "measure": newKey, 
+                            "value": con_data[this_vis_data['values'][i]['value']]
+                        }
+                    except KeyError:
+                        continue   
+                    myArr.append(newValue)
+
+                update_dictionary(dashboard, [pconcd, theme], titleKey, myArr)
+
     return dashboard
 
 def main():
@@ -92,16 +100,18 @@ def main():
         'PCON24CD': [],
         'Theme': [],
         'Title': [],
+        'Subtitle': [],
         'Value': []
     }
     for key, value in db.items():
         for category, subcategory in value.items():
-            for subcat_name, subcat_value in subcategory.items():
-                normalized_data['PCON24CD'].append(key)
-                normalized_data['Theme'].append(category)
-                normalized_data['Title'].append(subcat_name)
-                normalized_data['Value'].append(subcat_value['data'])
-
+            for name, data in subcategory.items():
+                for d in data:
+                    normalized_data['PCON24CD'].append(key)
+                    normalized_data['Theme'].append(category)
+                    normalized_data['Title'].append(name)
+                    normalized_data['Subtitle'].append(d['measure'])
+                    normalized_data['Value'].append(d['value'])
     # Create DataFrame
     df = pd.DataFrame(normalized_data)
 
