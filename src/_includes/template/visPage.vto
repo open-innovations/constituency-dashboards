@@ -8,7 +8,6 @@ layout: template/page.vto
 {{ else }}
     {{# Dynamic config based on what's available #}}
     {{# <a href="/constituencies/{{ ${map.key} }}/"></a>  --> Did have a link in the tooltip, but doesn't work for old constituencies. Would need to edit code to only make the link if its a current constituency #}}
-    {{# {{ map |> JSON.stringify() }} #}}
     {{> con = {"hexjson": "hexjson." + map.hexjson.url.split('/').pop().replace('.hexjson', ''),"data": rows, "columns": columns, "matchKey": map.key, "value": map.values[0].value,"scale": "Viridis","width": "600","legend": map.legend, "tools": { "filter": {"label": "filterLabel"} }, "tooltip": `<strong>{{ n }}{{ map.theme }}</strong><br />${map.values[0].label}: {{ ${map.values[0].value} }}<br />` }; }}
     {{> if ("min" in map.scale) con.min=map.scale.min;if ("max" in map.scale) con.max=map.scale.max; }}
     {{> if (!("items" in map.legend)) con.legend.items=[]; }}
@@ -18,13 +17,10 @@ layout: template/page.vto
         config: con 
         })
     }}
-
-    {{ if map.data.attribution && map.hexjson.attribution && map.notes }}
     {{ comp.info({
-        dataAttribution: map.data.attribution,
-        mapAttribution: map.hexjson.attribution,
-        notes: map.notes
+        dataAttribution: map.data.attribution || null,
+        mapAttribution: map.hexjson.attribution || null,
+        notes: map.notes || null
         }) 
     }}
-    {{ /if }}
 {{ /if }}
