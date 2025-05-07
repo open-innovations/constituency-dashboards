@@ -11,13 +11,15 @@
 
 <a href="/{{theme}}/{{key |> slugify() }}/" class="card padded {{ theme }}">
     <h4>{{ key }}</h4>
-    {{ if subtitle }}
+    {{ if showSubtitle }}
         <p>{{ title }}</p>
     {{ /if }}
     <div class='bigNum'>{{ number }}</div>
-    {{# {{ set rankKey = ranked_constituencies[code][theme][key] }} #}}
-    {{ if rankKey }}
-        {{# <p>{{ rankKey['rank'] |> formatRank() }} out of {{ rankKey['count'] }}</p> #}}
+    {{ if key in ranked_constituencies[code][theme] }}
+    {{# {{ set rankKey = ranked_constituencies[code][theme][key] }}
+    {{ if rankKey }} #}}
+        {{ set rankKey = ranked_constituencies[code][theme][key][title] }}
+        <p>{{ rankKey['r'] |> formatRank() }} out of {{ rankKey['c'] }}</p>
     {{ /if }}
     {{ if visDate }}
         <p>{{ visDate }}</p>
