@@ -10,9 +10,9 @@ layout: template/page.vto
         {{ for key, value of data }}
             {{ if value.length <= 3 }}
                 {{ if value.length > 1 }}
-                    {{ set subtitle = true }}
+                    {{ set showSubtitle = true }}
                 {{ else }}
-                    {{ set subtitle = false }}
+                    {{ set showSubtitle = false }}
                 {{ /if }}
                {{ for item of value }}
                     {{ if item.value }}
@@ -20,7 +20,7 @@ layout: template/page.vto
                             code,
                             theme,
                             key,
-                            subtitle,
+                            showSubtitle,
                             title: item.measure, 
                             number: item.value,
                             visDate: item.metadata.date })
