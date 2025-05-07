@@ -78,20 +78,25 @@ export default async function* () {
                     for (let i=0;i<vis.json.values.length;i++) {
                         const newKey = vis.json.values[i].label;
                         let unit = "units" in vis.json && newKey in vis.json.units ? vis.json.units[newKey] : {};
+                        let scale = unit.scaleBy;
                         if (unit.category == 'currency' && unit.value=='GBP'){ 
                             unit = {'pre':'&pound;'};
                         } else if (unit.value=='percent') {
                             unit = {'post':'%'};
-                        } 
+                        } else if (unit.value=='Mb/s') {
+                            unit = {'post':' Mb/s'}
+                        }
                         else {
                             unit={};
                         }
+                        unit['scaleBy'] = scale;
                         const newValue = {
                             "measure": newKey, 
                             "x": i,
-                            "value": constituencyData[vis.json.values[i].value], 
+                            "value": constituencyData[vis.json.values[i].value] * (unit.scaleBy || 1), 
                             "preunit": unit.pre,
                             "postunit": unit.post,
+                            "scaleBy": unit.scaleBy,
                             "metadata": {"date": vis.json.data.date} };
                         myArr.push(newValue);
                     }

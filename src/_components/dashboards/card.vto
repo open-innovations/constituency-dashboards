@@ -14,10 +14,8 @@
     {{ if showSubtitle }}
         <p>{{ title }}</p>
     {{ /if }}
-    <div class='bigNum'>{{ number }}</div>
+    <div class='bigNum'>{{ preunit }}{{ number |> humanise() }}{{ postunit }}</div>
     {{ if key in ranked_constituencies[code][theme] }}
-    {{# {{ set rankKey = ranked_constituencies[code][theme][key] }}
-    {{ if rankKey }} #}}
         {{ set rankKey = ranked_constituencies[code][theme][key][title] }}
         <p>{{ rankKey['r'] |> formatRank() }} out of {{ rankKey['c'] }}</p>
     {{ /if }}
