@@ -65,7 +65,28 @@ site.filter("slugify", (str: string) => {
         .replace(/^-+|-+$/g, ""); // Remove leading and trailing hyphens
 });
 
-site.filter("formatNumber");
-
+site.filter('humanise', (input) => {
+    if (typeof(input) == 'string') {
+        return input;
+    } else {
+        // const exp = Math.min(Math.floor(Math.log10(input)));
+        // let div = 1;
+        // let postfix = '';
+        // if (exp >=9) {
+        //     div = 1e9;
+        //     postfix = 'B';
+        // }
+        // else if (exp >=6) {
+        //     div = 1e6;
+        //     postfix = 'M';
+        // }
+        // else if (exp >=3) {
+        //     div = 1e3;
+        //     postfix = 'k'
+        // }
+        // return `${(input/div).toLocaleString()}` + ` ${postfix}`
+        return `${(input).toLocaleString()}` 
+    }
+})
 site.copy("/assets/js");
 export default site;
