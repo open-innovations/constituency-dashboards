@@ -2,11 +2,11 @@
 layout: template/page.vto
 ---
 {{ comp.mpInfo({mpData, title}) }}
-<p>See the <a href="#notes">notes</a> for more information about rankings.</p>
 {{ for theme, data of figures }}
     {{# Create the theme title #}}
     {{# <h2 id="{{theme}}">{{theme |> capitalise() }}</h2> #}}
     {{ comp.dashboards.themeTitle({ theme }) }}
+    <p>See the <a href="#notes">notes</a> for more information about rankings.</p>
     <div class='grid'>
         {{ for key, value of data }}
             {{ if value.length <= 3 }}
