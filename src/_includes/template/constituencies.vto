@@ -1,6 +1,7 @@
 ---
 layout: template/page.vto
 ---
+{{ comp.mpInfo({mpData, title}) }}
 <p>See the <a href="#notes">notes</a> for more information about rankings.</p>
 {{ for theme, data of figures }}
     {{# Create the theme title #}}
@@ -30,11 +31,7 @@ layout: template/page.vto
                         }}
                     {{ /if }}
                 {{ /for }}    
-            {{ else }}
-                {{# {{ value |> JSON.stringify }} #}}
-                {{# {{> console.log(value); }} #}}
-                {{# {{> if (!value.value){console.log(value);} }} #}}
-                
+            {{ else }}          
                 <div class="card padded {{ theme }}">
                     <h4><a href="/{{theme}}/{{key |> slugify() }}/">{{ key }}</a></h4>
                     {{ comp.oi.chart.line({
@@ -99,3 +96,8 @@ layout: template/page.vto
         AND if all constituencies have data.
     </p>
 </section>
+<script>
+    // Dynamically set the innerHTML
+    const imageContainer = document.getElementById("imageContainer");
+    imageContainer.innerHTML = `<img src="{{mpData['Thumbnail']}}" style="height:100%; object-fit:cover;" alt="{{mpData.MP}} thumbnail">`;
+</script>
