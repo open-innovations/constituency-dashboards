@@ -9,6 +9,7 @@ function getRandomIntInclusive(min, max) {
 document.addEventListener("DOMContentLoaded", function randomConstituency() {
     // var link, lucky;
     const link = document.getElementById('lucky');
+    link.setAttribute("href", '')
     var url = '';
     const letters = ['E', 'N', 'S', 'W'];
     const sNumbers = [14000021, 14000027, 14000045, 14000048, 14000051, 14000060, 14000111];
