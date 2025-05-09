@@ -1,5 +1,7 @@
 import { fetchAll, fetchIt } from "./assets/js/fetch.js"
 
+const DEV = Deno.env.get("DEV");
+
 function slugifyString (str) {
     return String(str)
       .normalize('NFKD') // split accented characters into their base characters and diacritical marks
@@ -106,7 +108,7 @@ export default async function* () {
                 console.log(vis);
             }
             // Create the visualisation page only if it has a title to make the unique url
-            if (vis.title.length > 0) {
+            if (vis.title.length > 0 && !DEV) {
                 yield {
                     url: vis.slug,
                     title: vis.title,
@@ -122,6 +124,12 @@ export default async function* () {
     }
     const hexjson = await fetchIt("https://open-innovations.org/projects/hexmaps/maps/uk-constituencies-2023.hexjson");
     const hexes = hexjson.hexes;
+
+    let currentMPs = await fetchIt("https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs.json");
+    if (currentMPs == null) {
+        console.error("Failed to get currentMPs.")
+        return;
+    }
     for (const [code, data] of Object.entries(dashboard)){
         // console.log(code);
         if (hexes[code] != null) {
@@ -136,9 +144,12 @@ export default async function* () {
                 tags: 'constituency',
                 figures: data,
                 region: hexes.region,
+                mpData: currentMPs[code],
                 code
             };
         }
-        
+        if (DEV) {
+            break
+        }
     }
 }
