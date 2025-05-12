@@ -92,10 +92,14 @@ export default async function* () {
                             unit={};
                         }
                         unit['scaleBy'] = scale;
+                        var val = constituencyData[vis.json.values[i].value];
+                        if (typeof(val)=='number'){
+                            val *= (unit.scaleBy || 1);
+                        }
                         const newValue = {
                             "measure": newKey, 
                             "x": i,
-                            "value": constituencyData[vis.json.values[i].value] * (unit.scaleBy || 1), 
+                            "value": val, 
                             "preunit": unit.pre,
                             "postunit": unit.post,
                             "scaleBy": unit.scaleBy,

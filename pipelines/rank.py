@@ -7,9 +7,12 @@ if __name__ == "__main__":
     # Make values numeric
     data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
     # Add a rank column
-    data["rank"] = data.groupby(["Theme", "Title", 'Subtitle'])['Value'].rank(ascending=False, method='min')
+    data["rank"] = data.groupby(["Theme", "Title", 'Subtitle'])['Value'].rank(ascending=False, method='dense')
+    # Add a percentile column
+    data["pct"] = data.groupby(["Theme", "Title", 'Subtitle'])['Value'].rank(ascending=False, method='dense', pct=True)
+    data['pct'] = data['pct'].round(3)
     # Count the number of "titles" for each theme, aka the number of constituencies for each statistic
-    data['count'] = data.groupby(["Theme", 'Title', 'Subtitle'])['Value'].transform('count')
+    data['count'] = data.groupby(["Theme", 'Title', 'Subtitle'])['Value'].transform('nunique')
     # Write to CSV
     data.to_csv('data/ranked_constituencies.csv')
     # Reset the index
@@ -23,6 +26,7 @@ if __name__ == "__main__":
         subtitle = row['Subtitle']
         rank = row['rank']
         count = row['count']
+        pct = row['pct']
 
         if not pd.isna(row['rank']):
             nested\
@@ -30,7 +34,8 @@ if __name__ == "__main__":
                 .setdefault(theme, {})\
                 .setdefault(title, {})[subtitle] = {
                     "r": rank,
-                    "c": count
+                    "c": count,
+                    "p": pct,
                 }
 
     # Convert to JSON
