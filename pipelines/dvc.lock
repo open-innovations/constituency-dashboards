@@ -21,10 +21,10 @@ stages:
       size: 28580664
     - path: pipelines/rank.py
       hash: md5
-      md5: 38320f5ec04acc126da14edc82bb3bb3
-      size: 1351
+      md5: 4aa233a204c55ebeb4d621646515b31d
+      size: 1349
     outs:
     - path: src/_data/ranked_constituencies.json
       hash: md5
-      md5: 3de94dd11d898cc804e65dbfc12fbcd0
-      size: 17847630
+      md5: b50cae98f40a64ba24d4bfcc783fbd76
+      size: 17931545

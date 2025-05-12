@@ -7,7 +7,7 @@ if __name__ == "__main__":
     # Make values numeric
     data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
     # Add a rank column
-    data["rank"] = data.groupby(["Theme", "Title", 'Subtitle'])['Value'].rank(ascending=False, method='dense')
+    data["rank"] = data.groupby(["Theme", "Title", 'Subtitle'])['Value'].rank(ascending=False, method='min')
     # Count the number of "titles" for each theme, aka the number of constituencies for each statistic
     data['count'] = data.groupby(["Theme", 'Title', 'Subtitle'])['Value'].transform('count')
     # Write to CSV
