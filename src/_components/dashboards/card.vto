@@ -17,7 +17,10 @@
     <div class='bigNum'>{{ preunit }}{{ number |> humanise() }}{{ postunit }}</div>
     {{ if key in ranked_constituencies[code][theme] }}
         {{ set rankKey = ranked_constituencies[code][theme][key][title] }}
-        <p>{{ rankKey['r'] |> formatRank() }} out of {{ rankKey['c'] }}</p>
+        <p>
+            {{ if rankKey}}
+                {{ rankKey['r'] |> formatRank() }} out of {{ rankKey['c'] }}
+            {{ /if }}</p>
     {{ /if }}
     {{ if visDate }}
         <p>{{ visDate }}</p>
