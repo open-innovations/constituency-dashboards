@@ -87,6 +87,6 @@ site.filter('humanise', (input) => {
         // return `${(input/div).toLocaleString()}` + ` ${postfix}`
         return `${(input).toLocaleString()}` 
     }
-})
+});
 site.copy("/assets/js");
 export default site;
