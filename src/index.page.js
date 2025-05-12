@@ -109,13 +109,18 @@ export default async function* () {
             }
             // Create the visualisation page only if it has a title to make the unique url
             if (vis.title.length > 0 && !DEV) {
+                let sliderCols = [];
+                for (const v of vis.json.values) {
+                    sliderCols.push(v.value);
+                }
                 yield {
                     url: vis.slug,
                     title: vis.title,
                     layout: 'template/visPage.vto',
                     tags: 'visualisations',
                     map: vis.json,
-                    columns: vis.json.data.virtualColumns || [],
+                    sliderCols: {"columns": sliderCols},
+                    virtualColumns: vis.json.data.virtualColumns || [],
                     rows,
                     theme
                 };

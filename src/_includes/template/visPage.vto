@@ -8,11 +8,11 @@ layout: template/page.vto
 {{ else }}
     {{# Dynamic config based on what's available #}}
     {{# <a href="/constituencies/{{ ${map.key} }}/"></a>  --> Did have a link in the tooltip, but doesn't work for old constituencies. Would need to edit code to only make the link if its a current constituency #}}
-    {{> con = {"hexjson": "hexjson." + map.hexjson.url.split('/').pop().replace('.hexjson', ''),"data": rows, "columns": columns, "matchKey": map.key, "value": map.values[0].value,"scale": "Viridis","width": "600","legend": map.legend, "tools": { "filter": {"label": "filterLabel"} }, "tooltip": `<strong>{{ n }}{{ map.theme }}</strong><br />${map.values[0].label}: {{ ${map.values[0].value} }}<br />` }; }}
+    {{> con = {"hexjson": "hexjson." + map.hexjson.url.split('/').pop().replace('.hexjson', ''), "data": rows, "columns": virtualColumns, "matchKey": map.key, "value": map.values[0].value, "scale": "Viridis", "width": "600", "legend": map.legend, "tools": { "filter": {"label": "filterLabel"} }, "tooltip": `<strong>{{ n }}</strong><br />${map.values[0].label}: {{ ${map.values[0].value} }}` }; }}
     {{> if ("min" in map.scale) con.min=map.scale.min;if ("max" in map.scale) con.max=map.scale.max; }}
     {{> if (!("items" in map.legend)) con.legend.items=[]; }}
     {{> if (!(boundaries)) con.boundaries = { "country": { "stroke": "white", "stroke-width": 1.5, "stroke-linecap": "round" }, "region": "country" }; }}
-    
+    {{> if (sliderCols.columns.length > 1) con.tools.slider = sliderCols;}}
     {{ comp.oi.map.hex_cartogram({ 
         config: con 
         })
