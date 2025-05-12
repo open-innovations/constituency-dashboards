@@ -47,10 +47,9 @@ document.addEventListener("DOMContentLoaded", function randomConstituency() {
     const link = document.getElementById('lucky');
     var url = '';
     const letters = ['E', 'N', 'S', 'W'];
-    const weights = [0.835, 0.028, 0.088, 0.049]
+    const weights = [0.835, 0.028, 0.088, 0.049];
     const sNumbers = [14000021, 14000027, 14000045, 14000048, 14000051, 14000060, 14000111];
     const randLetter = weightedRandom(letters, weights);
-    console.log(randLetter)
     if (randLetter == 'E') {
         randomNum = getRandomIntInclusive(1063, 1605);
         url = randLetter + "1400" + randomNum;
@@ -72,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function randomConstituency() {
 
         // Pick one at random
         const randomNum = getRandomElementFromArray(individualValues);
-        url = randLetter + randomNum
+        url = randLetter + randomNum;
     }
-    link.setAttribute("href", url + '/')
+    link.setAttribute("href", url + '/');
     }
 )
