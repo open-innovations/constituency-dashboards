@@ -20,7 +20,13 @@
         <p>
             {{ if rankKey}}
                 {{ rankKey['r'] |> formatRank() }} out of {{ rankKey['c'] }}
-            {{ /if }}</p>
+            {{ /if }}
+        </p>
+        {{ if theme in rankIndicator }}
+            {{ if key in rankIndicator[theme]}}
+                <p>Rating: {{ rankKey['p'], rankIndicator[theme][key][title] |> rating() }}</p>
+            {{ /if }}
+        {{ /if }}
     {{ /if }}
     {{ if visDate }}
         <p>{{ visDate }}</p>

@@ -88,5 +88,24 @@ site.filter('humanise', (input) => {
         return `${(input).toLocaleString()}` 
     }
 });
+site.filter("rating", (num, indicator) => {
+    const thresholds = [
+        { label: "Very good", min: 0, max: 0.1 },
+        { label: "Good", min: 0.1, max:0.33 },
+        { label: "Average", min: 0.33, max: 0.66 },
+        { label: "Poor", min: 0.66, max: 0.9 },
+        { label: "Very poor", min: 0.9, max: 1.01 } // This has to be 1.01 rather than 1 due to using <
+    ];
+
+    // Flip the number if indicator is 'l'
+    const value = indicator === 'l' ? 1 - num : num;
+
+    for (const t of thresholds) {
+        // If value is between the min and max, return that label.
+        if (value >= t.min && value < t.max) {
+            return t.label;
+        }
+    }
+});
 site.copy("/assets/js");
 export default site;
