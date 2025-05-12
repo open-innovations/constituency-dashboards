@@ -1,0 +1,23 @@
+{
+    "economy": {
+        "ATMs: total": {"Free-to-use": "h", "Pay-to-use": "l", "Total": "h"},
+        "Average download speeds": {"Average downloads speeds (MB/s)": "h"},
+        "Below universal service obligation": {"Below universal service obligation (%)": "l"},
+        "Gigabit availability": {"Gigabit availability (%)": "h"},
+        "Receiving over 30 Mbps": {"Receiving over 30 Mbps (%)": "h"},
+        "Receiving under 10 Mbps": {"Receiving under 10 Mbps (%)": "l"},
+        "Superfast availability": {"Superfast availability (%)": "h"},
+        "Total income: median": {"Total income: Median (Central Estimate)": "h"},
+        "Total tax amount": {"Total tax: Amount (Central Estimate)": "h"}
+    },
+    "energy": {
+        "Domestic solar installations (UK)": {"Number of installations": "h"}
+    },
+    "health": {
+        "Dentists (UK)": {"All dentists": "h", "NHS/HSC/PHS dentists": "h", "Private dentists": "h"}
+    },
+    "society": {
+        "Child poverty": {"Percentage of children living in poverty": "l"},
+        "Fish and chip shops": {"2023-04": "h"}
+    }
+}
