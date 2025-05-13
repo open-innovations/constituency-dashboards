@@ -29,6 +29,6 @@
         {{ /if }}
     {{ /if }}
     {{ if visDate }}
-        <p>{{ visDate }}</p>
+        <p>Updated: {{ visDate |> date("do LLL yyyy") }}</p>
     {{ /if }}
 </a>
