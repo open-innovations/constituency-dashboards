@@ -90,11 +90,11 @@ site.filter('humanise', (input) => {
 });
 site.filter("rating", (num, indicator) => {
     const thresholds = [
-        { label: "Very good", min: 0, max: 0.1 },
-        { label: "Good", min: 0.1, max:0.33 },
-        { label: "Average", min: 0.33, max: 0.66 },
-        { label: "Poor", min: 0.66, max: 0.9 },
-        { label: "Very poor", min: 0.9, max: 1.01 } // This has to be 1.01 rather than 1 due to using <
+        { label: "Relatively very good", min: 0, max: 0.1 },
+        { label: "Relatively good", min: 0.1, max:0.33 },
+        { label: "Relatively average", min: 0.33, max: 0.66 },
+        { label: "Relativley poor", min: 0.66, max: 0.9 },
+        { label: "Relatively very poor", min: 0.9, max: 1.01 } // This has to be 1.01 rather than 1 due to using <
     ];
 
     // Flip the number if indicator is 'l'
