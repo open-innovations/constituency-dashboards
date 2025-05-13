@@ -10,6 +10,7 @@ import oiViz from "https://deno.land/x/oi_lume_viz@v0.16.13/mod.ts";
 import autoDependency from "https://deno.land/x/oi_lume_utils@v0.4.0/processors/auto-dependency.ts";
 import jsonLoader from "lume/core/loaders/json.ts";
 import oiVizConfig from "./oi-viz-config.ts";
+import date from "lume/plugins/date.ts";
 
 
 const site = lume({
@@ -28,6 +29,7 @@ site.use(google_fonts({
 site.use(nav());
 site.use(postcss());
 site.use(oiViz(oiVizConfig));
+site.use(date(/* Options */));
 
 site.loadData([".hexjson"], jsonLoader);
 
