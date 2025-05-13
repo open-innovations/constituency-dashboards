@@ -18,6 +18,20 @@
     },
     "society": {
         "Child poverty": {"Percentage of children living in poverty": "l"},
-        "Fish and chip shops": {"2023-04": "h"}
+        "Fish and chip shops": {"2023-04": "h"},
+        "Foodbanks": {"Food banks": "l"},
+        "Percentage of children affected by two-child limit": {"Percentage of children affected by two-child limit":"l"},
+        "Post offices": {"2025-03":"h"},
+        "Pubs": {"2023-03": "h"}
+    },
+    "transport": {
+        "Bus stops": { "bus_stops": "h"},
+        "Bus stops per square km": {"bus_stops_density": "h"},
+        "EV: combined charging availability": {"total": "h"},
+        "EV: home charging": {"total": "h"},
+        "EV: workplace charging points": {"total": "h"},
+        "Rail cancellations": {"Cancellations %": "l"},
+        "Train stations": {"rail_stops": "h"},
+        "Train stations per square km": {"rail_stops_density": "h"}
     }
 }
