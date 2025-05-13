@@ -4,5 +4,5 @@
         <h3>Party: {{ mpData['Party name'] }}</h3>
         <h3>Start date: {{ mpData['Start date'].split('T')[0] }}</h3>
     </a>
-    <div class="mp-image" id='imageContainer'></div>
+    <div class="mp-image"><img src="{{mpData['Thumbnail']}}" alt="{{mpData.MP}} thumbnail" /></div>
 </div>
