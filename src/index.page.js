@@ -50,6 +50,7 @@ export default async function* () {
     let dashboard = {};
     // Looping over each theme
     for (const [theme, themeData] of Object.entries(index.themes)) {
+		console.log("Theme: "+theme);
         // Looping through the visualisations (which have URL, title, attribution)
         for (const v of themeData.visualisations) {
             // Adding a URL for the individual page
@@ -57,6 +58,7 @@ export default async function* () {
             // Add the JSON data for that visualisation
             v.json = await fetchIt(v.url);
         }
+		console.log("\tBuild theme page");
         // Now yield each theme page.
         yield {
             url: `/${slugifyString(theme)}/`,
@@ -67,9 +69,11 @@ export default async function* () {
             themeData,
             theme
         };
+
         // Loop through each vis and create its page.
         // As we're looping through the visualisations, we want to store the vis data per constituency and then eventually yield a page for each one.
         for (const vis of themeData.visualisations) {
+			console.log('\tProcessing '+vis.title);
             const rows = [];
             // Only build the page if there is json content
             if (vis.json != null) {
@@ -129,8 +133,11 @@ export default async function* () {
                     theme
                 };
             }
+			// Free up some memory as we don't need it any more
+			delete themeData.visualisations[vis];
         }
     }
+	console.log('Get HexJSON and MPs...');
     const hexjson = await fetchIt("https://open-innovations.org/projects/hexmaps/maps/uk-constituencies-2023.hexjson");
     const hexes = hexjson.hexes;
 
@@ -139,9 +146,11 @@ export default async function* () {
         console.error("Failed to get currentMPs.")
         return;
     }
+	console.log('Building dashboards for each constituency...');
+	let i = 0;
     for (const [code, data] of Object.entries(dashboard)){
-        // console.log(code);
         if (hexes[code] != null) {
+			console.log("\tProcessing "+hexes[code]['n']);
             const bgColour = hexes[code]['colour'];
             const textColour = colorIsDarkSimple(bgColour) ? '#FFFFFF' : '#000000';
             yield {
@@ -156,9 +165,13 @@ export default async function* () {
                 mpData: currentMPs[code],
                 code
             };
+			// Free up some memory
+			delete dashboard[code];
         }
-        if (DEV) {
-            break
+        if (DEV && i >= 5) {
+            break;
         }
+		i++;
     }
+	console.log('Done index.page.js');
 }
