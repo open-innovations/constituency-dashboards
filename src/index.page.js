@@ -58,17 +58,17 @@ export default async function* () {
             // Add the JSON data for that visualisation
             v.json = await fetchIt(v.url);
         }
-		console.log("\tBuild theme page");
-        // Now yield each theme page.
-        yield {
-            url: `/${slugifyString(theme)}/`,
-            title: themeData.title,
-            layout: 'template/themePage.vto',
-            tags: 'themes',
-            // This gets used in the themePage.vto to create a list of visualisations using themeData.visualisations[].slug
-            themeData,
-            theme
-        };
+		// console.log("\tBuild theme page");
+        // // Now yield each theme page.
+        // yield {
+        //     url: `/${slugifyString(theme)}/`,
+        //     title: themeData.title,
+        //     layout: 'template/themePage.vto',
+        //     tags: 'themes',
+        //     // This gets used in the themePage.vto to create a list of visualisations using themeData.visualisations[].slug
+        //     themeData,
+        //     theme
+        // };
 
         // Loop through each vis and create its page.
         // As we're looping through the visualisations, we want to store the vis data per constituency and then eventually yield a page for each one.
@@ -107,7 +107,8 @@ export default async function* () {
                             "preunit": unit.pre,
                             "postunit": unit.post,
                             "scaleBy": unit.scaleBy,
-                            "metadata": {"date": vis.json.data.date} };
+                            "metadata": {"date": vis.json.data.date},
+                            "url": vis.json.url };
                         myArr.push(newValue);
                     }
                     updateDictionary(dashboard, [PCON24CD, theme], titleKey, myArr); // Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
@@ -116,23 +117,23 @@ export default async function* () {
                 console.log(vis);
             }
             // Create the visualisation page only if it has a title to make the unique url
-            if (vis.title.length > 0 && !DEV) {
-                let sliderCols = [];
-                for (const v of vis.json.values) {
-                    sliderCols.push(v.value);
-                }
-                yield {
-                    url: vis.slug,
-                    title: vis.title,
-                    layout: 'template/visPage.vto',
-                    tags: 'visualisations',
-                    map: vis.json,
-                    sliderCols: {"columns": sliderCols},
-                    virtualColumns: vis.json.data.virtualColumns || [],
-                    rows,
-                    theme
-                };
-            }
+            // if (vis.title.length > 0 && !DEV) {
+            //     let sliderCols = [];
+            //     for (const v of vis.json.values) {
+            //         sliderCols.push(v.value);
+            //     }
+            //     yield {
+            //         url: vis.slug,
+            //         title: vis.title,
+            //         layout: 'template/visPage.vto',
+            //         tags: 'visualisations',
+            //         map: vis.json,
+            //         sliderCols: {"columns": sliderCols},
+            //         virtualColumns: vis.json.data.virtualColumns || [],
+            //         rows,
+            //         theme
+            //     };
+            // }
 			// Free up some memory as we don't need it any more
 			delete themeData.visualisations[vis];
         }

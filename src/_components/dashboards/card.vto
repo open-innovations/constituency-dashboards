@@ -1,15 +1,4 @@
-{{# <a href="/{{theme}}/{{key |> slugify() }}/" class="card padded {{ theme }}">
-    <h4>{{key}}</h4>
-    <div class='bigNum'>{{ value[0].data }}</div>
-    {{ if ranked_constituencies[code][theme][key] }}
-        <p>{{ ranked_constituencies[code][theme][key]['rank'] |> formatRank() }} out of {{ ranked_constituencies[code][theme][key]['count'] }}</p>
-    {{ /if }}
-    {{ if value.date }}
-        <p>{{ value.date }}</p>
-    {{ /if }}
-</a> #}}
-
-<a href="/{{theme}}/{{key |> slugify() }}/" class="card padded {{ theme }}">
+<a href="https://constituencies.open-innovations.org{{link}}" target="_blank" class="card padded {{ theme }}">
     <h4>{{ key }}</h4>
     {{ if showSubtitle }}
         <p>{{ title }}</p>

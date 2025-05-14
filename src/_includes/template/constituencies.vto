@@ -23,6 +23,7 @@ layout: template/page.vto
                             theme,
                             key,
                             showSubtitle,
+                            link:  item.url,
                             preunit: item.preunit,
                             postunit: item.postunit,
                             scaleBy: item.scaleBy,
@@ -34,7 +35,7 @@ layout: template/page.vto
                 {{ /for }}    
             {{ else }}          
                 <div class="card padded {{ theme }}">
-                    <h4><a href="/{{theme}}/{{key |> slugify() }}/">{{ key }}</a></h4>
+                    <h4><a href="https://constituencies.open-innovations.org{{value[0].url}}" target="_blank">{{ key }}</a></h4>
                     {{ comp.oi.chart.line({
                         config: {
                             data: value,
