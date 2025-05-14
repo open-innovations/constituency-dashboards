@@ -10,15 +10,15 @@ stages:
     outs:
     - path: data/constituencies.csv
       hash: md5
-      md5: 4bd40a2a5e08c0ed0eaca0162f42b694
-      size: 28580664
+      md5: 4a6d12dc0a0a03fc3d9d104002312f91
+      size: 28630133
   rank:
     cmd: python pipelines/rank.py
     deps:
     - path: data/constituencies.csv
       hash: md5
-      md5: 4bd40a2a5e08c0ed0eaca0162f42b694
-      size: 28580664
+      md5: 4a6d12dc0a0a03fc3d9d104002312f91
+      size: 28630133
     - path: pipelines/rank.py
       hash: md5
       md5: 3fe34be76cd9664bd5648f7ca3a573a1
@@ -26,5 +26,5 @@ stages:
     outs:
     - path: src/_data/ranked_constituencies.json
       hash: md5
-      md5: 7884d5d9cbce951e8440ef38ba0bde7d
-      size: 22859799
+      md5: 6322433a91ee5f9e3321773a7565c097
+      size: 22923847
