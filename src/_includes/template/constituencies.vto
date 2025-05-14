@@ -100,4 +100,19 @@ layout: template/page.vto
         picture of where any given constituency sits in the distribution of the data. The more variable the data, the 
         closer this number will be to 650 (the total number of constituencies).
     </p>
+    <h4>Rating</h4>
+    <p>
+        Semantic ratings are assigned based on the percentile for each data point as follows:
+    </p>
+    <ul>
+        <li>Very good: top 10%</li>
+        <li>Good: top third</li>
+        <li>Average: middle third</li>
+        <li>Poor: bottom third</li>
+        <li>Very poor: bottom 10%</li>
+    </ul>
+    <p>
+        Since rankings are based on descending order, there are some cases (e.g. child poverty %) where more is <strong>not</strong> better.
+        In this case we have flipped the ranking so that a low rank (e.g. 650/650) would receive a rating of "Very good".
+    </p>
 </section>
