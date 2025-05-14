@@ -11,7 +11,8 @@
         "Total tax amount": {"Total tax: Amount (Central Estimate)": "h"}
     },
     "energy": {
-        "Domestic solar installations (UK)": {"Number of installations": "h"}
+        "Domestic solar installations (UK)": {"Number of installations": "h"},
+        "Domestic solar - capacity (UK)": {"Installed capacity (MW)": "h"}
     },
     "health": {
         "Dentists (UK)": {"All dentists": "h", "NHS/HSC/PHS dentists": "h", "Private dentists": "h"}
