@@ -155,7 +155,7 @@ export default async function* () {
             const bgColour = hexes[code]['colour'];
             const textColour = colorIsDarkSimple(bgColour) ? '#FFFFFF' : '#000000';
             yield {
-                url: `/constituencies/${code}/`,
+                url: `/${code}/`,
                 layout: 'template/constituencies.vto',
                 title: hexes[code]['n'],
                 bgColour: hexes[code]['colour'],
