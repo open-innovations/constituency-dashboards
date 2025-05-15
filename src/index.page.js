@@ -267,6 +267,9 @@ export default async function* () {
 						} else if (unit.value=='percent') {
 							unit.post = '%';
 							if(!precision) precision = 0.1;
+						} else if (unit.value=='hr') {
+							unit.post = ' hr';
+							if(!precision) precision = 0.1;
 						} else if (unit.value=='Mb/s') {
 							unit.post = ' Mb/s';
 						}
