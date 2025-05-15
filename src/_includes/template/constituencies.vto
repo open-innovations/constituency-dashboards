@@ -28,7 +28,7 @@ layout: template/page.vto
                                 x: "x",
                                 y: "value",
                                 colour: fontColour,
-                                tooltip: '{{ measure }}: <strong>{{preunit}}{{ value }}{{postunit}}</strong>'
+                                tooltip: '{{ measure }}: <strong>{{preunit}}{{ value | toLocaleString() }}{{postunit}}</strong>'
                             }],
                             legend: { show: false },
 							width: 480,
