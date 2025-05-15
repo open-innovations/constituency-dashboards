@@ -2,42 +2,18 @@
 layout: template/page.vto
 ---
 {{ comp.mpInfo({mpData, title}) }}
-{{ for theme, data of figures }}
+{{ for theme, titleObject of figures }}
     {{# Create the theme title #}}
     {{ comp.dashboards.themeTitle({ theme }) }}
     <p>See the <a href="#notes">notes</a> for more information about ratings.</p>
     <div class='grid'>
-        {{ for key, value of data }}
-            {{ if value.length <= 3 }}
-                {{ if value.length > 1 }}
-                    {{ set showSubtitle = true }}
-                {{ else }}
-                    {{ set showSubtitle = false }}
-                {{ /if }}
-               {{ for item of value }}
-                    {{ if item.value != null || item.value != undefined }}
-                    {{# We only make a card if the value isn't null or undefined. It can be 0, any number, or a string. #}}
-                        {{ comp.dashboards.card({
-                            code,
-                            theme,
-                            key,
-                            showSubtitle,
-                            link:  item.url,
-                            preunit: item.preunit,
-                            postunit: item.postunit,
-                            scaleBy: item.scaleBy,
-                            title: item.measure, 
-                            number: item.value,
-                            visDate: item.metadata.date })
-                        }}
-                    {{ /if }}
-                {{ /for }}    
-            {{ else }}          
+        {{ for visTitle, visObject of titleObject }}
+            {{ if visObject.opts.type == 'line' }}
                 <div class="card padded {{ theme }}">
-                    <h4><a href="https://constituencies.open-innovations.org{{value[0].url}}" target="_blank">{{ key }}</a></h4>
+                    <h4><a href="https://constituencies.open-innovations.org{{visObject.url}}" target="_blank">{{ visTitle }}</a></h4>
                     {{ comp.oi.chart.line({
                         config: {
-                            data: value,
+                            data: visObject.data,
                             axis: { 
                                 x: { 
                                     grid: { 
@@ -53,7 +29,7 @@ layout: template/page.vto
                                 }
                             },
                             series: [{
-                                title: key,
+                                title: visTitle,
                                 x: "x",
                                 y: "value",
                                 colour: fontColour,
@@ -64,6 +40,24 @@ layout: template/page.vto
                         }) 
                     }}
                 </div>
+            {{ else }}
+                {{ for item of visObject.data }}
+                    {{ if item.value != null || item.value != undefined }}
+                    {{# We only make a card if the value isn't null or undefined. It can be 0, any number, or a string. #}}
+                        {{ comp.dashboards.card({
+                            code,
+                            theme,
+                            key: visTitle,
+                            showSubtitle: visObject.opts.showSubtitle,
+                            link: visObject.url,
+                            preunit: item.preunit,
+                            postunit: item.postunit,
+                            title: item.measure, 
+                            number: item.value,
+                            visDate: item.metadata.date })
+                        }}
+                    {{ /if }}
+                {{ /for }}    
             {{ /if }}
         {{ /for }}
     </div>

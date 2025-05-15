@@ -79,12 +79,30 @@ export default async function* () {
             if (vis.json != null) {
                 for (const [PCON24CD, constituencyData] of Object.entries(vis.json.data.constituencies)){ // Reshape data
                     rows.push(constituencyData); // Reshape the data to a form that OI lume viz is happy with.
-                    let myArr = [];
+
+                    // Create variables/constants
+                    let dataArray = [];
                     const titleKey = vis.json.title;
+                    const url = vis.json.url;
+                    let opts = {};
+
+                    // Create some options for Lume to work out what to show
+                    if (vis.json.values.length > 3) {
+                        opts['type'] = 'line';
+                    } else if (vis.json.values.length > 1) {
+                        opts['showSubtitle'] = true;
+                    }
+
+                    // Iterate through the different "values" in the data
                     for (let i=0;i<vis.json.values.length;i++) {
+                        // Create a new Key to reference
                         const newKey = vis.json.values[i].label;
+                        
+                        // Get units if present, or make an empty dict
                         let unit = "units" in vis.json && newKey in vis.json.units ? vis.json.units[newKey] : {};
+                        // Add scale 
                         let scale = unit.scaleBy;
+                        // Set some pre/post-fixes based on specific units
                         if (unit.category == 'currency' && unit.value=='GBP'){ 
                             unit = {'pre':'&pound;'};
                         } else if (unit.value=='percent') {
@@ -96,22 +114,26 @@ export default async function* () {
                             unit={};
                         }
                         unit['scaleBy'] = scale;
+                        
+                        // If the value is a number, apply the scale if it exists, or multiply by 1.
                         var val = constituencyData[vis.json.values[i].value];
                         if (typeof(val)=='number'){
                             val *= (unit.scaleBy || 1);
                         }
+
+                        // Create a new dictionary with all the info we need to generate the site.
                         const newValue = {
                             "measure": newKey, 
                             "x": i,
                             "value": val, 
                             "preunit": unit.pre,
                             "postunit": unit.post,
-                            "scaleBy": unit.scaleBy,
-                            "metadata": {"date": vis.json.data.date},
-                            "url": vis.json.url };
-                        myArr.push(newValue);
+                            "metadata": {"date": vis.json.data.date}
+                        };
+                        dataArray.push(newValue);
                     }
-                    updateDictionary(dashboard, [PCON24CD, theme], titleKey, myArr); // Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
+                    // Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
+                    updateDictionary(dashboard, [PCON24CD, theme], titleKey, {"data": dataArray, "url": url, "opts": opts});
                 }
             } else {
                 console.log(vis);
