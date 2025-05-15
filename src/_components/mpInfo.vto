@@ -2,7 +2,7 @@
     <a href="{{mpData['TheyWorkForYou URI']}}" target="_blank" class='mp-info padded' style='background-color:{{mpData['Party bg']}};color:{{mpData['Party fg']}}'>
         <h3>{{mpData.MP}} MP</h3>
         <p>Party: <strong>{{ mpData['Party name'] }}</strong></p>
-        <p>Start date: <strong>{{ mpData['Start date'].split('T')[0] |> date('do LLL yyyy') }}</strong></p>
+        <p>Start date: <strong>{{ mpData['Start date'].split('T')[0] |> date('do LLLL yyyy') }}</strong></p>
     </a>
     <div class="mp-image"><img src="{{mpData['Thumbnail']}}" alt="{{mpData.MP}} thumbnail" /></div>
 </div>

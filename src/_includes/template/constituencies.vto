@@ -15,12 +15,7 @@ layout: template/page.vto
                         config: {
                             data: visObject.data,
                             axis: { 
-                                x: { 
-                                    grid: { 
-                                        show: false 
-                                    },
-                                    ticks: [] 
-                                }, 
+                                x: visObject.opts.xaxis, 
                                 y: { 
                                     grid: { 
                                         show: false 
@@ -34,11 +29,12 @@ layout: template/page.vto
                                 y: "value",
                                 colour: fontColour,
                                 tooltip: '{{ measure }}: <strong>{{preunit}}{{ value }}{{postunit}}</strong>'
-                                }],
-                            legend: { show: false }
-                            }
-                        }) 
-                    }}
+                            }],
+                            legend: { show: false },
+							width: 480,
+							height: 250
+                        }
+                    }) }}
                 </div>
             {{ else }}
                 {{ for item of visObject.data }}

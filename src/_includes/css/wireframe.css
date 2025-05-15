@@ -127,6 +127,9 @@ p {
 .mp-info *:last-of-type {margin-bottom: 0;}
 a.mp-info:hover, a.mpinfo:focus { background-color: black!important; transition-duration: 0.4s!important; color: white!important;}
 
+.oi-viz .axis-grid text { fill: currentColor; }
+.oi-viz .axis-grid line { stroke: currentColor; }
+
 @media only screen and (max-width:800px) {
 	.mp-wrapper {grid-template-columns: 240px;}
 }
