@@ -76,11 +76,11 @@ site.filter('humanise', (input) => {
 });
 site.filter("rating", (num, indicator) => {
     const thresholds = [
-        { label: "Relatively very good", min: 0, max: 0.1 },
-        { label: "Relatively good", min: 0.1, max:0.33 },
-        { label: "Relatively average", min: 0.33, max: 0.66 },
-        { label: "Relativley poor", min: 0.66, max: 0.9 },
-        { label: "Relatively very poor", min: 0.9, max: 1.01 } // This has to be 1.01 rather than 1 due to using <
+        { label: "★★★★★", min: 0, max: 0.2 },
+        { label: "★★★★", min: 0.2, max: 0.4 },
+        { label: "★★★", min: 0.4, max: 0.6 },
+        { label: "★★", min: 0.6, max: 0.8 },
+        { label: "★", min: 0.8, max: 1.01 } // This has to be 1.01 rather than 1 due to using <
     ];
 
     // Flip the number if indicator is 'l'

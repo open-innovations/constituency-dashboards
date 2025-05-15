@@ -14,6 +14,15 @@
         "Domestic solar installations (UK)": {"Number of installations": "h"},
         "Domestic solar - capacity (UK)": {"Installed capacity (MW)": "h"}
     },
+    "environment": {
+        "Ancient woodland": {"Percentage": "h"},
+        "Countryside and Rights of Way": {"Percentage": "h"},
+        "Storm overflows: duration": {"Total duration 2022": "l", "Total duration 2023": "l", "Total duration 2024": "l"},
+        "Storm overflows: spills": {"Total spills 2022": "l", "Total spills 2023": "l", "Total spills 2024": "l"},
+        "Green belt percentage": {"% Green belt": "h"},
+        "Green belt: total": {"Green Belt land (hectares)": "h"}
+
+    },
     "health": {
         "Dentists (UK)": {"All dentists": "h", "NHS/HSC/PHS dentists": "h", "Private dentists": "h"}
     },
@@ -21,6 +30,11 @@
         "Child poverty": {"Percentage of children living in poverty": "l"},
         "Fish and chip shops": {"2023-04": "h"},
         "Foodbanks": {"Food banks": "l"},
+        "Heritage at Risk: all": {"Type→All": "l"},
+        "Heritage at Risk: archaeology": {"Type→Archaeology": "l"},
+        "Heritage at Risk: building or structure": {"Type→Building or structure": "l"},
+        "Heritage at Risk: conservation area": {"Type→Conservation area": "l"},
+        "Heritage at Risk: place of worship": {"Type→Place of worship": "l"},
         "Percentage of children affected by two-child limit": {"Percentage of children affected by two-child limit":"l"},
         "Post offices": {"2025-03":"h"},
         "Pubs": {"2023-03": "h"}
@@ -33,6 +47,8 @@
         "EV: workplace charging points": {"total": "h"},
         "Rail cancellations": {"Cancellations %": "l"},
         "Train stations": {"rail_stops": "h"},
-        "Train stations per square km": {"rail_stops_density": "h"}
+        "Train stations per square km": {"rail_stops_density": "h"},
+        "Tram and metro stops": {"tram_metro_stops": "h"},
+        "Tram and metro stops per square km": {"tram_metro_stops_density": "h"}
     }
 }

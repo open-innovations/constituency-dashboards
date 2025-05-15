@@ -6,14 +6,14 @@
     <div class='bigNum'>{{ preunit }}{{ number |> humanise() }}{{ postunit }}</div>
     {{ if key in ranked_constituencies[code][theme] }}
         {{ set rankKey = ranked_constituencies[code][theme][key][title] }}
-        <p>
+        {{# <p>
             {{ if rankKey}}
                 {{ rankKey['r'] |> formatRank() }} out of {{ rankKey['c'] }}
             {{ /if }}
-        </p>
+        </p> #}}
         {{ if theme in rankIndicator }}
             {{ if key in rankIndicator[theme]}}
-                <p>Rating: {{ rankKey['p'], rankIndicator[theme][key][title] |> rating() }}</p>
+                <p>Relative rating: {{ rankKey['p'], rankIndicator[theme][key][title] |> rating() }}</p>
             {{ /if }}
         {{ /if }}
     {{ /if }}

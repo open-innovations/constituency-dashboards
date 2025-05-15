@@ -4,9 +4,8 @@ layout: template/page.vto
 {{ comp.mpInfo({mpData, title}) }}
 {{ for theme, data of figures }}
     {{# Create the theme title #}}
-    {{# <h2 id="{{theme}}">{{theme |> capitalise() }}</h2> #}}
     {{ comp.dashboards.themeTitle({ theme }) }}
-    <p>See the <a href="#notes">notes</a> for more information about rankings.</p>
+    <p>See the <a href="#notes">notes</a> for more information about ratings.</p>
     <div class='grid'>
         {{ for key, value of data }}
             {{ if value.length <= 3 }}
@@ -72,48 +71,20 @@ layout: template/page.vto
 <hr class='hr--styled'>
 <section>
     <h2 id="notes">Notes</h2>
-    <h3>Rankings</h3>
-    <h4>Overview</h4>
+    <h3>Rating</h3>
     <p>
-        All statistics are ranked in <strong>descending</strong> order. This means <strong>
-            the higher the number,
-            the higher the rank
-        </strong>. Therefore, the ranking should be interpreted in the context of
-        the statistic and what you intend to show with it.
+        Ratings are based on ranking every constituency with data and using the following percentiles:
     </p>
-    <p>
-        For example, a lower child poverty rate is better. Therefore a rank of
-        650 would be the constituency with the "best" (lowest) child poverty rate.
-    </p>
-    <p>
-        Conversely, for a statistic where a higher number is "better", e.g. Gigabit availability
-        (%), a rank of 1 would be the constituency with the "best" (highest) gigabit availability.
-    </p>
-    <h4>Ties</h4>
-    <p>
-        We use a dense ranking method. Ties are given equal rank at the minimum rank of the group. 
-        For example, if the 5th, 6th, and 7th constituencies all share the same value, they will each be 
-        ranked 5th. The next highest value would then be ranked 8th.
-    </p>
-    <h4>Out of</h4>
-    <p>
-        The figure following "out of" is the number of unique values for that statistic. This provides a better
-        picture of where any given constituency sits in the distribution of the data. The more variable the data, the 
-        closer this number will be to 650 (the total number of constituencies).
-    </p>
-    <h4>Rating</h4>
-    <p>
-        Semantic ratings are assigned based on the percentile for each data point as follows:
-    </p>
-    <ul>
-        <li>Very good: top 10%</li>
-        <li>Good: top third</li>
-        <li>Average: middle third</li>
-        <li>Poor: bottom third</li>
-        <li>Very poor: bottom 10%</li>
+    <ul style="list-style:none;">
+        <li>★★★★★ 80-100%</li>
+        <li>★★★★ 60-80%</li>
+        <li>★★★ 40-60%</li>
+        <li>★★ 20-40%</li>
+        <li>★ 0-20%</li>
     </ul>
     <p>
-        Since rankings are based on descending order, there are some cases (e.g. child poverty %) where more is <strong>not</strong> better.
-        In this case we have flipped the ranking so that a low rank (e.g. 650/650) would receive a rating of "Very good".
+        There are some cases where more is <strong>not</strong> better.
+        In those cases we have flipped the ranking so that a lower relative value would receive more stars.
+        For example, a child poverty rate of 0% would be ★★★★★.
     </p>
 </section>
