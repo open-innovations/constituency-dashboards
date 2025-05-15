@@ -130,3 +130,13 @@ a.mp-info:hover, a.mpinfo:focus { background-color: black!important; transition-
 @media only screen and (max-width:800px) {
 	.mp-wrapper {grid-template-columns: 240px;}
 }
+
+#searchInput {
+	font-size: 1em;
+	line-height: 1.5em;
+}
+.oi-filter {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}

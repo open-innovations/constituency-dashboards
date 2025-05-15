@@ -17,6 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
 				console.error('No random list item found',list);
 			}
 		});
-		document.getElementById('searchable').after(btn);
+		document.querySelector('.oi-filter').append(btn);
 	}
 });
