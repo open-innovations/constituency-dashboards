@@ -4,6 +4,17 @@ title: Home
 {{# <p>Browse data for all themes by constituency</p> #}}
 {{# <h3><a href="/themes">Themes</a></h3>
 <p>UK Parliamentary Constituency Hex maps for individual statistics, split by theme.</p> #}}
-<h3><a href="/constituencies">Constituency dashboards</a></h3>
-<p>Dashboards containing all statistics for a given constituency</p>
-<h3><a href="/data">Download data</a></h3>
+<div class='oi-left'>
+    <div class='oi-filter searching'>
+        <svg xmlns="https://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 12 13"><g stroke-width="2" stroke="black" fill="none"><path d="M11.29 11.71l-4-4"></path><circle cx="5" cy="5" r="4"></circle></g></svg>
+        <input type="text" id="searchInput" onkeyup="filterList()" placeholder="Search for constituencies...">
+    </div>
+</div>
+<ul id='searchable'>
+  {{ for page of search.pages("constituency") }}
+    <li style='display: none'><a href="{{page.url}}">{{ page.title }}</a></li>
+  {{ /for }}
+</ul>
+<p><a href="/data">Download data</a></p>
+<script src="/assets/js/luckyDip.js"></script>
+<script src="/assets/js/filterList.js"></script>
