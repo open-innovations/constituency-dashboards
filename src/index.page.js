@@ -272,6 +272,8 @@ export default async function* () {
 							if(!precision) precision = 0.1;
 						} else if (unit.value=='Mb/s') {
 							unit.post = ' Mb/s';
+						} else if (unit.value=='MW') {
+							unit.post = ' MW';
 						}
 						if(typeof precision==="number") unit.precision = precision;
 						if(typeof scale==="number") unit.scaleBy = scale;
