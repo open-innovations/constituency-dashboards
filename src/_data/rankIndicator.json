@@ -19,7 +19,7 @@
         "Countryside and Rights of Way": {"Percentage": "h"},
         "Storm overflows: duration": {"Total duration 2022": "l", "Total duration 2023": "l", "Total duration 2024": "l"},
         "Storm overflows: spills": {"Total spills 2022": "l", "Total spills 2023": "l", "Total spills 2024": "l"},
-        "Green belt percentage": {"% Green belt": "h"},
+        "Green belt percentage": {"% Green Belt": "h"},
         "Green belt: total": {"Green Belt land (hectares)": "h"}
 
     },
