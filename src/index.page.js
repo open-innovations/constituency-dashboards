@@ -247,6 +247,7 @@ export default async function* () {
 					opts['type'] = 'line';
 				} else if (vis.json.values.length > 1) {
 					opts['showSubtitle'] = true;
+					// opts['type'] = 'bar';
 				}
 
 				// Loop over slider values
@@ -335,7 +336,12 @@ export default async function* () {
 					}
 
 					opts.xaxis = JSON.parse(JSON.stringify(xaxis));
-					if(yrange.max-yrange.min == 0 || axis.type=="category") opts.xaxis = {grid:{show:false},ticks:[]};
+					if (yrange.max-yrange.min == 0 || axis.type=="category") {
+						opts.xaxis = {grid:{show:false},ticks:[]};
+						if (vis.json.values.length > 1 && axis.type!='year') {
+							opts['type'] = 'bar';
+						}
+					}
 
 					if(vis.json.values.length==1 || (vis.json.values.length > 1 && nonzero > 0)){
 						// Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].

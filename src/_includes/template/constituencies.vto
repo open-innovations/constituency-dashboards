@@ -8,9 +8,10 @@ layout: template/page.vto
     <p>See the <a href="#notes">notes</a> for more information about ratings.</p>
     <div class='grid'>
         {{ for visTitle, visObject of titleObject }}
+            {{ set cardHeading = `<h4><a href="https://constituencies.open-innovations.org${visObject.url}" target="_blank">${visTitle}</a></h4>` }}
             {{ if visObject.opts.type == 'line' }}
                 <div class="card padded {{ theme }}">
-                    <h4><a href="https://constituencies.open-innovations.org{{visObject.url}}" target="_blank">{{ visTitle }}</a></h4>
+                    {{ cardHeading }}
                     {{ comp.oi.chart.line({
                         config: {
                             data: visObject.data,
@@ -35,6 +36,40 @@ layout: template/page.vto
 							height: 250
                         }
                     }) }}
+                </div>
+            {{ else if visObject.opts.type == 'bar' }}
+                {{# {{ visObject.data |> dump() }} #}}
+                <div class="card padded {{ theme }}" id='bar'>
+                    {{ cardHeading }}
+                    {{ comp.oi.chart.bar({ 
+                            config: {
+                                data: visObject.data,
+                                category: "measure",
+                                width: 400,
+                                height: 250,
+                                series: [
+                                    {
+                                        title: visTitle, 
+                                        value: "value", 
+                                        colour: fontColour,
+                                        tooltip: '{{ measure }}: <strong>{{preunit}}{{ value | toLocaleString() }}{{postunit}}</strong>{{myList}}'
+                                    }
+                                ],
+                                axis: { 
+                                x: visObject.opts.xaxis, 
+                                y: { 
+                                    grid: { 
+                                        show: false 
+                                    },
+                                    ticks: []
+                                }
+                            },
+                            }
+                        })
+                    }}
+                    {{ for item of visObject.data }}
+                        {{ comp.rating({key: visTitle, code: code, theme: theme, title: item.measure, t: true}) }}
+                    {{ /for }}
                 </div>
             {{ else }}
                 {{ for item of visObject.data }}
