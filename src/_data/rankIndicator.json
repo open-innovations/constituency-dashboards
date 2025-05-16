@@ -19,7 +19,7 @@
         "Countryside and Rights of Way": {"Percentage": "h"},
         "Storm overflows: duration": {"Total duration 2022": "l", "Total duration 2023": "l", "Total duration 2024": "l"},
         "Storm overflows: spills": {"Total spills 2022": "l", "Total spills 2023": "l", "Total spills 2024": "l"},
-        "Green belt percentage": {"% Green Belt": "h"},
+        "Green belt: percentage": {"% Green Belt": "h"},
         "Green belt: total": {"Green Belt land (hectares)": "h"}
 
     },
@@ -28,27 +28,27 @@
     },
     "society": {
         "Child poverty": {"Percentage of children living in poverty": "l"},
-        "Fish and chip shops": {"2023-04": "h"},
-        "Foodbanks": {"Food banks": "l"},
-        "Heritage at Risk: all": {"Type→All": "l"},
-        "Heritage at Risk: archaeology": {"Type→Archaeology": "l"},
-        "Heritage at Risk: building or structure": {"Type→Building or structure": "l"},
-        "Heritage at Risk: conservation area": {"Type→Conservation area": "l"},
-        "Heritage at Risk: place of worship": {"Type→Place of worship": "l"},
+        "Fish and chip shops (UK)": {"2023-04": "h"},
+        "Foodbanks (UK)": {"Food banks": "l"},
+        "Heritage at Risk: all (England)": {"Type→All": "l"},
+        "Heritage at Risk: archaeology (England)": {"Type→Archaeology": "l"},
+        "Heritage at Risk: building or structure (England)": {"Type→Building or structure": "l"},
+        "Heritage at Risk: conservation area (England)": {"Type→Conservation area": "l"},
+        "Heritage at Risk: place of worship (England)": {"Type→Place of worship": "l"},
         "Percentage of children affected by two-child limit": {"Percentage of children affected by two-child limit":"l"},
-        "Post offices": {"2025-03":"h"},
+        "Post offices (UK)": {"2025-03":"h"},
         "Pubs": {"2023-03": "h"}
     },
     "transport": {
-        "Bus stops": { "bus_stops": "h"},
-        "Bus stops per square km": {"bus_stops_density": "h"},
-        "EV: combined charging availability": {"total": "h"},
-        "EV: home charging": {"total": "h"},
-        "EV: workplace charging points": {"total": "h"},
-        "Rail cancellations": {"Cancellations %": "l"},
-        "Train stations": {"rail_stops": "h"},
-        "Train stations per square km": {"rail_stops_density": "h"},
-        "Tram and metro stops": {"tram_metro_stops": "h"},
-        "Tram and metro stops per square km": {"tram_metro_stops_density": "h"}
+        "Bus stops (GB)": { "bus_stops": "h"},
+        "Bus stops per square km (GB)": {"bus_stops_density": "h"},
+        "EV: combined charging availability (UK)": {"total": "h"},
+        "EV: home charging (UK)": {"total": "h"},
+        "EV: workplace charging points (UK)": {"total": "h"},
+        "Rail cancellations (GB)": {"Cancellations %": "l"},
+        "Train stations (GB)": {"rail_stops": "h"},
+        "Train stations per square km (GB)": {"rail_stops_density": "h"},
+        "Tram and metro stops (GB)": {"tram_metro_stops": "h"},
+        "Tram and metro stops per square km (GB)": {"tram_metro_stops_density": "h"}
     }
 }
