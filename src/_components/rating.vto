@@ -1,0 +1,8 @@
+{{ if key in ranked_constituencies[code][theme] }}
+    {{ set rankKey = ranked_constituencies[code][theme][key][title] }}
+    {{ if theme in rankIndicator }}
+        {{ if key in rankIndicator[theme]}}
+            <p>Relative rating{{if t}} - {{title}}{{/if}}: {{ rankKey['p'], rankIndicator[theme][key][title] |> rating() }}</p>
+        {{ /if }}
+    {{ /if }}
+{{ /if }}
