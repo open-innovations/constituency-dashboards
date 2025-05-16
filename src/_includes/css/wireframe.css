@@ -40,6 +40,7 @@ h1, h2, h3, h4, strong, .bigNum { font-family: Poppins; }
 a.card:hover, a.card:focus { background-color: black; transition-duration: 0.4s; color: white;}
 .card h4 + .oi-viz { margin-top: 1rem; }
 .grid {display: grid; gap:1em; grid-template-columns: repeat(3, 1fr); padding-bottom: 2rem;}
+.bar, .line {grid-column: 1 / 4;}
 /* .mp-wrapper {
 	display: flex;
 	align-items: flex-start;
@@ -89,6 +90,7 @@ display: block;
 .health { background-color: #00B6FF; color: black;}
 .society { background-color: #722EA5; color: white;}
 .transport { background-color: #D60303; color: white;}
+.series rect {fill: currentColor;}
 
 .series-1 .line, .data-series-1 .line {stroke: currentColor;}
 .oi-legend-inner{color: inherit;}
@@ -98,6 +100,7 @@ details {margin-top: auto;}
 
 @media only screen and (max-width: 1080px) {
 	.grid { grid-template-columns: 100%; }
+	.line { grid-column: auto; }
 }
 
 @media only screen and (max-width: 800px) {
@@ -143,3 +146,17 @@ a.mp-info:hover, a.mpinfo:focus { background-color: black!important; transition-
 	align-items: center;
 	gap: 0.5em;
 }
+
+text tspan {
+	font-weight: 500;
+}
+
+/* rect.marker {
+	fill: inherit;
+	stroke: inherit;
+} */
+
+/* .tooltip .inner, .tooltip .arrow {
+	background: currentColor!important;
+	color: currentColor!important;
+} */
