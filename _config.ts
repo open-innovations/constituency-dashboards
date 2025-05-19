@@ -93,5 +93,16 @@ site.filter("rating", (num, indicator) => {
         }
     }
 });
+site.filter("checkNull", (arr) => {
+    // Loop through the array
+    for (const a of arr) {
+        // If value isn't defined in a, fail.
+        if (!a.value) {
+            return 0;
+        }  
+    }
+    // Otherwise success.
+    return 1;
+})
 site.copy("/assets/js");
 export default site;
