@@ -1,7 +1,7 @@
 {
     "economy": {
         "ATMs: total": {"Free-to-use": "h", "Pay-to-use": "l", "Total": "h"},
-        "Average download speeds": {"Average downloads speeds (MB/s)": "h"},
+        "Average download speeds": {"Average download speed (Mbps)": "h"},
         "Below universal service obligation": {"Below universal service obligation (%)": "l"},
         "Gigabit availability": {"Gigabit availability (%)": "h"},
         "Receiving over 30 Mbps": {"Receiving over 30 Mbps (%)": "h"},
@@ -28,7 +28,7 @@
     },
     "society": {
         "Child poverty": {"Percentage of children living in poverty": "l"},
-        "Fish and chip shops (UK)": {"2023-04": "h"},
+        "Fish and chip shops (UK)": {"2025-03": "h"},
         "Foodbanks (UK)": {"Food banks": "l"},
         "Heritage at Risk: all (England)": {"Type→All": "l"},
         "Heritage at Risk: archaeology (England)": {"Type→Archaeology": "l"},
@@ -37,14 +37,14 @@
         "Heritage at Risk: place of worship (England)": {"Type→Place of worship": "l"},
         "Percentage of children affected by two-child limit": {"Percentage of children affected by two-child limit":"l"},
         "Post offices (UK)": {"2025-03":"h"},
-        "Pubs": {"2023-03": "h"}
+        "Pubs": {"2025-03": "h"}
     },
     "transport": {
         "Bus stops (GB)": { "bus_stops": "h"},
         "Bus stops per square km (GB)": {"bus_stops_density": "h"},
         "EV: combined charging availability (UK)": {"total": "h"},
-        "EV: home charging (UK)": {"total": "h"},
-        "EV: workplace charging points (UK)": {"total": "h"},
+        "EV: home charging (UK)": {"home-2022": "h"},
+        "EV: workplace charging points (UK)": {"workplace-jan-25": "h"},
         "Rail cancellations (GB)": {"Cancellations %": "l"},
         "Train stations (GB)": {"rail_stops": "h"},
         "Train stations per square km (GB)": {"rail_stops_density": "h"},
