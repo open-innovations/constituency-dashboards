@@ -12,7 +12,8 @@
     },
     "energy": {
         "Domestic solar installations (UK)": {"Number of installations": "h"},
-        "Domestic solar - capacity (UK)": {"Installed capacity (MW)": "h"}
+        "Domestic solar - capacity (UK)": {"Installed capacity (MW)": "h"},
+        "Fuel poverty (England)": {"Proportion of households fuel poor (%)": "l"}
     },
     "environment": {
         "Ancient woodland": {"Percentage": "h"},
