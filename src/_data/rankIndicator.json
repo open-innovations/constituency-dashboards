@@ -1,34 +1,35 @@
 {
     "economy": {
-        "ATMs: total": {"Free-to-use": "h", "Pay-to-use": "l", "Total": "h"},
-        "Average download speeds": {"Average download speed (Mbps)": "h"},
-        "Below universal service obligation": {"Below universal service obligation (%)": "l"},
-        "Gigabit availability": {"Gigabit availability (%)": "h"},
-        "Receiving over 30 Mbps": {"Receiving over 30 Mbps (%)": "h"},
-        "Receiving under 10 Mbps": {"Receiving under 10 Mbps (%)": "l"},
-        "Superfast availability": {"Superfast availability (%)": "h"},
+        "ATMs: total (UK)": {"Free-to-use": "h", "Pay-to-use": "l", "Total": "h"},
+        "Broadband: average download speeds (UK)": {"Average download speed (Mbps)": "h"},
+        "Broadband: below universal service obligation (UK)": {"Below universal service obligation (%)": "l"},
+        "Broadband: gigabit availability (UK)": {"Gigabit availability (%)": "h"},
+        "Broadband: receiving over 30 Mbps (UK)": {"Receiving over 30 Mbps (%)": "h"},
+        "Broadband: receiving under 10 Mbps (UK)": {"Receiving under 10 Mbps (%)": "l"},
+        "Broadband: superfast availability (UK)": {"Superfast availability (%)": "h"},
         "Total income: median": {"Total income: Median (Central Estimate)": "h"},
         "Total tax amount": {"Total tax: Amount (Central Estimate)": "h"}
     },
     "energy": {
-        "Domestic solar installations (UK)": {"Number of installations": "h"},
-        "Domestic solar - capacity (UK)": {"Installed capacity (MW)": "h"},
+        "Domestic sola: installations (UK)": {"Number of installations": "h"},
+        "Domestic solar: capacity (UK)": {"Installed capacity (MW)": "h"},
         "Fuel poverty (England)": {"Proportion of households fuel poor (%)": "l"}
     },
     "environment": {
-        "Ancient woodland": {"Percentage": "h"},
-        "Countryside and Rights of Way": {"Percentage": "h"},
-        "Storm overflows: duration": {"Total duration 2022": "l", "Total duration 2023": "l", "Total duration 2024": "l"},
-        "Storm overflows: spills": {"Total spills 2022": "l", "Total spills 2023": "l", "Total spills 2024": "l"},
-        "Green belt: percentage": {"% Green Belt": "h"},
-        "Green belt: total": {"Green Belt land (hectares)": "h"}
+        "Ancient woodland (England)": {"Percentage": "h"},
+        "Countryside and Rights of Way (England)": {"Percentage": "h"},
+        "Storm overflows: duration (England)": {"Total duration 2022": "l", "Total duration 2023": "l", "Total duration 2024": "l"},
+        "Storm overflows: spills (England)": {"Total spills 2022": "l", "Total spills 2023": "l", "Total spills 2024": "l"},
+        "Green belt: percentage (England)": {"% Green Belt": "h"},
+        "Green belt: total (England)": {"Green Belt land (hectares)": "h"}
 
     },
     "health": {
         "Dentists (UK)": {"All dentists": "h", "NHS/HSC/PHS dentists": "h", "Private dentists": "h"}
     },
     "society": {
-        "Child poverty": {"Percentage of children living in poverty": "l"},
+        "Child poverty (UK)": {"Percentage of children living in poverty": "l"},
+        "Child poverty: children affected by two-child limit (UK)" : {"Percentage of children affected by two-child limit":"l"},
         "Fish and chip shops (UK)": {"2025-03": "h"},
         "Foodbanks (UK)": {"Food banks": "l"},
         "Heritage at Risk: all (England)": {"Type→All": "l"},
@@ -38,7 +39,7 @@
         "Heritage at Risk: place of worship (England)": {"Type→Place of worship": "l"},
         "Percentage of children affected by two-child limit": {"Percentage of children affected by two-child limit":"l"},
         "Post offices (UK)": {"2025-03":"h"},
-        "Pubs": {"2025-03": "h"}
+        "Pubs (UK)": {"2025-03": "h"}
     },
     "transport": {
         "Bus stops (GB)": { "bus_stops": "h"},
