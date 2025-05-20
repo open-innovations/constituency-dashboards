@@ -25,7 +25,8 @@
 
     },
     "health": {
-        "Dentists (UK)": {"All dentists": "h", "NHS/HSC/PHS dentists": "h", "Private dentists": "h"}
+        "Dentists (UK)": {"All dentists": "h", "NHS/HSC/PHS dentists": "h", "Private dentists": "h"},
+        "Health-related social security (England & Wales)": {"Percent": "l"}
     },
     "society": {
         "Child poverty (UK)": {"Percentage of children living in poverty": "l"},
