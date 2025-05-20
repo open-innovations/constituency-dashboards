@@ -1,5 +1,3 @@
-## Notes {#notes}
-
 ### Rating
 
 Ratings are based on ranking every constituency with data and using the following percentiles:
