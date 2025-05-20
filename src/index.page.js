@@ -275,6 +275,8 @@ export default async function* () {
 							unit.post = ' Mb/s';
 						} else if (unit.value=='MW') {
 							unit.post = ' MW';
+						} else if (unit.value=='yr') {
+							unit.post = ' years'
 						}
 						if(typeof precision==="number") unit.precision = precision;
 						if(typeof scale==="number") unit.scaleBy = scale;
