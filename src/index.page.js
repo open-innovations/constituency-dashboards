@@ -265,9 +265,11 @@ export default async function* () {
 						}
 						let scale = unit.scaleBy;
 						let precision = unit.precision;
+						unit.pre = "";
+						unit.post = "";
 						// Set some pre/post-fixes based on specific units
 						if (unit.category == 'currency' && unit.value=='GBP'){ 
-							unit.pre = '&pound;';
+							unit.pre = '£';
 						} else if (unit.value=='percent') {
 							unit.post = '%';
 							if(!precision) precision = 0.1;
@@ -311,9 +313,10 @@ export default async function* () {
 					let yrange = {'min':Infinity,'max':-Infinity};
 					
 					let nonzero = 0;
+					let unit;
 					// Iterate through the different "values" in the data
 					for(let i = 0 ; i < vis.json.values.length ; i++){
-						let unit = units[i];
+						unit = units[i];
 						let val = constituencyData[vis.json.values[i].value];
 						// If the value is a number, apply the scale if it exists, or multiply by 1.
 						if(typeof val==="number"){
@@ -338,8 +341,12 @@ export default async function* () {
 							"postunit": unit.post
 						});
 					}
-
 					opts.xaxis = JSON.parse(JSON.stringify(xaxis));
+					if(yrange.max-yrange.min>0){
+						opts.yaxis = {min:vis.json.scale.min,max:vis.json.scale.max,ticks:[{'value':vis.json.scale.min,'label':(unit.pre||"")+(vis.json.scale.min||0).toLocaleString()+(unit.post||""),'grid':true},{'value':vis.json.scale.max,'label':(unit.pre||"")+(vis.json.scale.max||yrange.max).toLocaleString()+(unit.post||""),'grid':true}]};
+					}else{
+						opts.yaxis = { grid: { show: false },ticks: []};
+					}
 					if (yrange.max-yrange.min == 0 || axis.type=="category") {
 						opts.xaxis = {grid:{show:false},ticks:[]};
 						if (vis.json.values.length > 1 && axis.type!='year') {

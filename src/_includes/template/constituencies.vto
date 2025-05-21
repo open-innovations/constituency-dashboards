@@ -22,12 +22,7 @@ layout: template/page.vto
                                 data: visObject.data,
                                 axis: { 
                                     x: visObject.opts.xaxis, 
-                                    y: { 
-                                        grid: { 
-                                            show: false 
-                                        },
-                                        ticks: []
-                                    }
+                                    y: visObject.opts.yaxis
                                 },
                                 series: [{
                                     title: visTitle,
