@@ -6,7 +6,7 @@
         "Broadband: gigabit availability (UK)": {"Gigabit availability (%)": "h"},
         "Broadband: receiving over 30 Mbps (UK)": {"Receiving over 30 Mbps (%)": "h"},
         "Broadband: receiving under 10 Mbps (UK)": {"Receiving under 10 Mbps (%)": "l"},
-        "Broadband: superfast availability (UK)": {"Superfast availability (%)": "h"},
+        "Broadband: superfast availability - at least 30 Mbps (UK)": {"Superfast availability (%)": "h"},
         "Total income: median": {"Total income: Median (Central Estimate)": "h"},
         "Total tax amount": {"Total tax: Amount (Central Estimate)": "h"}
     },
@@ -16,6 +16,7 @@
         "Fuel poverty (England)": {"Proportion of households fuel poor (%)": "l"}
     },
     "environment": {
+        "Access to green space (England)": {"All green space": "h", "All green space with rights of way": "h", "Doorstep standard": "h", "Local standard": "h", "Neighbourhood standard": "h", "Combined": "h", "Partial-combined": "h"},
         "Ancient woodland (England)": {"Percentage": "h"},
         "Countryside and Rights of Way (England)": {"Percentage": "h"},
         "Storm overflows: duration (England)": {"Total duration 2022": "l", "Total duration 2023": "l", "Total duration 2024": "l"},
