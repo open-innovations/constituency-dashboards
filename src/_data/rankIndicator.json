@@ -11,7 +11,7 @@
         "Total tax amount": {"Total tax: Amount (Central Estimate)": "h"}
     },
     "energy": {
-        "Domestic sola: installations (UK)": {"Number of installations": "h"},
+        "Domestic solar: installations (UK)": {"Number of installations": "h"},
         "Domestic solar: capacity (UK)": {"Installed capacity (MW)": "h"},
         "Fuel poverty (England)": {"Proportion of households fuel poor (%)": "l"}
     },

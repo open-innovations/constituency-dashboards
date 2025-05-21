@@ -8,41 +8,53 @@ layout: template/page.vto
     <p>See the <a href="#notes">notes</a> for more information about ratings.</p>
     <div class='grid'>
         {{ for visTitle, visObject of titleObject }}
-            {{ set cardHeading = `<h4><a href="https://constituencies.open-innovations.org${visObject.url}" target="_blank">${visTitle}</a></h4>` }}
+            {{# {{ set cardHeading = `<h4><a href="https://constituencies.open-innovations.org${visObject.url}" target="_blank">${visTitle}</a></h4>` }} #}}
             {{ if visObject.opts.type == 'line' }}
-                <div class="card padded {{ theme }}">
-                    {{ cardHeading }}
-                    {{ comp.oi.chart.line({
-                        config: {
-                            data: visObject.data,
-                            axis: { 
-                                x: visObject.opts.xaxis, 
-                                y: { 
-                                    grid: { 
-                                        show: false 
-                                    },
-                                    ticks: []
-                                }
-                            },
-                            series: [{
-                                title: visTitle,
-                                x: "x",
-                                y: "value",
-                                colour: fontColour,
-                                tooltip: '{{ measure }}: <strong>{{preunit}}{{ value | toLocaleString() }}{{postunit}}</strong>'
-                            }],
-                            legend: { show: false },
-							width: 480,
-							height: 250
-                        }
-                    }) }}
-                </div>
+                {{ comp.dashboards.card({
+                        code,
+                        theme,
+                        key: visTitle,
+                        attribution: visObject.attribution,
+                        link: visObject.url,
+                        visDate: visObject.date,
+                        content: comp.oi.chart.line({
+                            config: {
+                                data: visObject.data,
+                                axis: { 
+                                    x: visObject.opts.xaxis, 
+                                    y: { 
+                                        grid: { 
+                                            show: false 
+                                        },
+                                        ticks: []
+                                    }
+                                },
+                                series: [{
+                                    title: visTitle,
+                                    x: "x",
+                                    y: "value",
+                                    colour: fontColour,
+                                    tooltip: '{{ measure }}: <strong>{{preunit}}{{ value | toLocaleString() }}{{postunit}}</strong>'
+                                }],
+                                legend: { show: false },
+                                width: 480,
+                                height: 250
+                            }
+                        })
+                    })
+                }}
             {{ else if visObject.opts.type == 'bar' && visObject.data.length > 2 }}
                 {{ set check = visObject.data |> checkNull()}}
                 {{ if check }}
-                    <div class="card padded {{ theme }}" id='bar'>
-                        {{ cardHeading }}
-                        {{ comp.oi.chart.bar({ 
+                    {{ comp.dashboards.card({
+                        code,
+                        theme,
+                        ratingData: visObject.data,
+                        key: visTitle,
+                        attribution: visObject.attribution,
+                        visDate: visObject.date,
+                        link: visObject.url,
+                        content: comp.oi.chart.bar({ 
                                 config: {
                                     data: visObject.data,
                                     category: "measure",
@@ -67,12 +79,8 @@ layout: template/page.vto
                                 },
                                 }
                             })
-                        }}
-                    {{ for item of visObject.data }}
-                        {{# {{ console.log(visTitle, code, theme, item.measure )}} #}}
-                        {{ comp.rating({key: visTitle, code: code, theme: theme, title: item.measure, t: true}) }}
-                    {{ /for }}
-                </div>
+                        })
+                    }}
                 {{ /if }}
             {{ else }}
                 {{ for item of visObject.data }}
@@ -82,13 +90,11 @@ layout: template/page.vto
                             code,
                             theme,
                             key: visTitle,
-                            showSubtitle: visObject.opts.showSubtitle,
+                            rating: comp.rating({key: visTitle, code: code, theme: theme, title: item.measure}),
+                            attribution: visObject.attribution,
                             link: visObject.url,
-                            preunit: item.preunit,
-                            postunit: item.postunit,
-                            title: item.measure, 
-                            number: item.value,
-                            visDate: item.metadata.date })
+                            content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value }),
+                            visDate: visObject.date })
                         }}
                     {{ /if }}
                 {{ /for }}    

@@ -235,6 +235,8 @@ export default async function* () {
 
 				const PCON24CD = pcons[0];
 				const constituencyData = vis.json.data.constituencies[PCON24CD];
+				const attribution = vis.json.data.attribution;
+				const dataDate = vis.json.data.date;
 				const titleKey = vis.json.title;
 				const url = vis.json.url;
 				const axis = axisType2(vis.json.values);
@@ -245,10 +247,11 @@ export default async function* () {
 				// Create some options for Lume to work out what to show
 				if (vis.json.values.length > 3) {
 					opts['type'] = 'line';
-				} else if (vis.json.values.length > 1) {
-					opts['showSubtitle'] = true;
-					// opts['type'] = 'bar';
-				}
+				} 
+				// else if (vis.json.values.length > 1) {
+				// 	opts['showSubtitle'] = true;
+				// 	// opts['type'] = 'bar';
+				// }
 
 				// Loop over slider values
 				for(let i = 0 ; i < vis.json.values.length ; i++){
@@ -332,8 +335,7 @@ export default async function* () {
 							"x": x,
 							"value": val, 
 							"preunit": unit.pre,
-							"postunit": unit.post,
-							"metadata": {"date": vis.json.data.date}
+							"postunit": unit.post
 						});
 					}
 
@@ -347,7 +349,7 @@ export default async function* () {
 
 					if(vis.json.values.length==1 || (vis.json.values.length > 1 && nonzero > 0)){
 						// Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
-						updateDictionary(dashboard, [PCON24CD, theme], titleKey, {"data": dataArray, "url": url, "opts": opts});
+						updateDictionary(dashboard, [PCON24CD, theme], titleKey, {"data": dataArray, "url": url, "opts": opts, "attribution": attribution, "date": dataDate});
 					}
 				}
 			} else {
