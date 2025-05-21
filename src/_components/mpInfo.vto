@@ -1,5 +1,5 @@
-<div class='mp-wrapper bottom'>
-    <div class='mp-info padded' style='background-color:{{mpData['Party bg']}};color:{{mpData['Party fg']}}'>
+<div class='mp-wrapper' style='background-color:{{mpData['Party bg']}};color:{{mpData['Party fg']}}'>
+    <div class='mp-info padded'>
         <h3>{{mpData.MP}} MP</h3>
         <p>Party: <strong>{{ mpData['Party name'] }}</strong></p>
         <p>Start date: <strong>{{ mpData['Start date'].split('T')[0] |> date('do LLLL yyyy') }}</strong></p>
