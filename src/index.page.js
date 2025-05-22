@@ -406,6 +406,7 @@ export default async function* () {
 			delete themeData.visualisations[vis];
 		}
 	}
+	index = null;
 	console.log('Get HexJSON and MPs...');
 	const hexjson = await fetchIt("https://open-innovations.org/projects/hexmaps/maps/uk-constituencies-2023.hexjson");
 	const hexes = hexjson.hexes;
@@ -436,6 +437,8 @@ export default async function* () {
 			};
 			// Free up some memory
 			delete dashboard[code];
+			delete hexes[code];
+			delete currentMPs[code];
 		}
 		if (DEV && i >= 5) {
 			break;
