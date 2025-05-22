@@ -226,18 +226,14 @@ function getItem(v){
 	});
 }
 
-export default async function* () {
+export default async function* (page) {
 
 	console.log('Get HexJSON and MPs...');
-	const hexjson = await fetchIt("https://open-innovations.org/projects/hexmaps/maps/uk-constituencies-2023.hexjson");
+	const hexjson = page.hexjson['uk-constituencies-2024'];
 	const hexes = hexjson.hexes;
 	const pcons = Object.keys(hexes);
 
-	let currentMPs = await fetchIt("https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs.json");
-	if (currentMPs == null) {
-		console.error("Failed to get currentMPs.")
-		return;
-	}
+	const currentMPs = page.data['current-MPs'];
 
 	// Get the index of all API data.
 	console.log("Get API index");

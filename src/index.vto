@@ -12,7 +12,7 @@ title: Home
 </div>
 <ul id='searchable'>
   {{ for page of search.pages("constituency") }}
-    <li style='display: none'><a href="{{page.url}}">{{ page.title }}</a></li>
+    <li style='display: none'><a href="{{page.url}}">{{ page.title }}</a> ({{ data['current-MPs'][page.code].MP }})</li>
   {{ /for }}
 </ul>
 <p><a href="/data">Download data</a></p>

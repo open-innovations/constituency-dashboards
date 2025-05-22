@@ -1,6 +1,6 @@
 function filterList() {
 	// Declare variables
-	var input, filter, li, a, i, txtValue, matched;
+	var input, filter, li, i, txtValue, matched;
 	input = document.getElementById('searchInput');
 	filter = input.value.toUpperCase();
 	li = document.querySelectorAll("#searchable li");
@@ -12,9 +12,8 @@ function filterList() {
 	}
 	// Loop through all list items, and hide those who don't match the search query
 	for (i = 0; i < li.length; i++) {
-		a = li[i].getElementsByTagName("a")[0];
-		txtValue = a.textContent || a.innerText;
-		href = a.getAttribute('href');
+		txtValue = li[i].textContent || li[i].innerText;
+		href = li[i].getElementsByTagName("a")[0].getAttribute('href');
 		matched = false;
 		if(txtValue.toUpperCase().indexOf(filter) > -1) matched = true;
 		if(href.toUpperCase().indexOf(filter) > -1) matched = true;

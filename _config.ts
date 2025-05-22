@@ -33,9 +33,10 @@ site.use(date(/* Options */));
 
 site.loadData([".hexjson"], jsonLoader);
 
-site.remoteFile("_data/hexjson/constituencies.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/constituencies.hexjson");
-site.remoteFile("_data/hexjson/uk-constituencies-2023-temporary.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/uk-constituencies-2023-temporary.hexjson");
+//site.remoteFile("_data/hexjson/constituencies.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/constituencies.hexjson");
+//site.remoteFile("_data/hexjson/uk-constituencies-2023-temporary.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/uk-constituencies-2023-temporary.hexjson");
 site.remoteFile("_data/hexjson/uk-constituencies-2024.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/uk-constituencies-2024.hexjson");
+site.remoteFile("_data/data/current-MPs.json", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs.json");
 
 site.filter("dump", (Object) => {
     return JSON.stringify(Object);
