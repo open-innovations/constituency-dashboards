@@ -264,7 +264,7 @@ export default async function* () {
 	}
 	await Promise.all(promises);
 
-	const n = (DEV ? 20 : pcons.length);
+	const n = (DEV ? 400 : pcons.length);
 
 	for(let p = 0; p < n; p++){
 
@@ -279,11 +279,10 @@ export default async function* () {
 		// Looping over each theme
 		for(const [theme, themeData] of Object.entries(index.themes)){
 
-			// Loop through each vis and create its page.
-			// As we're looping through the visualisations, we want to store the vis data per constituency and then eventually yield a page for each one.
+			// Loop through each vis and store its data
 			for(const vis of themeData.visualisations){
-				//console.log('\tProcessing '+vis.title);
-				const rows = [];
+
+				// Visualisation-specific options
 				opts = {};
 
 				// Only build the page if there is json content
