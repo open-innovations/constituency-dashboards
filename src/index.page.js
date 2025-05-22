@@ -193,6 +193,8 @@ function getYAxis(data,scale){
 	hi = new Decimal(Math.ceil(max/spacing.toNumber())*spacing.toNumber());
 	axis = {min:lo.toNumber(),max:hi.toNumber(),ticks:[],'grid':{'stroke-width': 0.5}};
 	// Create tick marks
+	//axis.ticks.push({'value':lo.toNumber(),'label':(pre+lo.toNumber().toLocaleString()+post),'grid':true});
+	//axis.ticks.push({'value':hi.toNumber(),'label':(pre+hi.toNumber().toLocaleString()+post),'grid':true});
 	for(y = lo; y.lessThanOrEqualTo(hi) ; y = y.plus(spacing)){
 		axis.ticks.push({'value':y.toNumber(),'label':(pre+y.toNumber().toLocaleString()+post),'grid':true});
 	}

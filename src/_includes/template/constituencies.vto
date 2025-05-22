@@ -12,106 +12,104 @@ layout: template/page.vto
 {{ /for }}
 </div>
 {{ for theme, titleObject of figures }}
-    {{# Create the theme title #}}
-    {{ comp.dashboards.themeTitle({ theme }) }}
-    <p>See the <a href="#notes">notes</a> for more information about ratings.</p>
-    <div class='grid'>
-        {{ for visTitle, visObject of titleObject }}
-            {{# {{ set cardHeading = `<h4><a href="https://constituencies.open-innovations.org${visObject.url}" target="_blank">${visTitle}</a></h4>` }} #}}
-            {{ if visObject.opts.type == 'line' }}
-                {{ comp.dashboards.card({
-                        code,
-                        theme,
-                        key: visTitle,
-                        attribution: visObject.attribution,
-                        link: visObject.url,
-                        visDate: visObject.date,
-                        content: comp.oi.chart.line({
-                            config: {
-                                data: visObject.data,
-                                axis: { 
-                                    x: visObject.opts.xaxis, 
-                                    y: visObject.opts.yaxis
-                                },
-                                series: [{
-                                    title: visTitle,
-                                    x: "x",
-                                    y: "value",
-                                    colour: fontColour,
-                                    tooltip: '{{ measure }}: <strong>{{preunit}}{{ value | toLocaleString() }}{{postunit}}</strong>'
-                                }],
-                                legend: { show: false },
-                                width: 480,
-                                height: 250
-                            }
-                        })
-                    })
-                }}
-            {{ else if visObject.opts.type == 'bar' && visObject.data.length > 2 }}
-                {{ set check = visObject.data |> checkNull()}}
-                {{ if check }}
-                    {{ comp.dashboards.card({
-                        code,
-                        theme,
-                        ratingData: visObject.data,
-                        key: visTitle,
-                        attribution: visObject.attribution,
-                        visDate: visObject.date,
-                        link: visObject.url,
-                        content: comp.oi.chart.bar({ 
-                                config: {
-                                    data: visObject.data,
-                                    category: "measure",
-                                    width: 400,
-                                    height: 250,
-                                    series: [
-                                        {
-                                            title: visTitle, 
-                                            value: "value", 
-                                            colour: fontColour || '#ffffff',
-                                            tooltip: '{{ measure }}: <strong>{{ preunit }}{{ value }}{{ postunit }}</strong>'
-                                        }
-                                    ],
-                                    axis: { 
-                                    x: visObject.opts.xaxis, 
-                                    y: { 
-                                        grid: { 
-                                            show: false 
-                                        },
-                                        ticks: []
-                                    }
-                                },
-                                }
-                            })
-                        })
-                    }}
-                {{ /if }}
-            {{ else }}
-                {{ for item of visObject.data }}
-                    {{ if item.value != null || item.value != undefined }}
-                    {{# We only make a card if the value isn't null or undefined. It can be 0, any number, or a string. #}}
-                        {{ comp.dashboards.card({
-                            code,
-                            theme,
-                            key: visTitle,
-                            subtitle: { "show": visObject.opts.showSubtitle, "value": item.measure },
-                            rating: comp.rating({key: visTitle, code: code, theme: theme, title: item.measure}),
-                            attribution: visObject.attribution,
-                            link: visObject.url,
-                            content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value }),
-                            visDate: visObject.date })
-                        }}
-                    {{ /if }}
-                {{ /for }}    
-            {{ /if }}
-        {{ /for }}
-    </div>
+	{{# Create the theme title #}}
+	{{ comp.dashboards.themeTitle({ theme }) }}
+	<p>See the <a href="#notes">notes</a> for more information about ratings.</p>
+	<div class='grid'>{{ for visTitle, visObject of titleObject }}
+	{{# {{ set cardHeading = `<h4><a href="https://constituencies.open-innovations.org${visObject.url}" target="_blank">${visTitle}</a></h4>` }} #}}
+	{{ if visObject.opts.type == 'line' }}
+		{{ comp.dashboards.card({
+				code,
+				theme,
+				key: visTitle,
+				attribution: visObject.attribution,
+				link: visObject.url,
+				visDate: visObject.date,
+				content: comp.oi.chart.line({
+					config: {
+						data: visObject.data,
+						axis: { 
+							x: visObject.opts.xaxis, 
+							y: visObject.opts.yaxis
+						},
+						series: [{
+							title: visTitle,
+							x: "x",
+							y: "value",
+							colour: fontColour,
+							tooltip: '{{ measure }}: <strong>{{preunit}}{{ value | toLocaleString() }}{{postunit}}</strong>'
+						}],
+						legend: { show: false },
+						width: 480,
+						height: 250
+					}
+				})
+			})
+		}}
+	{{ else if visObject.opts.type == 'bar' && visObject.data.length > 2 }}
+		{{ set check = visObject.data |> checkNull()}}
+		{{ if check }}
+			{{ comp.dashboards.card({
+				code,
+				theme,
+				ratingData: visObject.data,
+				key: visTitle,
+				attribution: visObject.attribution,
+				visDate: visObject.date,
+				link: visObject.url,
+				content: comp.oi.chart.bar({ 
+						config: {
+							data: visObject.data,
+							category: "measure",
+							width: 400,
+							height: 250,
+							series: [
+								{
+									title: visTitle, 
+									value: "value", 
+									colour: fontColour || '#ffffff',
+									tooltip: '{{ measure }}: <strong>{{ preunit }}{{ value }}{{ postunit }}</strong>'
+								}
+							],
+							axis: { 
+							x: visObject.opts.xaxis, 
+							y: { 
+								grid: { 
+									show: false 
+								},
+								ticks: []
+							}
+						},
+						}
+					})
+				})
+			}}
+		{{ /if }}
+	{{ else }}
+		{{ for item of visObject.data }}
+			{{ if item.value != null || item.value != undefined }}
+			{{# We only make a card if the value isn't null or undefined. It can be 0, any number, or a string. #}}
+				{{ comp.dashboards.card({
+					code,
+					theme,
+					key: visTitle,
+					subtitle: { "show": visObject.opts.showSubtitle, "value": item.measure },
+					rating: comp.rating({key: visTitle, code: code, theme: theme, title: item.measure}),
+					attribution: visObject.attribution,
+					link: visObject.url,
+					content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value }),
+					visDate: visObject.date })
+				}}
+			{{ /if }}
+		{{ /for }}	
+	{{ /if }}
+	{{ /for }}</div>
 {{ /for }}
 
 <hr class='hr--styled'>
 
 <section>
 <h2 id='notes'>Notes</h2>
-    {{ include "../notes/rating.md" |> md }}
-    {{ include "../notes/updated.md" |> md }}
+	{{ include "../notes/rating.md" |> md }}
+	{{ include "../notes/updated.md" |> md }}
 </section>
