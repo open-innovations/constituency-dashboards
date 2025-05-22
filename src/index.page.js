@@ -264,7 +264,7 @@ export default async function* () {
 	}
 	await Promise.all(promises);
 
-	const n = (DEV ? 400 : pcons.length);
+	const n = (DEV ? 20 : pcons.length);
 
 	for(let p = 0; p < n; p++){
 
