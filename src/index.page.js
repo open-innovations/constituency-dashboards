@@ -248,10 +248,10 @@ export default async function* () {
 				if (vis.json.values.length > 3) {
 					opts['type'] = 'line';
 				} 
-				// else if (vis.json.values.length > 1) {
-				// 	opts['showSubtitle'] = true;
-				// 	// opts['type'] = 'bar';
-				// }
+				else if (vis.json.values.length > 1) {
+					opts['showSubtitle'] = true;
+					// opts['type'] = 'bar';
+				}
 
 				// Loop over slider values
 				for(let i = 0 ; i < vis.json.values.length ; i++){

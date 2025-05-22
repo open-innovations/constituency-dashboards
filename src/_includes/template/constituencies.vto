@@ -94,6 +94,7 @@ layout: template/page.vto
                             code,
                             theme,
                             key: visTitle,
+                            subtitle: { "show": visObject.opts.showSubtitle, "value": item.measure },
                             rating: comp.rating({key: visTitle, code: code, theme: theme, title: item.measure}),
                             attribution: visObject.attribution,
                             link: visObject.url,

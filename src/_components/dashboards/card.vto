@@ -1,5 +1,8 @@
 <div class="card padded {{ theme }}" tabindex="0">
     <h4><a href="https://constituencies.open-innovations.org{{link}}" target="blank">{{ key }}</a></h4>
+	{{ if subtitle?.show == true }}
+        <p class="subtitle">{{ subtitle.value }}</p>
+	{{ /if }}
     {{ content }}
     {{ if rating }}
         <p>{{ rating }}</p>
