@@ -33,7 +33,7 @@
     "society": {
         "Child poverty (UK)": {"Percentage of children living in poverty": "l"},
         "Child poverty: children affected by two-child limit (UK)" : {"Percentage of children affected by two-child limit":"l"},
-        "Fish and chip shops (UK)": {"2025-03": "h"},
+        "Fish and chip shops (UK)": {"2025-05": "h"},
         "Foodbanks (UK)": {"Food banks": "l"},
         "Heritage at Risk: all (England)": {"Type→All": "l"},
         "Heritage at Risk: archaeology (England)": {"Type→Archaeology": "l"},
@@ -41,8 +41,8 @@
         "Heritage at Risk: conservation area (England)": {"Type→Conservation area": "l"},
         "Heritage at Risk: place of worship (England)": {"Type→Place of worship": "l"},
         "Percentage of children affected by two-child limit": {"Percentage of children affected by two-child limit":"l"},
-        "Post offices (UK)": {"2025-03":"h"},
-        "Pubs (UK)": {"2025-03": "h"}
+        "Post offices (UK)": {"2025-05":"h"},
+        "Pubs (UK)": {"2025-05": "h"}
     },
     "transport": {
         "Bus stops (GB)": { "bus_stops": "h"},
