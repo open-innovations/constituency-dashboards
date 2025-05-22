@@ -191,6 +191,44 @@ function updateDictionary(dict, keys, newKey, newValue) {
 	current[newKey] = newValue;
 }
 
+// Function to return a yaxis object suitable for OI Lume Viz adjusted to the range of the data
+function getYAxis(data,scale){
+	if(!scale) scale = {};
+	let min = Infinity,max = -Infinity,range,spacing,lo,hi,axis,i,y,pre = "",post = "",f = 1;
+	// Calculate the min/max in the data and get the pre/post units
+	for(i = 0; i < data.length; i++){
+		if(!isNaN(data[i].value)){
+			min = Math.min(min,data[i].value);
+			max = Math.max(max,data[i].value);
+		}
+		if(i==0){ pre = data[i].preunit||""; post = data[i].postunit||""; }
+	}
+	// If the scale minimum is set we'll use that instead (this helps preserve some sensible zero scaling)
+	if(typeof scale.min==="number") min = scale.min;
+	// Find the range
+	range = max - min;
+	// Work out a spacing and then a scale factor
+	if(range > 0){
+		spacing = Math.pow(10,Math.floor(Math.log10(range)));
+		let n = range/spacing;
+		if(n > 3) f = 2;
+		if(n > 6) f = 5;
+	}else{
+		spacing = 1;
+	}
+	// Update the tick spacing
+	spacing = (new Decimal(spacing)).times(f);
+	// Find the new minimum/maximum to use for the scale
+	lo = new Decimal(Math.floor(min/spacing.toNumber())*spacing.toNumber());
+	hi = new Decimal(Math.ceil(max/spacing.toNumber())*spacing.toNumber());
+	axis = {min:lo.toNumber(),max:hi.toNumber(),ticks:[],'grid':{'stroke-width': 0.5}};
+	// Create tick marks
+	for(y = lo; y.lessThanOrEqualTo(hi) ; y = y.plus(spacing)){
+		axis.ticks.push({'value':y.toNumber(),'label':(pre+y.toNumber().toLocaleString()+post),'grid':true});
+	}
+	return axis;
+}
+
 export default async function* () {
 	// Get the index of all API data.
 	let index = await fetchIt("https://constituencies.open-innovations.org/themes/index.json");
@@ -307,6 +345,7 @@ export default async function* () {
 				for(let p = 0; p < pcons.length; p++){
 					const PCON24CD = pcons[p];
 					const constituencyData = vis.json.data.constituencies[pcons[p]];
+					let conopts = JSON.parse(JSON.stringify(opts));
 					
 					// Create variables/constants
 					let dataArray = [];
@@ -341,22 +380,23 @@ export default async function* () {
 							"postunit": unit.post
 						});
 					}
-					opts.xaxis = JSON.parse(JSON.stringify(xaxis));
+					conopts.xaxis = JSON.parse(JSON.stringify(xaxis));
 					if(yrange.max-yrange.min>0){
-						opts.yaxis = {min:vis.json.scale.min,max:vis.json.scale.max,ticks:[{'value':vis.json.scale.min,'label':(unit.pre||"")+(vis.json.scale.min||0).toLocaleString()+(unit.post||""),'grid':true},{'value':vis.json.scale.max,'label':(unit.pre||"")+(vis.json.scale.max||yrange.max).toLocaleString()+(unit.post||""),'grid':true}]};
+						//opts.yaxis = {min:vis.json.scale.min,max:vis.json.scale.max,ticks:[{'value':vis.json.scale.min,'label':(unit.pre||"")+(vis.json.scale.min||0).toLocaleString()+(unit.post||""),'grid':true},{'value':vis.json.scale.max,'label':(unit.pre||"")+(vis.json.scale.max||yrange.max).toLocaleString()+(unit.post||""),'grid':true}]};
+						conopts.yaxis = getYAxis(dataArray,vis.json.scale);
 					}else{
-						opts.yaxis = { grid: { show: false },ticks: []};
+						conopts.yaxis = { grid: { show: false },ticks: []};
 					}
 					if (yrange.max-yrange.min == 0 || axis.type=="category") {
-						opts.xaxis = {grid:{show:false},ticks:[]};
+						conopts.xaxis = {grid:{show:false},ticks:[]};
 						if (vis.json.values.length > 1 && axis.type!='year') {
-							opts['type'] = 'bar';
+							conopts['type'] = 'bar';
 						}
 					}
 
 					if(vis.json.values.length==1 || (vis.json.values.length > 1 && nonzero > 0)){
 						// Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
-						updateDictionary(dashboard, [PCON24CD, theme], titleKey, {"data": dataArray, "url": url, "opts": opts, "attribution": attribution, "date": dataDate});
+						updateDictionary(dashboard, [PCON24CD, theme], titleKey, {"data": dataArray, "url": url, "opts": conopts, "attribution": attribution, "date": dataDate});
 					}
 				}
 			} else {
