@@ -64,7 +64,7 @@ function contrastColour(c){
 	return contrast;
 }
 
-function axisType2(arr){
+function axisType(arr){
 	let type = "";
 	let yearlike = 0;
 	let numberlike = 0;
@@ -103,36 +103,6 @@ function axisType2(arr){
 	return {'type':type,'values':labels};
 }
 
-function axisType(arr){
-	let yearlike = 0;
-	let numberlike = 0;
-	// Check if this looks like a year-based visualisation
-	for (let i = 0 ; i < arr.length ; i++) {
-		if(looksLikeDate(arr[i].label.label)){
-			arr[i].label = arr[i].label.label;
-			yearlike++;
-		}else{
-			if(looksLikeDate(arr[i].label.value)){
-				arr[i].label = arr[i].label.value;
-				yearlike++;
-			}else{
-				if(!isNaN(parseFloat(arr[i].label.label))){
-					arr[i].label = arr[i].label.label;
-					numberlike++;
-				}else{
-					if(!isNaN(parseFloat(arr[i].label.value))){
-						arr[i].label = arr[i].label.value;
-						numberlike++;
-					}
-				}
-			}
-		}
-	}
-	if(yearlike==arr.length && yearlike > 0) return "year";
-	if(numberlike==arr.length && numberlike > 0) return "number";
-	if(numberlike==0 && arr.length > 0) return "category";
-	return "";
-}
 
 function looksLikeDate(d){
 	if(typeof d==="number") d = d + "";
@@ -229,133 +199,158 @@ function getYAxis(data,scale){
 	return axis;
 }
 
+function getXAxis(axis){
+	let s = Infinity,e = -Infinity,gap,r,y,i;
+	let xaxis = {grid:{show:false},ticks:[]};
+	// If we have a year or number axis we'll make ticks
+	if(axis.type=="year" || axis.type=="number"){
+		for(i = 0; i < axis.values.length; i++){
+			s = Math.min(s,axis.values[i]);
+			e = Math.max(e,axis.values[i]);
+		}
+		gap = 1;
+		r = Math.abs(e-s);
+		if(r > 4) gap = 2;
+		if(r > 11) gap = 5;
+		if(r > 28) gap = 10;
+		for(y = gap*Math.floor(s/gap) ; y < e; y += gap){
+			if((y > s || y==0) && y < e) xaxis.ticks.push({"value":y,"label":Math.round(y)+"","tickSize": 5,"grid":false});
+		}
+	}
+	return xaxis;
+
+}
+function getItem(v){
+	return fetchIt(v.url).then((value) => {
+		v.json = value;
+	});
+}
+
 export default async function* () {
+
+	console.log('Get HexJSON and MPs...');
+	const hexjson = await fetchIt("https://open-innovations.org/projects/hexmaps/maps/uk-constituencies-2023.hexjson");
+	const hexes = hexjson.hexes;
+	const pcons = Object.keys(hexes);
+
+	let currentMPs = await fetchIt("https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs.json");
+	if (currentMPs == null) {
+		console.error("Failed to get currentMPs.")
+		return;
+	}
+
 	// Get the index of all API data.
+	console.log("Get API index");
 	let index = await fetchIt("https://constituencies.open-innovations.org/themes/index.json");
-	if (index == null) {
+	if(index == null){
 		console.error("Failed to get index.");
 		return;
 	}
-	let dashboard = {};
+	
 	// Looping over each theme
+	var promises = [];
 	for (const [theme, themeData] of Object.entries(index.themes)) {
 		console.log("Theme: "+theme);
-		// Looping through the visualisations (which have URL, title, attribution)
-		for (const v of themeData.visualisations) {
-			// Adding a URL for the individual page
-			v.slug = "/" + slugifyString(theme) + "/" + slugifyString(v.title) + "/";
-			// Add the JSON data for that visualisation
-			v.json = await fetchIt(v.url);
+		if(1){ // (DEV && theme == "energy") || !DEV
+			// Looping through the visualisations (which have URL, title, attribution)
+			for (const v of themeData.visualisations) {
+				// Adding a URL for the individual page
+				v.slug = "/" + slugifyString(theme) + "/" + slugifyString(v.title) + "/";
+				console.log("\tGetting: "+v.title);
+				// Add the JSON data for that visualisation
+				promises.push(getItem(v));
+			}
 		}
-		// console.log("\tBuild theme page");
-		// // Now yield each theme page.
-		// yield {
-		//	 url: `/${slugifyString(theme)}/`,
-		//	 title: themeData.title,
-		//	 layout: 'template/themePage.vto',
-		//	 tags: 'themes',
-		//	 // This gets used in the themePage.vto to create a list of visualisations using themeData.visualisations[].slug
-		//	 themeData,
-		//	 theme
-		// };
+	}
+	await Promise.all(promises);
 
-		// Loop through each vis and create its page.
-		// As we're looping through the visualisations, we want to store the vis data per constituency and then eventually yield a page for each one.
-		for (const vis of themeData.visualisations) {
-			console.log('\tProcessing '+vis.title);
-			const rows = [];
-			// Only build the page if there is json content
-			if (vis.json != null) {
+	const n = (DEV ? 20 : pcons.length);
 
-				const pcons = Object.keys(vis.json.data.constituencies);
+	for(let p = 0; p < n; p++){
 
-				// Calculate some things just for the first constituency
+		const code = pcons[p];
 
-				const PCON24CD = pcons[0];
-				const constituencyData = vis.json.data.constituencies[PCON24CD];
-				const attribution = vis.json.data.attribution;
-				const dataDate = vis.json.data.date;
-				const titleKey = vis.json.title;
-				const url = vis.json.url;
-				const axis = axisType2(vis.json.values);
-				let units = new Array(axis.values.length);
-				let opts = {};
-				let xaxis = {grid:{show:false},ticks:[]};
-				let s = Infinity,e = -Infinity;
-				// Create some options for Lume to work out what to show
-				if (vis.json.values.length > 3) {
-					opts['type'] = 'line';
-				} 
-				else if (vis.json.values.length > 1) {
-					opts['showSubtitle'] = true;
-					// opts['type'] = 'bar';
-				}
+		console.log("Building "+hexes[code].n+" ("+code+")");
 
-				// Loop over slider values
-				for(let i = 0 ; i < vis.json.values.length ; i++){
-					const newKey = vis.json.values[i].label;
-					let unit = {};
-					if("units" in vis.json){
-						if(vis.json.values[i].label in vis.json.units){
-							unit = vis.json.units[vis.json.values[i].label];
-						}else if(vis.json.values[i].value in vis.json.units){
-							unit = vis.json.units[vis.json.values[i].value];
+		let dashboard = {};
+		let opts = {};
+		let data = {};
+
+		// Looping over each theme
+		for(const [theme, themeData] of Object.entries(index.themes)){
+
+			// Loop through each vis and create its page.
+			// As we're looping through the visualisations, we want to store the vis data per constituency and then eventually yield a page for each one.
+			for(const vis of themeData.visualisations){
+				//console.log('\tProcessing '+vis.title);
+				const rows = [];
+				opts = {};
+
+				// Only build the page if there is json content
+				if(vis.json != null && code in vis.json.data.constituencies){
+					const constituencyData = vis.json.data.constituencies[code];
+					const attribution = vis.json.data.attribution;
+					const dataDate = vis.json.data.date||"";
+					const titleKey = vis.json.title;
+					const url = vis.json.url;
+					const axis = axisType(vis.json.values);
+
+					let units = new Array(axis.values.length);
+					let s = Infinity,e = -Infinity;
+					// Create some options for Lume to work out what to show
+					if (vis.json.values.length > 3) {
+						opts['type'] = 'line';
+					} 
+					else if (vis.json.values.length > 1) {
+						opts['showSubtitle'] = true;
+					}
+
+					// Loop over slider values
+					for(let i = 0 ; i < vis.json.values.length ; i++){
+						const newKey = vis.json.values[i].label;
+						let unit = {};
+						if("units" in vis.json){
+							if(vis.json.values[i].label in vis.json.units){
+								unit = vis.json.units[vis.json.values[i].label];
+							}else if(vis.json.values[i].value in vis.json.units){
+								unit = vis.json.units[vis.json.values[i].value];
+							}
+							let scale = unit.scaleBy;
+							let precision = unit.precision;
+							unit.pre = "";
+							unit.post = "";
+							// Set some pre/post-fixes based on specific units
+							if (unit.category == 'currency' && unit.value=='GBP'){ 
+								unit.pre = '£';
+							} else if (unit.value=='percent') {
+								unit.post = '%';
+								if(!precision) precision = 0.1;
+							} else if (unit.value=='hr') {
+								unit.post = ' hr';
+								if(!precision) precision = 0.1;
+							} else if (unit.value=='Mb/s') {
+								unit.post = ' Mb/s';
+							} else if (unit.value=='MW') {
+								unit.post = ' MW';
+							} else if (unit.value=='yr') {
+								unit.post = ' years'
+							}
+							if(typeof precision==="number") unit.precision = precision;
+							if(typeof scale==="number") unit.scaleBy = scale;
 						}
-						let scale = unit.scaleBy;
-						let precision = unit.precision;
-						unit.pre = "";
-						unit.post = "";
-						// Set some pre/post-fixes based on specific units
-						if (unit.category == 'currency' && unit.value=='GBP'){ 
-							unit.pre = '£';
-						} else if (unit.value=='percent') {
-							unit.post = '%';
-							if(!precision) precision = 0.1;
-						} else if (unit.value=='hr') {
-							unit.post = ' hr';
-							if(!precision) precision = 0.1;
-						} else if (unit.value=='Mb/s') {
-							unit.post = ' Mb/s';
-						} else if (unit.value=='MW') {
-							unit.post = ' MW';
-						} else if (unit.value=='yr') {
-							unit.post = ' years'
-						}
-						if(typeof precision==="number") unit.precision = precision;
-						if(typeof scale==="number") unit.scaleBy = scale;
+						units[i] = unit;
 					}
-					units[i] = unit;
-				}
-				// If we have a year or number axis we'll make ticks
-				if(axis.type=="year" || axis.type=="number"){
-					for(let i = 0; i < axis.values.length; i++){
-						s = Math.min(s,axis.values[i]);
-						e = Math.max(e,axis.values[i]);
-					}
-					let gap = 1;
-					let r = Math.abs(e-s);
-					if(r > 4) gap = 2;
-					if(r > 11) gap = 5;
-					if(r > 28) gap = 10;
-					for(let y = gap*Math.floor(s/gap) ; y < e; y += gap){
-						if((y > s || y==0) && y < e) xaxis.ticks.push({"value":y,"label":Math.round(y)+"","tickSize": 5,"grid":false});
-					}
-				}
 
-				for(let p = 0; p < pcons.length; p++){
-					const PCON24CD = pcons[p];
-					const constituencyData = vis.json.data.constituencies[pcons[p]];
-					let conopts = JSON.parse(JSON.stringify(opts));
-					
 					// Create variables/constants
 					let dataArray = [];
 					let yrange = {'min':Infinity,'max':-Infinity};
-					
+						
 					let nonzero = 0;
 					let unit;
 					// Iterate through the different "values" in the data
 					for(let i = 0 ; i < vis.json.values.length ; i++){
 						unit = units[i];
+						//console.log('values',i,vis.json.values[i],constituencyData);
 						let val = constituencyData[vis.json.values[i].value];
 						// If the value is a number, apply the scale if it exists, or multiply by 1.
 						if(typeof val==="number"){
@@ -380,71 +375,41 @@ export default async function* () {
 							"postunit": unit.post
 						});
 					}
-					conopts.xaxis = JSON.parse(JSON.stringify(xaxis));
-					if(yrange.max-yrange.min>0){
-						//opts.yaxis = {min:vis.json.scale.min,max:vis.json.scale.max,ticks:[{'value':vis.json.scale.min,'label':(unit.pre||"")+(vis.json.scale.min||0).toLocaleString()+(unit.post||""),'grid':true},{'value':vis.json.scale.max,'label':(unit.pre||"")+(vis.json.scale.max||yrange.max).toLocaleString()+(unit.post||""),'grid':true}]};
-						conopts.yaxis = getYAxis(dataArray,vis.json.scale);
-					}else{
-						conopts.yaxis = { grid: { show: false },ticks: []};
-					}
-					if (yrange.max-yrange.min == 0 || axis.type=="category") {
-						conopts.xaxis = {grid:{show:false},ticks:[]};
-						if (vis.json.values.length > 1 && axis.type!='year') {
-							conopts['type'] = 'bar';
-						}
+
+					opts.xaxis = getXAxis(axis);
+					opts.yaxis = (yrange.max-yrange.min>0) ? getYAxis(dataArray,vis.json.scale) : opts.yaxis = {grid:{show:false},ticks:[]};
+
+					if(yrange.max-yrange.min == 0 || axis.type=="category"){
+						opts.xaxis = {grid:{show:false},ticks:[]};
+						if (vis.json.values.length > 1 && axis.type!='year') opts['type'] = 'bar';
 					}
 
 					if(vis.json.values.length==1 || (vis.json.values.length > 1 && nonzero > 0)){
-						// Updates the dashboard dictionary. It adds {newKey: newValue} at the level given by [keys].
-						updateDictionary(dashboard, [PCON24CD, theme], titleKey, {"data": dataArray, "url": url, "opts": conopts, "attribution": attribution, "date": dataDate});
+
+						if(!(theme in data)) data[theme] = {};
+						data[theme][titleKey] = {"data": dataArray, "url": url, "opts": opts, "attribution": attribution, "date": dataDate};
+
 					}
 				}
-			} else {
-				console.log(vis);
 			}
-			// Free up some memory as we don't need it any more
-			delete themeData.visualisations[vis];
 		}
-	}
-	index = null;
-	console.log('Get HexJSON and MPs...');
-	const hexjson = await fetchIt("https://open-innovations.org/projects/hexmaps/maps/uk-constituencies-2023.hexjson");
-	const hexes = hexjson.hexes;
 
-	let currentMPs = await fetchIt("https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs.json");
-	if (currentMPs == null) {
-		console.error("Failed to get currentMPs.")
-		return;
+		const bgColour = hexes[code]['colour'];
+		const textColour = contrastColour(bgColour);
+		yield {
+			url: `/${code}/`,
+			layout: 'template/constituencies.vto',
+			title: hexes[code]['n'],
+			bgColour: hexes[code]['colour'],
+			fontColour: textColour,
+			tags: 'constituency',
+			figures: data,
+			region: hexes.region,
+			mpData: currentMPs[code],
+			code
+		};
 	}
-	console.log('Building dashboards for each constituency...');
-	let i = 0;
-	for (const [code, data] of Object.entries(dashboard)){
-		if (hexes[code] != null) {
-			console.log("\tProcessing "+hexes[code]['n']);
-			const bgColour = hexes[code]['colour'];
-			const textColour = contrastColour(bgColour);
-			yield {
-				url: `/${code}/`,
-				layout: 'template/constituencies.vto',
-				title: hexes[code]['n'],
-				bgColour: hexes[code]['colour'],
-				fontColour: textColour,
-				tags: 'constituency',
-				figures: data,
-				region: hexes.region,
-				mpData: currentMPs[code],
-				code
-			};
-			// Free up some memory
-			delete dashboard[code];
-			delete hexes[code];
-			delete currentMPs[code];
-		}
-		if (DEV && i >= 5) {
-			break;
-		}
-		i++;
-	}
+
 	console.log('Done index.page.js');
 }
 /* decimal.js-light v2.5.1 https://github.com/MikeMcl/decimal.js-light/LICENCE */
