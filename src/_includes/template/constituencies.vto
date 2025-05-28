@@ -1,10 +1,6 @@
 ---
 layout: template/page.vto
 ---
-<style>
-.links { display:flex; gap:0.5rem; width:100%; margin-top:0.5rem; margin-bottom:2rem; flex-wrap:wrap; }
-.links a { padding:0.5rem; text-decoration:none; flex-grow:1; text-align:center; font-family: Poppins; font-weight: bold; }
-</style>
 {{ comp.mpInfo({mpData, title}) }}
 <div class="links">
 {{ for theme, titleObject of figures }}
@@ -12,11 +8,9 @@ layout: template/page.vto
 {{ /for }}
 </div>
 {{ for theme, titleObject of figures }}
-	{{# Create the theme title #}}
 	{{ comp.dashboards.themeTitle({ theme }) }}
 	<p>See the <a href="#notes">notes</a> for more information about ratings.</p>
 	<div class='grid'>{{ for visTitle, visObject of titleObject }}
-	{{# {{ set cardHeading = `<h4><a href="https://constituencies.open-innovations.org${visObject.url}" target="_blank">${visTitle}</a></h4>` }} #}}
 	{{ if visObject.opts.type == 'line' }}
 		{{ comp.dashboards.card({
 				code,
@@ -47,7 +41,7 @@ layout: template/page.vto
 			})
 		}}
 	{{ else if visObject.opts.type == 'bar' && visObject.data.length > 2 }}
-		{{ set check = visObject.data |> checkNull()}}
+		{{ set check = visObject.data |> checkNull() }}
 		{{ if check }}
 			{{ comp.dashboards.card({
 				code,

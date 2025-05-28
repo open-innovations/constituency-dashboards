@@ -148,6 +148,10 @@ p + div {
 .oi-viz .axis-grid text { fill: currentColor; }
 .oi-viz .axis-grid line { stroke: currentColor; }
 
+.links { display:flex; gap:0.5rem; width:100%; margin-top:0.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+.links a { padding:0.5rem; text-decoration:none; flex-grow:1; text-align:center; font-family: Poppins; font-weight: bold; }
+
+
 @media only screen and (max-width:800px) {
 	.mp-wrapper {grid-template-columns: 240px;}
 }
