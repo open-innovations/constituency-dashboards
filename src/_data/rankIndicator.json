@@ -47,14 +47,14 @@
     },
     "transport": {
         "Bus stops (GB)": { "bus_stops": "h"},
-        "Bus stops per square km (GB)": {"bus_stops_density": "h"},
+        "Bus stops density (GB)": {"bus_stops_density": "h"},
         "EV: combined charging availability (UK)": {"total": "h"},
         "EV: home charging (UK)": {"home-2022": "h"},
         "EV: workplace charging points (UK)": {"workplace-jan-25": "h"},
         "Rail cancellations (GB)": {"Cancellations %": "l"},
         "Train stations (GB)": {"rail_stops": "h"},
-        "Train stations per square km (GB)": {"rail_stops_density": "h"},
+        "Train stations density (GB)": {"rail_stops_density": "h"},
         "Tram and metro stops (GB)": {"tram_metro_stops": "h"},
-        "Tram and metro stops per square km (GB)": {"tram_metro_stops_density": "h"}
+        "Tram and metro stops density (GB)": {"tram_metro_stops_density": "h"}
     }
 }
