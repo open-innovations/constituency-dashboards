@@ -26,7 +26,7 @@
 				if(key in ranking[theme]){
 					if(item.measure in ranking[theme][key]) rankKey = ranking[theme][key][item.measure];
 					if(theme in rankIndicator && key in rankIndicator[theme] && item.measure in rankIndicator[theme][key]){
-						ratings.push({'title':item.measure,'rating':rating(rankKey['p'],rankIndicator[theme][key][item.measure])});
+						ratings.push({'title':item.measure,'rating':rating(rankKey,rankIndicator[theme][key][item.measure])});
 					}
 				}
 			}
