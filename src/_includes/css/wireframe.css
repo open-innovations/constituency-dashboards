@@ -19,6 +19,7 @@ body { background-color: #000000; font-family: Helvetica, sans-serif; font-size:
 .holder { position: relative; width: 1080px; max-width: 100%; margin: auto; }
 .padded {padding: 1rem;}
 .tallpadded {padding-top: 3em;padding-bottom: 3em;}
+.padded > *:last-child { margin-bottom: 0; }
 
 .elsewhere { float: right; margin-top: 0; }
 .elsewhere li { display: inline-block; margin-left: 0.5em; }

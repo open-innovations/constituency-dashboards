@@ -1,22 +1,14 @@
 <header class="white-bg">
-  <div class='holder padded'>
-    <h1 class='sitetitle'><a href="/">{{site}}</a></h1>
-  </div>
-  <div class='holder'>
-    {{ if url != '/' }}
-      <ul class='breadcrumb'>
-        {{ for item of nav.breadcrumb(url) }}
-          <li>
-            {{ if item.data }}
-              <a href="{{ item.data.url }}">
-                {{ item.data.title }}
-              </a>
-            {{ else }}
-              <span>{{ item.slug }}</span>
-            {{ /if }}
-          </li>
-        {{ /for }}
-      </ul>
-    {{ /if }}
-  </div>
+	<div class='holder padded'>
+		<h1 class='sitetitle'><a href="/">{{site}}</a></h1>
+	</div>{{#
+	<div class='holder'>
+	{{ if url != '/' }}
+	  <ul class='breadcrumb'>
+		{{ for item of nav.breadcrumb(url) }}
+		<li>{{ if item.data }}<a href="{{ item.data.url }}">{{ item.data.title }}</a>{{ else }}<span>{{ item.slug }}</span>{{ /if }}</li>
+		{{ /for }}
+	  </ul>
+	{{ /if }}
+	</div>#}}
 </header>
