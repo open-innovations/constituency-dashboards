@@ -75,25 +75,6 @@ site.filter('humanise', (input) => {
         return `${(input).toLocaleString()}` 
     }
 });
-site.filter("rating", (num, indicator) => {
-    const thresholds = [
-        { label: "★★★★★", min: 0, max: 0.2 },
-        { label: "★★★★", min: 0.2, max: 0.4 },
-        { label: "★★★", min: 0.4, max: 0.6 },
-        { label: "★★", min: 0.6, max: 0.8 },
-        { label: "★", min: 0.8, max: 1.01 } // This has to be 1.01 rather than 1 due to using <
-    ];
-
-    // Flip the number if indicator is 'l'
-    const value = indicator === 'l' ? 1 - num : num;
-
-    for (const t of thresholds) {
-        // If value is between the min and max, return that label.
-        if (value >= t.min && value < t.max) {
-            return t.label;
-        }
-    }
-});
 site.filter("checkNull", (arr) => {
     // Loop through the array
     for (const a of arr) {

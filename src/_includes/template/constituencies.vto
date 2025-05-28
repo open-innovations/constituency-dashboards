@@ -88,7 +88,7 @@ layout: template/page.vto
 					theme,
 					key: visTitle,
 					subtitle: { "show": visObject.opts.showSubtitle, "value": item.measure },
-					rating: comp.rating({key: visTitle, code: code, theme: theme, title: item.measure}),
+					ratingData: [{"measure":item.measure,"item":item}],
 					attribution: visObject.attribution,
 					link: visObject.url,
 					content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value }),
@@ -104,6 +104,7 @@ layout: template/page.vto
 
 <section class="notes">
 <h2 id='notes'>Notes</h2>
+<a name="rating"></a>
 	{{ include "../notes/rating.md" |> md }}
 	{{ include "../notes/updates.md" |> md }}
 </section>

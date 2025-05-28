@@ -33,7 +33,9 @@ footer hr.about { margin: 32px 0; border: 0; border-top:1px solid #444; }
 h1, h2, h3 { margin-bottom: 1rem; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1.25rem; }
-h1, h2, h3, h4, strong, .bigNum { font-family: Poppins; }
+h4 { font-size: 1.2rem; }
+h5 { font-size: 1rem; margin-block: 0; font-weight: bold; }
+h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; }
 
 .card { display: flex; flex-direction: column; text-decoration: none; }
 .card:focus,.card:hover { outline: 4px solid black; }
@@ -56,45 +58,7 @@ h1, h2, h3, h4, strong, .bigNum { font-family: Poppins; }
 
 .grid {display: grid; gap:1em; grid-template-columns: repeat(3, 1fr); padding-bottom: 2rem;}
 .bar, .line {grid-column: 1 / 4;}
-/* .mp-wrapper {
-	display: flex;
-	align-items: flex-start;
-	gap: 0;
-  }
-  
-.text {
-display: inline-block;
-white-space: nowrap; 
-}
-  
-.image-wrapper img {
-height: auto;
-object-fit: contain;
-display: block;
-} */
-  
-/* .mp-grid {
-	display: grid;
-	gap: 0;
-	grid-template-columns: min-content auto;
-	align-items: start;
-	gap: var(--auto-grid-gap);
-	flex-wrap: wrap;
-	flex-direction: row;
-	align-items: stretch;
-}
-.mp-grid #imageContainer {
-	width: 100%;
-	height: auto;
-	max-width: 100%;
-	object-fit: contain;
-}
-@media only screen and (max-width: 800px) {
-	.mp-grid {
-	  width: 100%;
-	}
-  } */
-/* #imageContainer {margin-left: auto;} */
+
 .tooltip a {
 	color: inherit;
 }
@@ -112,6 +76,8 @@ display: block;
 .bigNum{ margin-right: auto; font-weight: 700; font-size: 2.4rem; margin-block: 1rem; }
 p + .bigNum { margin-top: 0; }
 details {margin-top: auto;}
+
+ul.ratings { list-style: none; margin: 0; padding: 0; }
 
 @media only screen and (max-width: 1080px) {
 	.grid { grid-template-columns: 100%; }

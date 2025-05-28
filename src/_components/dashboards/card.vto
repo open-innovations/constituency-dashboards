@@ -1,1 +1,41 @@
-<div class="card padded {{ theme }}" tabindex="0"><h4><a href="https://constituencies.open-innovations.org{{link}}" target="blank">{{ key }}</a></h4>{{ if subtitle?.show == true }}<p class="subtitle">{{ subtitle.value }}</p>{{ /if }}{{ if content }}{{ content }}{{ /if }}{{ if rating }}<p>{{ rating }}</p>{{ /if }}{{ if ratingData }}{{ for item of ratingData }}{{ comp.rating({key: key, code: code, theme: theme, title: item.measure, t: true}) }}{{ /for }}{{ /if }}<div class="details">{{ if visDate }}{{ if visDate.match(/^[0-9]{4}$/) }}{{ visDate |> date("yyyy") }}{{ else if visDate.match(/^[0-9]{4}-[0-9]{2}$/) }}{{ visDate |> date("LLL yyyy") }}{{ else }}{{ visDate |> date("do LLL yyyy") }}{{ /if }}{{ /if }}{{ if attribution }}{{ if visDate }} | {{ /if }} <span class="attribution">Data: {{ attribution }}</span>{{ /if }}</div></div>
+<div class="card padded {{ theme }}" tabindex="0">
+	<h4><a href="https://constituencies.open-innovations.org{{link}}" target="blank">{{ key }}</a></h4>
+	{{ if subtitle?.show == true }}<p class="subtitle">{{ subtitle.value }}</p>{{ /if }}
+	{{ if content }}{{ content }}{{ /if }}
+	{{ if ratingData }}
+		{{>
+			const thresholds = [
+				{ label: "★★★★★", min: 0, max: 0.2 },
+				{ label: "★★★★", min: 0.2, max: 0.4 },
+				{ label: "★★★", min: 0.4, max: 0.6 },
+				{ label: "★★", min: 0.6, max: 0.8 },
+				{ label: "★", min: 0.8, max: 1.01 } // This has to be 1.01 rather than 1 due to using <
+			];
+			function rating(num, indicator){
+				// Flip the number if indicator is 'l'
+				const value = indicator === 'l' ? 1 - num : num;
+				for(const t of thresholds){
+					// If value is between the min and max, return that label.
+					if(value >= t.min && value < t.max) return t.label;
+				}
+			}
+			const ranking = ranked_constituencies[code];
+			let ratings = new Array();
+			let rankKey;
+			for(item of ratingData){
+				if(key in ranking[theme]){
+					if(item.measure in ranking[theme][key]) rankKey = ranking[theme][key][item.measure];
+					if(theme in rankIndicator && key in rankIndicator[theme] && item.measure in rankIndicator[theme][key]){
+						ratings.push({'title':item.measure,'rating':rating(rankKey['p'],rankIndicator[theme][key][item.measure])});
+					}
+				}
+			}
+		}}
+		{{ if ratings.length == 1 }}
+	<p><a href="#rating">Relative rating</a>: {{ ratings[0].rating }}</p>
+		{{ else if ratings.length > 1 }}
+	<h5><a href="#rating">Relative ratings</a>:</h5><ul class="ratings">{{ for item of ratings }}<li>{{ item.title }}: {{ item.rating }}</li>{{ /for }}</ul>
+		{{ /if }}
+	{{ /if }}
+	<div class="details">{{ if visDate }}{{ if visDate.match(/^[0-9]{4}$/) }}{{ visDate |> date("yyyy") }}{{ else if visDate.match(/^[0-9]{4}-[0-9]{2}$/) }}{{ visDate |> date("LLL yyyy") }}{{ else }}{{ visDate |> date("do LLL yyyy") }}{{ /if }}{{ /if }}{{ if attribution }}{{ if visDate }} | {{ /if }} <span class="attribution">Data: {{ attribution }}</span>{{ /if }}</div>
+</div>
