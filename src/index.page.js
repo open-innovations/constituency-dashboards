@@ -394,14 +394,12 @@ export default async function* (page) {
 			}
 		}
 
-		const bgColour = hexes[code]['colour'];
-		const textColour = contrastColour(bgColour);
 		yield {
 			url: `/${code}/`,
 			layout: 'template/constituencies.vto',
 			title: hexes[code]['n'],
-			bgColour: hexes[code]['colour'],
-			fontColour: textColour,
+			bgColour: currentMPs[code]['Party bg'],
+			fontColour: contrastColour(currentMPs[code]['Party bg']),
 			tags: 'constituency',
 			figures: data,
 			region: hexes.region,
