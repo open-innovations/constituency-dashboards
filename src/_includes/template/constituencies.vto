@@ -91,7 +91,7 @@ layout: template/page.vto
 					ratingData: [{"measure":item.measure,"item":item}],
 					attribution: visObject.attribution,
 					link: visObject.url,
-					content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value }),
+					content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value, notes: item.notes }),
 					visDate: visObject.date })
 				}}
 			{{ /if }}

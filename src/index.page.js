@@ -314,8 +314,8 @@ export default async function* (page) {
 							}
 							let scale = unit.scaleBy;
 							let precision = unit.precision;
-							unit.pre = "";
-							unit.post = "";
+							if(unit.pre === undefined) unit.pre = "";
+							if(unit.pre === undefined) unit.post = "";
 							// Set some pre/post-fixes based on specific units
 							if (unit.category == 'currency' && unit.value=='GBP'){ 
 								unit.pre = '£';
@@ -331,6 +331,8 @@ export default async function* (page) {
 								unit.post = ' MW';
 							} else if (unit.value=='yr') {
 								unit.post = ' years'
+							} else if (unit.value=='ha') {
+								unit.post = ' hectares'
 							}
 							if(typeof precision==="number") unit.precision = precision;
 							if(typeof scale==="number") unit.scaleBy = scale;
@@ -369,7 +371,8 @@ export default async function* (page) {
 							"x": x,
 							"value": val, 
 							"preunit": unit.pre,
-							"postunit": unit.post
+							"postunit": unit.post,
+							"notes": unit.notes||""
 						});
 					}
 
