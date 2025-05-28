@@ -1,5 +1,6 @@
 body { background-color: #000000; font-family: Helvetica, sans-serif; font-size: 100%; min-height: 100%!important;height: 100%!important;line-height: 1.44em;padding: 0px;margin: 0px;}
 .white-bg { background-color: white!important; color: #000000!important;}
+.grey-bg { background-color: #efefef!important; color: #000000!important;}
 .black-bg { background-color: #000000!important; color: white!important;}
 
 .breadcrumb { list-style: none; margin: 0; text-align: center;}
@@ -18,7 +19,7 @@ body { background-color: #000000; font-family: Helvetica, sans-serif; font-size:
 
 .holder { position: relative; width: 1080px; max-width: 100%; margin: auto; }
 .padded {padding: 1rem;}
-.tallpadded {padding-top: 3em;padding-bottom: 3em;}
+.tallpadded {padding-block: 3em;}
 .padded > *:last-child { margin-bottom: 0; }
 
 .elsewhere { float: right; margin-top: 0; }
@@ -111,6 +112,7 @@ p + div {
 .mp-info *:last-of-type {margin-bottom: 0;}
 .mp-info:hover, .mpinfo:focus { background-color: black!important; transition-duration: 0.4s!important; color: white!important;}
 .mp-info a { color: inherit; }
+.mp-image { width: 125px; height: 125px; }
 
 .oi-viz .axis-grid text { fill: currentColor; }
 .oi-viz .axis-grid line { stroke: currentColor; }
@@ -121,6 +123,7 @@ p + div {
 
 @media only screen and (max-width:800px) {
 	.mp-wrapper {grid-template-columns: 240px;}
+	.tallpadded { padding-block: 1em; }
 }
 
 #searchInput {

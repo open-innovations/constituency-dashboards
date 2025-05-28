@@ -1,2 +1,9 @@
 layout: template/page.vto
-site: Constituency Dashboards
+metas:
+  site: UK Constituency Dashboards
+  title: "$ title"
+  description: "=description || Dashboards for UK Westminster Constituencies"
+  image: https://open-innovations.org/resources/images/logos/oi-square.png
+  lang: en
+  keywords: [data, constituencies, dashboard]
+  theme-color: "#722ea5"
