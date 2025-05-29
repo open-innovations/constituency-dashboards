@@ -39,7 +39,7 @@ h5 { font-size: 1rem; margin-block: 0; font-weight: bold; }
 h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; }
 
 .card { display: flex; flex-direction: column; text-decoration: none; }
-.card:focus,.card:hover { outline: 4px solid black; }
+.card:focus { outline: 4px solid black; }
 .card a { color: inherit; text-decoration: none; position: relative; }
 .card *:last-child { margin-bottom: 0; }
 .card a:hover, .card a:focus { background-color: black; padding:0.25em; transition-duration: 0.4s; color: white;}
