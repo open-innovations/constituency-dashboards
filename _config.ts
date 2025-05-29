@@ -30,7 +30,7 @@ site.use(nav());
 site.use(postcss());
 site.use(oiViz(oiVizConfig));
 site.use(date(/* Options */));
-
+site.use(favicon({input: "/assets/img/favicon.png"}));
 site.loadData([".hexjson"], jsonLoader);
 
 //site.remoteFile("_data/hexjson/constituencies.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/constituencies.hexjson");
