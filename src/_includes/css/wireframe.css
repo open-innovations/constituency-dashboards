@@ -56,6 +56,22 @@ h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; }
 }
 .card:focus .details, .card:hover .details, .card .details a:focus, .card .details a:hover { opacity: 1; }
 
+.links { display:flex; gap:0.5rem; width:100%; margin-top:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap; }
+.links a { padding:0.5rem; text-decoration:none; flex-grow:1; text-align:center; font-family: Poppins; font-weight: bold; }
+
+#filter input {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-funnel-fill' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z'/%3E%3C/svg%3E");
+	background-position: left 0.25em center;
+	background-repeat: no-repeat;
+	background-size: 1em;
+	padding-left: 1.5em;
+	font-size: 1em;
+	line-height: 2em;
+	width: 100%;
+	border: 1px solid gray;
+	margin-bottom: 2rem;
+}
+
 
 .grid {display: grid; gap:1em; grid-template-columns: repeat(3, 1fr); padding-bottom: 2rem;}
 .bar, .line {grid-column: 1 / 4;}
@@ -116,9 +132,6 @@ p + div {
 
 .oi-viz .axis-grid text { fill: currentColor; }
 .oi-viz .axis-grid line { stroke: currentColor; }
-
-.links { display:flex; gap:0.5rem; width:100%; margin-top:0.5rem; margin-bottom:2rem; flex-wrap:wrap; }
-.links a { padding:0.5rem; text-decoration:none; flex-grow:1; text-align:center; font-family: Poppins; font-weight: bold; }
 
 
 @media only screen and (max-width:800px) {
