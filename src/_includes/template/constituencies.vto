@@ -1,7 +1,23 @@
 ---
-layout: template/page.vto
+layout: template/base.vto
 ---
-{{ comp.mpInfo({mpData, title, bgColour, fontColour}) }}
+
+{{ include './partials/header.vto' }}
+
+<div class="hoc">
+	<div class="holder padded tallpadded">
+		<div class="mp-wrapper" style="--party-colour:{{bgColour}};--party-colour-text:{{fontColour}}">
+			<div class="mp-info">
+				<h2>{{ title }}</h2>
+				<p>{{mpData.MP}} is the <span class="mp-party">{{ mpData['Party name'] }}</span> MP for {{ title }}, and has been an MP since {{ mpData['Start date'].split('T')[0] |> date('do LLLL yyyy') }}.</p>
+				<p>Links: <a href="https://members.parliament.uk/member/{{ mpData['ID'] }}/">Parliament</a>, <a href="{{mpData['TheyWorkForYou URI']}}" target="_blank">They Work For You</a></p>
+			</div>
+			<img class="mp-image" src="{{mpData['Thumbnail']}}" alt="{{mpData.MP}} thumbnail" />
+		</div>
+	</div>
+</div>
+<div class='main white-bg'>
+	<div class='holder padded tallpadded'>
 <div class="links">
 {{ for theme, titleObject of figures }}
 	<a href="#{{ theme }}" class="{{ theme }}">{{ theme |> capitalise() }}</a>
@@ -104,11 +120,15 @@ layout: template/page.vto
 </section>
 {{ /for }}
 
-<hr class='hr--styled'>
+		<hr class='hr--styled'>
 
-<section class="notes">
-<h2 id='notes'>Notes</h2>
-<a name="rating"></a>
-	{{ include "../notes/rating.md" |> md }}
-	{{ include "../notes/updates.md" |> md }}
-</section>
+		<section class="notes">
+			<h2 id='notes'>Notes</h2>
+			<a name="rating"></a>
+			{{ include "../notes/rating.md" |> md }}
+			{{ include "../notes/updates.md" |> md }}
+		</section>
+	</div>
+</div>
+
+{{ include './partials/footer.vto' }}

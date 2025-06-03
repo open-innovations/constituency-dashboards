@@ -1,9 +1,0 @@
-<div class='mp-wrapper' style='background-color:{{bgColour}};color:{{fontColour}}'>
-	<div class='mp-info padded'>
-		<h3>{{mpData.MP}} MP</h3>
-		<p>Party: <strong>{{ mpData['Party name'] }}</strong></p>
-		<p>Start date: <strong>{{ mpData['Start date'].split('T')[0] |> date('do LLLL yyyy') }}</strong></p>
-		<p>Links: <a href="https://members.parliament.uk/member/{{ mpData['ID'] }}/">Parliament</a> | <a href="{{mpData['TheyWorkForYou URI']}}" target="_blank">They Work For You</a></p>
-	</div>
-	<div class="mp-image"><img src="{{mpData['Thumbnail']}}" alt="{{mpData.MP}} thumbnail" /></div>
-</div>
