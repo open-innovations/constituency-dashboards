@@ -26,7 +26,7 @@ layout: template/base.vto
 <div id="filter"></div>
 <script src="/assets/js/filterCards.js"></script>
 {{ for theme, titleObject of figures }}
-<section id="section-{{theme}}" class="theme">
+<section id="{{theme}}" class="theme">
 	{{ comp.dashboards.themeTitle({ theme }) }}
 	<p>See the <a href="#notes">notes</a> for more information about ratings.</p>
 	<div class='grid'>{{ for visTitle, visObject of titleObject }}

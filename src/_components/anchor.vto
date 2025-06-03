@@ -19,4 +19,4 @@ css: |
     h3:hover .anchor { opacity: 1; }
 ---
 
-<a class="anchor" id="{{ anchor || "" }}" href="#{{ anchor || "" }}" data-dependencies="/assets/js/section-links.js">§</a>
+<a class="anchor" {{ if !noid }}id="{{ anchor || "" }}"{{ /if }} href="#{{ anchor || "" }}" data-dependencies="/assets/js/section-links.js">§</a>

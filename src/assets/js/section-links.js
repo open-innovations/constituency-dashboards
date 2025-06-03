@@ -42,7 +42,7 @@ OI.ready(function(){
 		this.show = function(e){ a.style.opacity = 1; };
 		this.hide = function(e){ a.style.opacity = ''; };
 		p.style.cursor = 'pointer';
-		p.addEventListener('click',function(){ location.href = '#'+a.getAttribute('id'); offsetAnchor(); a.focus(); });
+		p.addEventListener('click',function(){ location.href = a.getAttribute('href'); offsetAnchor(); a.focus(); });
 		p.addEventListener('mouseover',this.show);
 		p.addEventListener('mouseout',this.hide);
 		a.addEventListener('focus',this.show);
