@@ -15,6 +15,7 @@
 		var s,i,txtValue,matched;
 
 		txt = txt.toUpperCase();
+		var reg = new RegExp("data[^\=]*=\"[^\"]*"+txt+"[^\"]*\"","i");
 		
 		// Loop through sections
 		for(s = 0; s < sections.length; s++){
@@ -25,6 +26,7 @@
 				txtValue = (sections[s].cards[i].textContent || sections[s].cards[i].innerText).toUpperCase();
 				if(txt.length==0) matched = true;
 				if(txtValue.indexOf(txt) > -1) matched = true;
+				if(sections[s].cards[i].innerHTML.match(reg)) matched = true;
 				sections[s].cards[i].style.display = (matched ? "" : "none");
 				if(matched) sections[s].matched++;
 			}
