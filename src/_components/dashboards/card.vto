@@ -1,5 +1,6 @@
+{{> let title = key.replace(/\([^\)]*\)$/,'') }}
 <div class="card padded {{ theme }}" tabindex="0">
-	<h4><a href="https://constituencies.open-innovations.org{{link}}" target="blank">{{ key }}</a></h4>
+	<h4><a href="https://constituencies.open-innovations.org{{link}}" target="blank">{{ title }}</a></h4>
 	{{ if subtitle?.show == true }}<p class="subtitle">{{ subtitle.value }}</p>{{ /if }}
 	{{ if content }}{{ content }}{{ /if }}
 	{{ if ratingData }}
