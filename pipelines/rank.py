@@ -3,7 +3,7 @@ import json
 
 if __name__ == "__main__":
     # Read data
-    data = pd.read_csv("data/constituencies.csv", index_col=['PCON24CD'])
+    data = pd.read_csv("data/temp/constituencies.csv", index_col=['PCON24CD'])
     # Make values numeric
     data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
     # Add a rank column
@@ -16,7 +16,7 @@ if __name__ == "__main__":
     data['count'] = data.groupby(["Theme", 'Title'])['Subtitle'].transform('nunique')
 
     # Write to CSV
-    data.to_csv('data/ranked_constituencies.csv')
+    data.to_csv('src/_data/ranked_constituencies.csv')
     # Reset the index
     data.reset_index(inplace=True)
     # Build output dictionary

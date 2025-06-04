@@ -6,7 +6,7 @@ stages:
     deps:
       - pipelines/get-data.py
     outs:
-      - data/constituencies.csv:
+      - data/temp/constituencies.csv:
           cache: false
           persist: true
   rank:
@@ -14,8 +14,11 @@ stages:
     cmd: python pipelines/rank.py
     deps:
       - pipelines/rank.py
-      - data/constituencies.csv
+      - data/temp/constituencies.csv
     outs:
       - src/_data/ranked_constituencies.json:
+          cache: false
+          persist: true
+      - src/_data/ranked_constituencies.csv:
           cache: false
           persist: true

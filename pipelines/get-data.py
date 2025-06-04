@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-
+import os
 # Get the index
 # Get list of current codes.
 # Iterate through the themes
@@ -117,6 +117,11 @@ def main():
 
     # Display the DataFrame
     df.set_index('PCON24CD', inplace=True)
-    df.to_csv('data/constituencies.csv')
+
+    # Ensure directory exists
+    OUTDIR = 'data/temp'
+    os.makedirs(OUTDIR, exist_ok=True)
+    
+    df.to_csv(os.path.join(OUTDIR, 'constituencies.csv'))
 
 main()
