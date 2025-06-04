@@ -5,8 +5,8 @@ stages:
     deps:
     - path: pipelines/get-data.py
       hash: md5
-      md5: ab7439d9a25732e8d76b7c9a6317e9a0
-      size: 4349
+      md5: 0b2e6d7b831dd293a7c6c969041de440
+      size: 4385
     outs:
     - path: data/temp/constituencies.csv
       hash: md5
