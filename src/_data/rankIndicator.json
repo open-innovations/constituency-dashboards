@@ -48,6 +48,7 @@
     "transport": {
         "Bus stops (GB)": { "bus_stops": "h"},
         "Bus stops density (GB)": {"bus_stops_density": "h"},
+        "Bus service changes (England & Wales)": {"Trips per hour % change: 2010-2023": "h"},
         "EV: combined charging availability (UK)": {"total": "h"},
         "EV: home charging (UK)": {"home-2022": "h"},
         "EV: workplace charging points (UK)": {"workplace-jan-25": "h"},
