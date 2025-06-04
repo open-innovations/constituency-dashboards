@@ -27,7 +27,7 @@ layout: template/base.vto
 	attribution: visObject.attribution,
 	link: visObject.url,
 	visDate: visObject.date,
-	content: comp.oi.chart.line({
+	content: await comp.oi.chart.line({
 		config: {
 			data: visObject.data,
 			axis: { 
@@ -59,7 +59,7 @@ layout: template/base.vto
 			attribution: visObject.attribution,
 			visDate: visObject.date,
 			link: visObject.url,
-			content: comp.oi.chart.bar({ 
+			content: await comp.oi.chart.bar({ 
 					config: {
 						data: visObject.data,
 						category: "measure",
@@ -99,7 +99,7 @@ layout: template/base.vto
 	ratingData: [{"measure":item.measure,"item":item}],
 	attribution: visObject.attribution,
 	link: visObject.url,
-	content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value, notes: item.notes }),
+	content: await comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value, notes: item.notes }),
 	visDate: visObject.date })
 }}
 					{{- /if }}
