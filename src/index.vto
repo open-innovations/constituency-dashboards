@@ -12,10 +12,8 @@ If you know of an existing open dataset (provided by constituency) that you thin
 please <a href="mailto:hello@open-innovations.org?subject=Constituency%20dataset&body=URL:%20%0ATitle:%20%0ADescription:">get in touch</a> or find out more...
 </p>
 
-<div class='oi-left'>
-    <div class='oi-filter searching'>
-        <input type="text" id="searchInput" onkeyup="filterList()" placeholder="Search for constituencies...">
-    </div>
+<div class='oi-filter searching'>
+	<input type="text" id="searchInput" onkeyup="filterList()" placeholder="Search for constituencies...">
 </div>
 <ul id='searchable'>
   {{ for page of search.pages("constituency") }}
