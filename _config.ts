@@ -6,21 +6,15 @@ import postcss from "lume/plugins/postcss.ts";
 
 // Importing the OI Lume charts and utilities
 import oiViz from "https://deno.land/x/oi_lume_viz@v0.17.0/mod.ts";
-import autoDependency from "https://deno.land/x/oi_lume_utils@v0.4.0/processors/auto-dependency.ts";
 import jsonLoader from "lume/core/loaders/json.ts";
 import date from "lume/plugins/date.ts";
+import getAPIData from "./api.js";
 
 const site = lume({
     src: "./src",
     location: new URL("https://open-innovations.github.io/constituency-api-test"),
-	emptyDest: false,
 });
 
-site.use(google_fonts({
-    fonts: "https://fonts.google.com/share?selection.family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900"
-}));
-
-// site.use(postcss());
 site.add([".css"]);
 
 import oiVizConfig from "./oi-viz-config.ts";
@@ -28,13 +22,24 @@ site.use(oiViz(oiVizConfig));
 
 // Register an HTML processor
 // https://lume.land/docs/core/processors/
-site.process([".html"], (pages) => pages.forEach(autoDependency));
+site.process([".html"], (pages) => {
+	let p = 0;
+	for (const page of pages) {
+		// Try zapping some data to free up memory?
+		//page.data.figures = null;
+		//page.data.ranked_constituencies = null;
+		page.text = page.text.replace(/\t+/g,"\t");//.replace(/\s+/g,' ');
+		p++;
+		console.log('Processed page: '+p);
+	}
+});
 
 site.use(base_path());
 
 site.use(date(/* Options */));
 site.use(favicon({input: "/assets/img/favicon.png"}));
 site.add("/assets/img");
+site.add("/assets/fonts");
 site.loadData([".hexjson"], jsonLoader);
 
 site.remoteFile("_data/hexjson/uk-constituencies-2024.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/uk-constituencies-2024.hexjson");
@@ -59,7 +64,6 @@ site.filter('humanise', (input) => {
 
 site.filter("checkNull", (arr) => {
     // Loop through the array
-    // console.log(arr);
     for (const a of arr) {
         // If value isn't defined in a, fail.
         if (typeof a.value === undefined || a.value == null) {
@@ -74,5 +78,20 @@ site.filter("checkNull", (arr) => {
 site.add([".js"]);
 
 site.add("/_data/ranked_constituencies.csv");
+
+
+// Make a variable that is available to beforeRender
+let apiresults = {};
+site.addEventListener("beforeBuild", async (event) => {
+	apiresults = await getAPIData(event);
+});
+site.addEventListener("beforeRender", (event) => {
+	for(let i = 0; i < event.pages.length; i++){
+		// Provide the API results to the index page generator
+		if(event.pages[i].src.path == "/index" && event.pages[i].src.ext == ".page.js"){
+			event.pages[i].data.api = apiresults;
+		}
+	}
+});
 
 export default site;

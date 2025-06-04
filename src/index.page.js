@@ -235,30 +235,7 @@ export default async function* (page) {
 	const hexes = hexjson.hexes;
 	const pcons = Object.keys(hexes);
 
-	// Get the index of all API data.
-	console.log("Get API index");
-	let index = await fetchIt("https://constituencies.open-innovations.org/themes/index.json");
-	if(index == null){
-		console.error("Failed to get index.");
-		return;
-	}
-	
-	// Looping over each theme
-	var promises = [];
-	for (const [theme, themeData] of Object.entries(index.themes)) {
-		console.log("Theme: "+theme);
-		if(1){ // (DEV && theme == "energy") || !DEV
-			// Looping through the visualisations (which have URL, title, attribution)
-			for (const v of themeData.visualisations) {
-				// Adding a URL for the individual page
-				v.slug = "/" + slugifyString(theme) + "/" + slugifyString(v.title) + "/";
-				console.log("\tGetting: "+v.title);
-				// Add the JSON data for that visualisation
-				promises.push(getItem(v));
-			}
-		}
-	}
-	await Promise.all(promises);
+	const index = page.api||{'themes':[]};
 
 	const n = (DEV ? 20 : pcons.length);
 
@@ -365,14 +342,15 @@ export default async function* (page) {
 						let x = (axis.type=="year" || axis.type=="number") ? axis.values[i] : i;
 						if(val != 0) nonzero++;
 						// Create a new dictionary with all the info we need to generate the site.
-						dataArray.push({
-							"measure": vis.json.values[i].label, 
+						let datum = {
+							"measure": vis.json.values[i].label,
 							"x": x,
-							"value": val, 
-							"preunit": unit.pre,
-							"postunit": unit.post,
-							"notes": unit.notes||""
-						});
+							"value": val,
+						};
+						if(typeof unit.pre!=="undefined" && unit.pre != "") datum.preunit = unit.pre;
+						if(typeof unit.post!=="undefined" && unit.post != "") datum.postunit = unit.post;
+						if(typeof unit.notes!=="undefined" && unit.notes != "") datum.notes = unit.notes;
+						dataArray.push(datum);
 					}
 
 					opts.xaxis = getXAxis(axis);
@@ -406,6 +384,7 @@ export default async function* (page) {
 			code,
 			ranked_constituencies: {[code]:page.ranked_constituencies[code]},
 			"currentMPs": {[code]:mp},
+			hexjson: null,
 		};
 		yield result;
 	}
