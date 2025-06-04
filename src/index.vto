@@ -1,9 +1,17 @@
 ---
-title: Home
+title: Welcome
 ---
 {{# <p>Browse data for all themes by constituency</p> #}}
 {{# <h3><a href="/themes">Themes</a></h3>
 <p>UK Parliamentary Constituency Hex maps for individual statistics, split by theme.</p> #}}
+<p class='bottom'>
+This site provides a data dashboard for every UK constituency. The dashboards are grouped by themes (economy, energy, environment, health, society, and transport). 
+We use data from the <a href="https://constituencies.open-innovations.org/themes/index.json">API</a> behind our <a href="https://constituencies.open-innovations.org/">UK Constituency Data Hex Maps</a> site. 
+That makes it possible to automatically generate a dashboard for every current UK constituency across all themes and datasets on our hex map site. 
+If you know of an existing open dataset (provided by constituency) that you think we should include, 
+please <a href="mailto:hello@open-innovations.org?subject=Constituency%20dataset&body=URL:%20%0ATitle:%20%0ADescription:">get in touch</a> or find out more...
+</p>
+
 <div class='oi-left'>
     <div class='oi-filter searching'>
         <svg xmlns="https://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 12 13"><g stroke-width="2" stroke="black" fill="none"><path d="M11.29 11.71l-4-4"></path><circle cx="5" cy="5" r="4"></circle></g></svg>
@@ -15,6 +23,6 @@ title: Home
     <li style='display: none'><a href="{{page.url}}">{{ page.title }}</a> ({{ currentMPs[page.code].MP }})</li>
   {{ /for }}
 </ul>
-<p><a href="/data">Download data</a></p>
+<div><a href="/data">Download data</a></div>
 <script src="/assets/js/luckyDip.js"></script>
 <script src="/assets/js/filterList.js"></script>

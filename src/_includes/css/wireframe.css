@@ -109,7 +109,7 @@ p + div {
     background: linear-gradient(to right, #F9BC25, #E6007C, #0DBC37, #00B6FF, #722EA5, #D60303);
 }
 
-.bottom { margin-bottom: 1rem;}
+.bottom { margin-bottom: 2em;}
 .centred {text-align: center;}
 
 .mp-wrapper {display: flex; }
