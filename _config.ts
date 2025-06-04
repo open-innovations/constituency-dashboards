@@ -23,15 +23,10 @@ site.use(oiViz(oiVizConfig));
 // Register an HTML processor
 // https://lume.land/docs/core/processors/
 site.process([".html"], (pages) => {
-	let p = 0;
 	for (const page of pages) {
-		// Try zapping some data to free up memory?
-		//page.data.figures = null;
-		//page.data.ranked_constituencies = null;
-		page.text = page.text.replace(/\t+/g,"\t");//.replace(/\s+/g,' ');
-		p++;
-		console.log('Processed page: '+p);
+		page.text = page.text.replace(/\t+/g,"\t");
 	}
+	console.log('Processed pages in _config.ts');
 });
 
 site.use(base_path());
@@ -50,28 +45,25 @@ site.filter("dump", (Object) => {
 });
 
 site.filter("capitalise", (x: string) => {
-    if (!x) return x; // Handle empty strings
-    return x.charAt(0).toUpperCase() + x.slice(1);
+	if (!x) return x; // Handle empty strings
+	return x.charAt(0).toUpperCase() + x.slice(1);
 });
 
 site.filter('humanise', (input) => {
-    if (typeof(input) == 'string') {
-        return input;
-    } else {
-        return `${(input).toLocaleString()}` 
-    }
+	if (typeof(input) == 'string') return input;
+	else  return `${(input).toLocaleString()}` 
 });
 
 site.filter("checkNull", (arr) => {
-    // Loop through the array
-    for (const a of arr) {
-        // If value isn't defined in a, fail.
-        if (typeof a.value === undefined || a.value == null) {
-            return 0;
-        }  
-    }
-    // Otherwise success.
-    return 1;
+	// Loop through the array
+	for (const a of arr) {
+		// If value isn't defined in a, fail.
+		if (typeof a.value === undefined || a.value == null) {
+			return 0;
+		}  
+	}
+	// Otherwise success.
+	return 1;
 });
 
 // Lume 3

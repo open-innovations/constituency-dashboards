@@ -4,7 +4,7 @@
     "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.10/jsx-runtime.ts"
   },
   "tasks": {
-    "lume": "echo \"import 'lume/cli.ts'\" | deno run --v8-flags=--max-old-space-size=4096 -A -",
+    "lume": "echo \"import 'lume/cli.ts'\" | deno run --v8-flags=--max-old-space-size=6144 -A -",
     "build": "deno task lume",
     "serve": "deno task lume -s",
     "dev": "DEV=true deno task lume -s"

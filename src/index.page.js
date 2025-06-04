@@ -389,6 +389,7 @@ export default async function* (page) {
 		yield result;
 	}
 
+	page.api = null;
 	console.log('Done index.page.js');
 }
 /* decimal.js-light v2.5.1 https://github.com/MikeMcl/decimal.js-light/LICENCE */
