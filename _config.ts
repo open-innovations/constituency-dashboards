@@ -16,6 +16,7 @@ import date from "lume/plugins/date.ts";
 const site = lume({
     src: "./src",
     location: new URL("https://open-innovations.github.io/constituency-api-test"),
+	emptyDest: false,
 });
 
 // Register an HTML processor
@@ -26,17 +27,14 @@ site.use(base_path());
 site.use(google_fonts({
     fonts: "https://fonts.google.com/share?selection.family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900"
 }));
-site.use(nav());
 site.use(postcss());
 site.use(oiViz(oiVizConfig));
 site.use(date(/* Options */));
 site.use(favicon({input: "/assets/img/favicon.png"}));
 site.loadData([".hexjson"], jsonLoader);
 
-//site.remoteFile("_data/hexjson/constituencies.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/constituencies.hexjson");
-//site.remoteFile("_data/hexjson/uk-constituencies-2023-temporary.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/uk-constituencies-2023-temporary.hexjson");
 site.remoteFile("_data/hexjson/uk-constituencies-2024.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/uk-constituencies-2024.hexjson");
-site.remoteFile("_data/data/current-MPs.json", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs.json");
+site.remoteFile("_data/currentMPs.json", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs.json");
 
 site.filter("dump", (Object) => {
     return JSON.stringify(Object);
@@ -47,27 +45,6 @@ site.filter("capitalise", (x: string) => {
     return x.charAt(0).toUpperCase() + x.slice(1);
 });
 
-site.filter("formatRank", (num: number) => {
-    if (num == null) {return null};
-    const strNum = Math.abs(num).toString();
-    const lastDigit = strNum.slice(-1);
-    const lastTwoDigits = strNum.slice(-2);
-    if (lastTwoDigits == "11" || lastTwoDigits == "12" || lastTwoDigits == "13") {
-        return strNum + "<sup>th</sup>";}
-    else if (lastDigit=="1") {return strNum + '<sup>st</sup>'}
-    else if (lastDigit=="2") {return strNum + '<sup>nd</sup>'}
-    else if (lastDigit=="3") {return strNum + '<sup>rd</sup>'}
-    else { return strNum + '<sup>th</sup>'}
-});
-
-site.filter("slugify", (str: string) => {
-    if (!str) return str; // Handle empty strings
-    return str
-        .toLowerCase().trim() // Convert to lowercase and trim whitespace
-        .replace(/[^a-z0-9]+/g, "-") // Replace non-alphanumeric characters with hyphens
-        .replace(/^-+|-+$/g, ""); // Remove leading and trailing hyphens
-});
-
 site.filter('humanise', (input) => {
     if (typeof(input) == 'string') {
         return input;
@@ -75,6 +52,7 @@ site.filter('humanise', (input) => {
         return `${(input).toLocaleString()}` 
     }
 });
+
 site.filter("checkNull", (arr) => {
     // Loop through the array
     for (const a of arr) {
@@ -85,6 +63,8 @@ site.filter("checkNull", (arr) => {
     }
     // Otherwise success.
     return 1;
-})
+});
+
 site.copy("/assets/js");
+
 export default site;

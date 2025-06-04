@@ -235,8 +235,6 @@ export default async function* (page) {
 	const hexes = hexjson.hexes;
 	const pcons = Object.keys(hexes);
 
-	const currentMPs = page.data['current-MPs'];
-
 	// Get the index of all API data.
 	console.log("Get API index");
 	let index = await fetchIt("https://constituencies.open-innovations.org/themes/index.json");
@@ -262,11 +260,12 @@ export default async function* (page) {
 	}
 	await Promise.all(promises);
 
-	const n = (DEV ? 20 : pcons.length);
+	const n = (DEV ? 100 : pcons.length);
 
 	for(let p = 0; p < n; p++){
 
 		const code = pcons[p];
+		const mp = page['currentMPs'][code];
 
 		console.log("Building "+hexes[code].n+" ("+code+")");
 
@@ -394,18 +393,21 @@ export default async function* (page) {
 			}
 		}
 
-		yield {
+		const result = {
 			url: `/${code}/`,
 			layout: 'template/constituencies.vto',
 			title: hexes[code]['n'],
-			bgColour: currentMPs[code]['Party bg'],
-			fontColour: contrastColour(currentMPs[code]['Party bg']),
+			bgColour: mp['Party bg'],
+			fontColour: contrastColour(mp['Party bg']),
 			tags: 'constituency',
 			figures: data,
 			region: hexes.region,
-			mpData: currentMPs[code],
-			code
+			mpData: mp,
+			code,
+			ranked_constituencies: {[code]:page.ranked_constituencies[code]},
+			"currentMPs": {[code]:mp},
 		};
+		yield result;
 	}
 
 	console.log('Done index.page.js');

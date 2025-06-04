@@ -1,127 +1,104 @@
 ---
 layout: template/base.vto
 ---
-
 {{ include './partials/header.vto' }}
-
 <div class="hoc">
 	<div class="holder padded tallpadded">
-		<div class="mp-wrapper" style="--party-colour:{{bgColour}};--party-colour-text:{{fontColour}}">
-			<div class="mp-info">
-				<h2>{{ title }}</h2>
-				<p>{{mpData.MP}} is the <span class="mp-party">{{ mpData['Party name'] }}</span> MP for {{ title }}, and has been an MP since {{ mpData['Start date'].split('T')[0] |> date('do LLLL yyyy') }}.</p>
-				<p>Links: <a href="https://members.parliament.uk/member/{{ mpData['ID'] }}/">Parliament</a>, <a href="{{mpData['TheyWorkForYou URI']}}" target="_blank">They Work For You</a></p>
-			</div>
-			<img class="mp-image" src="{{mpData['Thumbnail']}}" alt="{{mpData.MP}} thumbnail" />
-		</div>
+		<div class="mp-wrapper" style="--party-colour:{{bgColour}};--party-colour-text:{{fontColour}}"><div class="mp-info"><h2>{{ title }}</h2><p>{{mpData.MP}} is the <span class="mp-party">{{ mpData['Party name'] }}</span> MP for {{ title }}, and has been an MP since {{ mpData['Start date'].split('T')[0] |> date('do LLLL yyyy') }}.</p><p>Links: <a href="https://members.parliament.uk/member/{{ mpData['ID'] }}/">Parliament</a>, <a href="{{mpData['TheyWorkForYou URI']}}" target="_blank">They Work For You</a></p></div><img class="mp-image" src="{{mpData['Thumbnail']}}" alt="{{mpData.MP}} thumbnail" /></div>
 	</div>
 </div>
 <div class='main white-bg'>
 	<div class='holder padded tallpadded'>
-<div class="links">
+	<div class="links">{{ for theme, titleObject of figures }}<a href="#{{ theme }}" class="{{ theme }}">{{ theme |> capitalise() }}</a>{{ /for }}</div>
+	<div id="filter"></div>
 {{ for theme, titleObject of figures }}
-	<a href="#{{ theme }}" class="{{ theme }}">{{ theme |> capitalise() }}</a>
-{{ /for }}
-</div>
-<div id="filter"></div>
-<script src="/assets/js/filterCards.js"></script>
-{{ for theme, titleObject of figures }}
-<section id="{{theme}}" class="theme">
-	{{ comp.dashboards.themeTitle({ theme }) }}
-	<p>See the <a href="#notes">notes</a> for more information about ratings.</p>
-	<div class='grid'>{{ for visTitle, visObject of titleObject }}
-	{{ if visObject.opts.type == 'line' }}
-		{{ comp.dashboards.card({
-				code,
-				theme,
-				key: visTitle,
-				attribution: visObject.attribution,
-				link: visObject.url,
-				visDate: visObject.date,
-				content: comp.oi.chart.line({
+	<section id="{{theme}}" class="theme">
+		{{ comp.dashboards.themeTitle({ theme }) }}
+		<p>See the <a href="#notes">notes</a> for more information about ratings.</p>
+		<div class='grid'>
+{{ for visTitle, visObject of titleObject }}{{ if visObject.opts.type == 'line' }}
+{{ comp.dashboards.card({
+	code,
+	theme,
+	key: visTitle,
+	attribution: visObject.attribution,
+	link: visObject.url,
+	visDate: visObject.date,
+	content: comp.oi.chart.line({
+		config: {
+			data: visObject.data,
+			axis: { 
+				x: visObject.opts.xaxis, 
+				y: visObject.opts.yaxis
+			},
+			series: [{
+				title: visTitle,
+				x: "x",
+				y: "value",
+				colour: fontColour,
+				tooltip: '{{ measure }}: <strong>{{preunit}}{{ value | toLocaleString() }}{{postunit}}</strong>'
+			}],
+			legend: { show: false },
+			width: 480,
+			height: 250
+		}
+	})
+}) }}{{ else if visObject.opts.type == 'bar' && visObject.data.length > 2 }}{{ set check = visObject.data |> checkNull() }}{{ if check }}
+{{ comp.dashboards.card({
+			code,
+			theme,
+			ratingData: visObject.data,
+			key: visTitle,
+			attribution: visObject.attribution,
+			visDate: visObject.date,
+			link: visObject.url,
+			content: comp.oi.chart.bar({ 
 					config: {
 						data: visObject.data,
+						category: "measure",
+						width: 400,
+						height: 250,
+						series: [
+							{
+								title: visTitle, 
+								value: "value", 
+								colour: fontColour || '#ffffff',
+								tooltip: '{{ measure }}: <strong>{{ preunit }}{{ value }}{{ postunit }}</strong>'
+							}
+						],
 						axis: { 
-							x: visObject.opts.xaxis, 
-							y: visObject.opts.yaxis
-						},
-						series: [{
-							title: visTitle,
-							x: "x",
-							y: "value",
-							colour: fontColour,
-							tooltip: '{{ measure }}: <strong>{{preunit}}{{ value | toLocaleString() }}{{postunit}}</strong>'
-						}],
-						legend: { show: false },
-						width: 480,
-						height: 250
+						x: visObject.opts.xaxis, 
+						y: { 
+							grid: { 
+								show: false 
+							},
+							ticks: []
+						}
+					},
 					}
 				})
 			})
-		}}
-	{{ else if visObject.opts.type == 'bar' && visObject.data.length > 2 }}
-		{{ set check = visObject.data |> checkNull() }}
-		{{ if check }}
-			{{ comp.dashboards.card({
-				code,
-				theme,
-				ratingData: visObject.data,
-				key: visTitle,
-				attribution: visObject.attribution,
-				visDate: visObject.date,
-				link: visObject.url,
-				content: comp.oi.chart.bar({ 
-						config: {
-							data: visObject.data,
-							category: "measure",
-							width: 400,
-							height: 250,
-							series: [
-								{
-									title: visTitle, 
-									value: "value", 
-									colour: fontColour || '#ffffff',
-									tooltip: '{{ measure }}: <strong>{{ preunit }}{{ value }}{{ postunit }}</strong>'
-								}
-							],
-							axis: { 
-							x: visObject.opts.xaxis, 
-							y: { 
-								grid: { 
-									show: false 
-								},
-								ticks: []
-							}
-						},
-						}
-					})
-				})
-			}}
-		{{ /if }}
+		}}{{ /if }}
 	{{ else }}
-		{{ for item of visObject.data }}
-			{{ if item.value != null || item.value != undefined }}
-			{{# We only make a card if the value isn't null or undefined. It can be 0, any number, or a string. #}}
-				{{ comp.dashboards.card({
-					code,
-					theme,
-					key: visTitle,
-					subtitle: { "show": visObject.opts.showSubtitle, "value": item.measure },
-					ratingData: [{"measure":item.measure,"item":item}],
-					attribution: visObject.attribution,
-					link: visObject.url,
-					content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value, notes: item.notes }),
-					visDate: visObject.date })
-				}}
-			{{ /if }}
-		{{ /for }}	
+		{{ for item of visObject.data }}{{ if item.value != null || item.value != undefined }}
+{{ comp.dashboards.card({
+	code,
+	theme,
+	key: visTitle,
+	subtitle: { "show": visObject.opts.showSubtitle, "value": item.measure },
+	ratingData: [{"measure":item.measure,"item":item}],
+	attribution: visObject.attribution,
+	link: visObject.url,
+	content: comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value, notes: item.notes }),
+	visDate: visObject.date })
+}}
+		{{ /if }}
+{{ /for }}	
 	{{ /if }}
 	{{ /for }}</div>
-</section>
+	</section>
 {{ /for }}
-
 		<hr class='hr--styled'>
-
 		<section class="notes">
 			<h2 id='notes'>Notes</h2>
 			<a name="rating"></a>
@@ -130,5 +107,5 @@ layout: template/base.vto
 		</section>
 	</div>
 </div>
-
+<script src="/assets/js/filterCards.js"></script>
 {{ include './partials/footer.vto' }}
