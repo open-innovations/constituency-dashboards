@@ -68,4 +68,5 @@ site.filter("checkNull", (arr) => {
 
 site.copy("/assets/js");
 
+site.copy("/_data/ranked_constituencies.csv");
 export default site;
