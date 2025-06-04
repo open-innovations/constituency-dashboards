@@ -55,9 +55,10 @@ site.filter('humanise', (input) => {
 
 site.filter("checkNull", (arr) => {
     // Loop through the array
+    // console.log(arr);
     for (const a of arr) {
         // If value isn't defined in a, fail.
-        if (!a.value) {
+        if (typeof a.value === undefined || a.value == null) {
             return 0;
         }  
     }
