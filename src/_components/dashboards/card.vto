@@ -43,7 +43,7 @@
 							for(let i = 0; i < ratingData.length; i++){
 								if("rank" in ratingData[i] && "measure" in ratingData[i] && ratingData[i].measure in rankIndicator[theme][key]){
 									r = rating(ratingData[i].rank,rankIndicator[theme][key][ratingData[i].measure],theme+' '+key);
-									ratings.push({'title':ratingData[i].measure+' JS','rating':r});
+									ratings.push({'title':ratingData[i].measure,'rating':r});
 								}
 							}
 						}
