@@ -283,7 +283,7 @@ export default async function* (page) {
 							// Limit range just in case
 							rank = Math.max(0,Math.min(1,rank));
 
-							index.themes[theme].visualisations[viz].json.data.constituencies[pcon].ranks[label] = {'rank':rank,'value':arr[i].value,'freq':frequencies[arr[i].value+''],'i':i,'quintile':quantile,'n':arr.length};
+							index.themes[theme].visualisations[viz].json.data.constituencies[pcon].ranks[label] = {'rank':rank,'freq':frequencies[arr[i].value+''],'i':i,'quintile':quantile,'n':arr.length};
 						}
 					}
 				}
@@ -457,7 +457,6 @@ export default async function* (page) {
 			region: hexes.region,
 			mpData: mp,
 			code,
-			ranked_constituencies: null,//{[code]:page.ranked_constituencies[code]},
 			"currentMPs": {[code]:mp},
 			hexjson: null,
 		};
