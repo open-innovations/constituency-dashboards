@@ -15,7 +15,7 @@
 		var s,i,txtValue,matched;
 
 		txt = txt.toUpperCase();
-		var reg = new RegExp("data[^\=]*=\"[^\"]*"+txt+"[^\"]*\"","i");
+		var reg = new RegExp("(data|title)[^\=]*=\"[^\"]*"+txt+"[^\"]*\"","i");
 		
 		// Loop through sections
 		for(s = 0; s < sections.length; s++){

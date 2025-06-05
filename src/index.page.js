@@ -237,6 +237,75 @@ export default async function* (page) {
 
 	const index = page.api||{'themes':[]};
 
+	// Calculate rankings
+	let pcon,v,val,viz,key,label,i,arr,rank,title,theme,frequencies,quantiles = 5,quantile;
+
+	for(theme in index.themes){
+		for(viz = 0; viz < index.themes[theme].visualisations.length; viz++){
+			for(pcon in index.themes[theme].visualisations[viz].json.data.constituencies){
+				// Add empty rank object
+				index.themes[theme].visualisations[viz].json.data.constituencies[pcon].ranks = {};
+			}
+
+			title = index.themes[theme].visualisations[viz].json.title;
+			if(title in page.rankIndicator[theme]){
+				for(v = 0; v < index.themes[theme].visualisations[viz].json.values.length; v++){
+					// For this value we need to work out the ranking for every constituency
+					// Build an array of constituency objects with ID, value, and rank
+					arr = [];
+					key = index.themes[theme].visualisations[viz].json.values[v].value;
+					label = index.themes[theme].visualisations[viz].json.values[v].label||key;
+					
+					if(label in page.rankIndicator[theme][title]){
+						for(pcon in index.themes[theme].visualisations[viz].json.data.constituencies){
+							arr.push({'id':pcon,'value':index.themes[theme].visualisations[viz].json.data.constituencies[pcon][key]});
+						}
+						// Sort the array by the values
+						arr.sort((a, b) => a.value - b.value);
+						frequencies = {};
+						for(i = 0; i < arr.length; i++){
+							val = (arr[i].value||0)+'';
+							if(!(val in frequencies)) frequencies[val] = 0;
+							frequencies[val]++;
+						}
+
+						// Loop through array and add the rank
+						for(i = 0; i < arr.length; i++){
+							pcon = arr[i].id;
+							// The rank is the quintile
+							quantile = Math.max(Math.ceil(quantiles*i/arr.length),1);
+							if(page.rankIndicator[theme][title][label] == "h") quantile = quantiles-quantile+1;
+							
+							// Percentile rank https://en.wikipedia.org/wiki/Percentile_rank
+							rank = (i + (0.5*frequencies[arr[i].value+'']))/arr.length;
+							// Switch direction of rank if necessary
+							if(page.rankIndicator[theme][title][label] == "h") rank = 1-rank;
+							// Limit range just in case
+							rank = Math.max(0,Math.min(1,rank));
+
+							index.themes[theme].visualisations[viz].json.data.constituencies[pcon].ranks[label] = {'rank':rank,'value':arr[i].value,'freq':frequencies[arr[i].value+''],'i':i,'quintile':quantile,'n':arr.length};
+						}
+					}
+				}
+			}
+		}
+	}
+
+/*
+	theme = "economy";
+	title = "ATMs: total (UK)";
+	v = 0;
+	pcon = "W07000081";
+	for(viz = 0; viz < index.themes[theme].visualisations.length; viz++){
+		if(index.themes[theme].visualisations[viz].json.title == title){
+			v = viz;
+		}
+	}
+	console.log('Theme: '+theme)
+	console.log('Title: '+title)
+	console.log('JS',index.themes[theme].visualisations[v].json.data.constituencies[pcon].ranks);
+	//console.log('Python',page.ranked_constituencies[pcon][theme][title]);
+*/
 	const n = (DEV ? 20 : pcons.length);
 
 	for(let p = 0; p < n; p++){
@@ -244,7 +313,7 @@ export default async function* (page) {
 		const code = pcons[p];
 		const mp = page['currentMPs'][code];
 
-		console.log("Building "+hexes[code].n+" ("+code+")");
+		//console.log("Building "+hexes[code].n+" ("+code+")");
 
 		let dashboard = {};
 		let opts = {};
@@ -327,6 +396,11 @@ export default async function* (page) {
 						unit = units[i];
 						//console.log('values',i,vis.json.values[i],constituencyData);
 						let val = constituencyData[vis.json.values[i].value];
+						let key = vis.json.values[i].label||vis.json.values[i].value;
+
+						let rank = -1;
+						if(key in constituencyData.ranks && "rank" in constituencyData.ranks[key]) rank = constituencyData.ranks[key].rank;
+
 						// If the value is a number, apply the scale if it exists, or multiply by 1.
 						if(typeof val==="number"){
 							val *= (unit.scaleBy || 1);
@@ -347,6 +421,7 @@ export default async function* (page) {
 							"x": x,
 							"value": val,
 						};
+						if(rank >= 0) datum.rank = rank;
 						if(typeof unit.pre!=="undefined" && unit.pre != "") datum.preunit = unit.pre;
 						if(typeof unit.post!=="undefined" && unit.post != "") datum.postunit = unit.post;
 						if(typeof unit.notes!=="undefined" && unit.notes != "") datum.notes = unit.notes;
@@ -382,7 +457,7 @@ export default async function* (page) {
 			region: hexes.region,
 			mpData: mp,
 			code,
-			ranked_constituencies: {[code]:page.ranked_constituencies[code]},
+			ranked_constituencies: null,//{[code]:page.ranked_constituencies[code]},
 			"currentMPs": {[code]:mp},
 			hexjson: null,
 		};

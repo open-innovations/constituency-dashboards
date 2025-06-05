@@ -1,4 +1,4 @@
-{{> let title = key.replace(/\([^\)]*\)$/,'') }}
+{{> let title = key.replace(/ \([^\)]*\)$/,'') }}
 {{>
 	const thresholds = [
 		{ value: 5, label: "★★★★★", min: 0, max: 0.2 },
@@ -7,16 +7,17 @@
 		{ value: 2, label: "★★", min: 0.6, max: 0.8 },
 		{ value: 1, label: "★", min: 0.8, max: 1.01 } // This has to be 1.01 rather than 1 due to using <
 	];
-	function rating(num, indicator){
+	function rating(num, indicator, label){
 		// Flip the number if indicator is 'l'
 		const value = indicator === 'l' ? 1 - num : num;
 		for(const t of thresholds){
 			// If value is between the min and max, return that threshold object.
 			if(value >= t.min && value < t.max) return t;
 		}
+		console.error("No rating found for "+label,num,value);
 	}
 }}
-				<div class="card padded {{ theme }}" tabindex="0"><h4><a href="https://constituencies.open-innovations.org{{link}}" target="blank">{{ title }}</a></h4>
+				<div class="card {{ theme }}"><h4><a href="https://constituencies.open-innovations.org{{link}}">{{ title }}</a></h4>
 				{{- if subtitle?.show == true -}}
 					<p class="subtitle">{{ subtitle.value }}</p>
 				{{- /if }}
@@ -25,25 +26,34 @@
 				{{- /if -}}
 				{{- if ratingData -}}
 					{{>
-						const ranking = ranked_constituencies[code];
 						let ratings = new Array();
 						let rankKey,r;
+
+						/*const ranking = ranked_constituencies[code];
 						for(item of ratingData){
 							if(key in ranking[theme]){
 								if(item.measure in ranking[theme][key]) rankKey = ranking[theme][key][item.measure];
 								if(theme in rankIndicator && key in rankIndicator[theme] && item.measure in rankIndicator[theme][key]){
 									r = rating(rankKey,rankIndicator[theme][key][item.measure]);
-									ratings.push({'title':item.measure,'rating':r	});
+									ratings.push({'title':item.measure,'rating':r});
+								}
+							}
+						}*/
+						if("length" in ratingData){
+							for(let i = 0; i < ratingData.length; i++){
+								if("rank" in ratingData[i] && "measure" in ratingData[i] && ratingData[i].measure in rankIndicator[theme][key]){
+									r = rating(ratingData[i].rank,rankIndicator[theme][key][ratingData[i].measure],theme+' '+key);
+									ratings.push({'title':ratingData[i].measure+' JS','rating':r});
 								}
 							}
 						}
-					}}
+					-}}
 					{{- if ratings.length == 1 -}}
-						<p><a href="#rating">Relative rating</a>: <span data-rating="rating:{{ ratings[0].rating.value }}" title="{{ ratings[0].rating.value }} star">{{ ratings[0].rating.label }}</span></p>
+						<p>Relative rating: <span title="{{ ratings[0].rating.value }} star">{{ ratings[0].rating.label }}</span></p>
 					{{- else if ratings.length > 1 -}}
-						<h5><a href="#rating">Relative ratings</a>:</h5><ul class="ratings">
+						<h5>Relative ratings:</h5><ul class="ratings">
 							{{- for item of ratings -}}
-								<li>{{ item.title }}: <span data-rating="rating:{{ item.rating.value }}" title="{{ item.rating.value }} star">{{ item.rating.label }}</span></li>
+								<li>{{ item.title }}: <span title="{{ item.rating.value }} star">{{ item.rating.label }}</span></li>
 							{{- /for -}}
 						</ul>
 					{{- /if }}

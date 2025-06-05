@@ -24,7 +24,19 @@ site.use(oiViz(oiVizConfig));
 // https://lume.land/docs/core/processors/
 site.process([".html"], (pages) => {
 	for (const page of pages) {
+		// Trim pages to save memory
 		page.text = page.text.replace(/\t+/g,"\t");
+		page.text = page.text.replace(/ data-dependencies="[^\"]+"/g,"");
+		page.text = page.text.replace(/ vector-effect="non-scaling-stroke"/g,'');
+		page.text = page.text.replace(/<text class="axis-grid-title"[^\>]+><\/text>/g,'');
+		page.text = page.text.replace(/<g class="axis-grid axis-grid-[xy]"><\/g>/g,'');
+		page.text = page.text.replace(/tspan font-family="Arial,sans-serif"/g,'tspan');
+		page.text = page.text.replace(/ fill-opacity="1"/g,'');
+		page.text = page.text.replace(/<div class="oi-(top|bottom) oi-(left|right)"><\/div>/g,'');
+		page.text = page.text.replace(/<(rect|circle|text)([^\>]*) fill="#(FFFFFF|000000)"/g,function(m,p1,p2){ return '<'+p1+p2; });
+		page.text = page.text.replace(/ fill-opacity="null"/g,'');
+		page.text = page.text.replace(/<g data="[^\"]+"/g,'<g');
+		page.text = page.text.replace(/<g data-category="[^\"]+"/g,'<g');
 	}
 	console.log('Processed pages in _config.ts');
 });

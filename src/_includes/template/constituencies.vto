@@ -96,7 +96,7 @@ layout: template/base.vto
 	theme,
 	key: visTitle,
 	subtitle: { "show": visObject.opts.showSubtitle, "value": item.measure },
-	ratingData: [{"measure":item.measure,"item":item}],
+	ratingData: [item],
 	attribution: visObject.attribution,
 	link: visObject.url,
 	content: await comp.dashboards.number({preunit: item.preunit, postunit: item.postunit, number: item.value, notes: item.notes }),
