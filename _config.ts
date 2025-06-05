@@ -19,7 +19,7 @@ site.add([".css"]);
 
 site.use(google_fonts({
 	cssFile: "fonts.css",
-    fonts: "https://fonts.google.com/share?selection.family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900"
+    fonts: "https://fonts.google.com/share?selection.family=Poppins:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700"
 }));
 
 import oiVizConfig from "./oi-viz-config.ts";
@@ -31,17 +31,17 @@ site.process([".html"], (pages) => {
 	for (const page of pages) {
 		// Trim pages to save memory
 		page.text = page.text.replace(/\t+/g,"\t");
-		page.text = page.text.replace(/ data-dependencies="[^\"]+"/g,"");
-		page.text = page.text.replace(/ vector-effect="non-scaling-stroke"/g,'');
-		page.text = page.text.replace(/<text class="axis-grid-title"[^\>]+><\/text>/g,'');
-		page.text = page.text.replace(/<g class="axis-grid axis-grid-[xy]"><\/g>/g,'');
-		page.text = page.text.replace(/tspan font-family="Arial,sans-serif"/g,'tspan');
-		page.text = page.text.replace(/ fill-opacity="1"/g,'');
-		page.text = page.text.replace(/<div class="oi-(top|bottom) oi-(left|right)"><\/div>/g,'');
-		page.text = page.text.replace(/<(rect|circle|text)([^\>]*) fill="#(FFFFFF|000000)"/g,function(m,p1,p2){ return '<'+p1+p2; });
-		page.text = page.text.replace(/ fill-opacity="null"/g,'');
-		page.text = page.text.replace(/<g data="[^\"]+"/g,'<g');
-		page.text = page.text.replace(/<g data-category="[^\"]+"/g,'<g');
+		page.text = page.text.replace(/ data-dependencies="[^\"]+"/g,"");	// We've manually included the JS to avoid a document processing
+		page.text = page.text.replace(/ vector-effect="non-scaling-stroke"/g,'');	// Not necessary for this site
+		page.text = page.text.replace(/<text class="axis-grid-title"[^\>]+><\/text>/g,'');	// Empty text
+		page.text = page.text.replace(/<g class="axis-grid axis-grid-[xy]"><\/g>/g,'');	// Empty group
+		page.text = page.text.replace(/tspan font-family="Arial,sans-serif"/g,'tspan');	// Not needed because we'll use CSS instead
+		page.text = page.text.replace(/ fill-opacity="1"/g,'');	// The default anyway
+		page.text = page.text.replace(/<div class="oi-(top|bottom) oi-(left|right)"><\/div>/g,'');	// Remove empty holders
+		page.text = page.text.replace(/<(rect|circle|text)([^\>]*) fill="#(FFFFFF|000000)"/g,function(m,p1,p2){ return '<'+p1+p2; });	// This let's them inherit currentColour
+		page.text = page.text.replace(/ fill-opacity="null"/g,'');	// Invalid anyway
+		page.text = page.text.replace(/<g data="[^\"]+"/g,'<g'); // We don't need this property
+		page.text = page.text.replace(/<g data-category="[^\"]+"/g,'<g');	// We don't need this property
 	}
 	console.log('Processed pages in _config.ts');
 });
@@ -49,7 +49,7 @@ site.process([".html"], (pages) => {
 site.use(base_path());
 
 site.use(date(/* Options */));
-site.use(favicon({input: "/assets/img/favicon.png"}));
+site.use(favicon({input: "/assets/img/oi-square-8.png"}));
 site.add("/assets/img");
 site.loadData([".hexjson"], jsonLoader);
 
