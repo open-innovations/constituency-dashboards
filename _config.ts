@@ -17,6 +17,11 @@ const site = lume({
 
 site.add([".css"]);
 
+site.use(google_fonts({
+	cssFile: "fonts.css",
+    fonts: "https://fonts.google.com/share?selection.family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900"
+}));
+
 import oiVizConfig from "./oi-viz-config.ts";
 site.use(oiViz(oiVizConfig));
 
@@ -46,7 +51,6 @@ site.use(base_path());
 site.use(date(/* Options */));
 site.use(favicon({input: "/assets/img/favicon.png"}));
 site.add("/assets/img");
-site.add("/assets/fonts");
 site.loadData([".hexjson"], jsonLoader);
 
 site.remoteFile("_data/hexjson/uk-constituencies-2024.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/uk-constituencies-2024.hexjson");
