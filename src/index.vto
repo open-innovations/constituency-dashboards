@@ -4,21 +4,23 @@ title: Welcome
 {{# <p>Browse data for all themes by constituency</p> #}}
 {{# <h3><a href="/themes">Themes</a></h3>
 <p>UK Parliamentary Constituency Hex maps for individual statistics, split by theme.</p> #}}
-<p class='bottom'>
-This site provides a data dashboard for every UK constituency. The dashboards are grouped by themes (economy, energy, environment, health, society, and transport). 
-We use data from the <a href="https://constituencies.open-innovations.org/themes/index.json">API</a> behind our <a href="https://constituencies.open-innovations.org/">UK Constituency Data Hex Maps</a> site. 
-That makes it possible to automatically generate a dashboard for every current UK constituency across all themes and datasets on our hex map site. 
-If you know of an existing open dataset (provided by constituency) that you think we should include, 
-please <a href="mailto:hello@open-innovations.org?subject=Constituency%20dataset&body=URL:%20%0ATitle:%20%0ADescription:">get in touch</a> or find out more...
-</p>
+<p class='bottom'>A data dashboard for every UK constituency. Search by constituency, MP name, or <a href="E14001290/" class="luckydip">pick a random constituency</a>...</p>
 
 <div class='oi-filter searching'>
-	<input type="text" id="searchInput" onkeyup="filterList()" placeholder="Search for constituencies...">
+	<input type="text" id="searchInput" onkeyup="filterList()" placeholder="Search constituencies...">
 </div>
 <ul id='searchable'>
   {{ for page of search.pages("constituency") }}
-    <li style='display: none'><a href="{{page.url}}">{{ page.title }}</a> ({{ currentMPs[page.code].MP }})</li>
+    <li style='display: none' class="grey-bg"><a href="{{page.url}}">{{ page.title }} ({{ currentMPs[page.code].MP }})</a></li>
   {{ /for }}
 </ul>
-<script src="/assets/js/luckyDip.js"></script>
+
+<section style="margin-top:2rem;">
+	<h3>More info</h3>
+	<p>The dashboards are grouped by themes (economy, energy, environment, health, society, and transport). We use data from the <a href="https://constituencies.open-innovations.org/themes/index.json">API</a> behind our <a href="https://constituencies.open-innovations.org/">UK Constituency Data Hex Maps</a> site. 
+	That makes it possible to automatically generate a dashboard for every current UK constituency across all themes and datasets on our hex map site. 
+	If you know of an existing open dataset (provided by constituency) that you think we should include, 
+	please <a href="mailto:hello@open-innovations.org?subject=Constituency%20dataset&body=URL:%20%0ATitle:%20%0ADescription:">get in touch</a> or find out more...</p>
+</section>
+
 <script src="/assets/js/filterList.js"></script>
