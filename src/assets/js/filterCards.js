@@ -56,10 +56,15 @@ OI.ready(function(){
 	OI.filterCards();
 
 	// Add rating help
-	document.querySelectorAll('.rel').forEach(el => {
-		var dir = el.getAttribute('data');
+	document.querySelectorAll('[data-rate]').forEach(el => {
+		var r = el.closest('[data-region]');
+		var region = "UK";
+		if(r) region = r.getAttribute('data-region');
+		var dir = el.getAttribute('data-rate')||"";
+		var median = el.getAttribute('data-median')||"";
 		// Build tooltip text
-		var txt = 'More stars awarded for a '+(dir=="h" ? "higher":"lower")+' number.';
+		var txt = 'More stars awarded for a '+(dir=="h" ? "higher":"lower")+' number';
+		if(median) txt += '\n(The '+region+' median '+(el.innerHTML!="Relative rating" ? '<em>'+el.innerHTML+'</em> ':'')+'is '+median+')';
 		// Build an element
 		var tt = document.createElement('span');
 		tt.innerHTML = '[?]';
