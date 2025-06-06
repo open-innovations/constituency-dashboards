@@ -15,7 +15,7 @@ layout: template/base.vto
 	{{- for theme, titleObject of figures }}
 	<section id="{{theme}}" class="theme">
 		{{ comp.dashboards.themeTitle({ theme }) }}
-		<p>See the <a href="#notes">notes</a> for more information about ratings.</p>
+		<p>See the <a href="#notes">notes</a> for more information about ratings. Click on a panel title to see a map of that metric for all constituencies.</p>
 		<div class='grid'>
 		{{- for visTitle, visObject of titleObject }}
 			{{- if visObject.opts.type == 'line' }}

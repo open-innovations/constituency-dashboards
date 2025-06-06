@@ -52,5 +52,21 @@
 })(window || this);
 
 OI.ready(function(){
+
 	OI.filterCards();
+
+	// Add rating help
+	document.querySelectorAll('.rel').forEach(el => {
+		var dir = el.getAttribute('data');
+		// Build tooltip text
+		var txt = 'More stars awarded for a '+(dir=="h" ? "higher":"lower")+' number.';
+		// Build an element
+		var tt = document.createElement('span');
+		tt.innerHTML = '[?]';
+		tt.setAttribute('title',txt);
+		el.after(tt);
+		OI.Tooltips.add(tt,{})
+		
+	});
+
 });

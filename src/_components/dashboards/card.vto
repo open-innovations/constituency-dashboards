@@ -35,17 +35,18 @@
 								if("rank" in ratingData[i] && "measure" in ratingData[i] && ratingData[i].measure in rankIndicator[theme][key]){
 									r = rating(ratingData[i].rank,rankIndicator[theme][key][ratingData[i].measure],theme+' '+key);
 									//r = {'value':ratingData[i].median,'label':(ratingData[i].preunit||"") + ratingData[i].median.toLocaleString() + (ratingData[i].postunit||"")};
+									r.direction = rankIndicator[theme][key][ratingData[i].measure];
 									ratings.push({'title':ratingData[i].measure,'rating':r});
 								}
 							}
 						}
 					-}}
 					{{- if ratings.length == 1 -}}
-						<p>Relative rating: <span title="{{ ratings[0].rating.value }} star">{{ ratings[0].rating.label }}</span></p>
+						<p class="ratings"><span class="rel" data="{{ ratings[0].rating.direction }}">Relative rating</span>: <span title="{{ ratings[0].rating.value }} star">{{ ratings[0].rating.label }}</span></p>
 					{{- else if ratings.length > 1 -}}
 						<h5>Relative ratings:</h5><ul class="ratings">
 							{{- for item of ratings -}}
-								<li>{{ item.title }}: <span title="{{ item.rating.value }} star">{{ item.rating.label }}</span></li>
+								<li><span class="rel" data="{{ item.rating.direction }}">{{ item.title }}</span>: <span title="{{ item.rating.value }} star">{{ item.rating.label }}</span></li>
 							{{- /for -}}
 						</ul>
 					{{- /if }}

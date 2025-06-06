@@ -149,6 +149,7 @@ h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; font-weight: 600; li
 .tooltip a {
 	color: inherit;
 }
+.ratings .tooltip .inner { white-space: wrap!important; }
 
 .economy {background-color: #F9BC25; color: black;}
 .energy { background-color: #E6007C; color: white;}

@@ -1,6 +1,6 @@
 {
     "economy": {
-        "ATMs: total (UK)": {"Free-to-use": "h", "Pay-to-use": "l", "Total": "h"},
+        "ATMs: total (UK)": {"Free-to-use": "h", "Total": "h"},
         "Broadband: average download speeds (UK)": {"Average download speed (Mbps)": "h"},
         "Broadband: below universal service obligation (UK)": {"Below universal service obligation (%)": "l"},
         "Broadband: gigabit availability (UK)": {"Gigabit availability (%)": "h"},
