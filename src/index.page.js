@@ -238,7 +238,7 @@ export default async function* (page) {
 	const index = page.api||{'themes':[]};
 
 	// Calculate rankings
-	let pcon,v,val,viz,key,label,i,arr,rank,title,theme,frequencies,quantiles = 5,quantile,median,cfprime,scores,orderedscores,score,cumulative;
+	let pcon,v,val,viz,key,label,i,arr,rank,title,theme,frequencies,quantiles = 5,quantile,median,cfprime;
 
 	for(theme in index.themes){
 		for(viz = 0; viz < index.themes[theme].visualisations.length; viz++){
@@ -273,7 +273,7 @@ export default async function* (page) {
 						}
 						
 						// Build a score distribution
-						scores = {};
+						let scores = {};
 						for(i = 0; i < arr.length; i++){
 							val = arr[i].value;
 							if(typeof val!=="number") val = 0;
@@ -282,10 +282,11 @@ export default async function* (page) {
 							scores[val].frequency++;
 							scores[val].cons.push(pcon);
 						}
-						orderedscores = Object.keys(scores).sort((a, b) => a - b);
+						let orderedscores = Object.keys(scores).sort((a, b) => a - b);
 						// Percentile rank https://en.wikipedia.org/wiki/Percentile_rank
 						// PR = (CF - (0.5 x F))/N
-						for(i = 0, cumulative = 0; i < orderedscores.length; i++){
+						let cumulative = 0;
+						for(i = 0; i < orderedscores.length; i++){
 							cumulative += scores[orderedscores[i]].frequency;
 							scores[orderedscores[i]].cumulativefrequency = cumulative;
 							scores[orderedscores[i]].percentile = (cumulative - (0.5*scores[orderedscores[i]].frequency))/arr.length;
@@ -304,8 +305,8 @@ export default async function* (page) {
 						for(i = 0,cfprime = 0; i < arr.length; i++){
 							pcon = arr[i].id;
 							// The rank is the quintile
-							quantile = Math.max(Math.ceil(quantiles*i/arr.length),1);
-							if(page.rankIndicator[theme][title][label] == "h") quantile = quantiles-quantile+1;
+							//quantile = Math.max(Math.ceil(quantiles*i/arr.length),1);
+							//if(page.rankIndicator[theme][title][label] == "h") quantile = quantiles-quantile+1;
 
 							// Get percentile rank
 							val = arr[i].value;
@@ -317,7 +318,7 @@ export default async function* (page) {
 							// Limit range just in case
 							rank = Math.max(0,Math.min(1,rank));
 
-							index.themes[theme].visualisations[viz].json.data.constituencies[pcon].ranks[label] = {'rank':rank,'freq':scores[val].frequency,'quintile':quantile,'n':arr.length,'median':median};
+							index.themes[theme].visualisations[viz].json.data.constituencies[pcon].ranks[label] = {'rank':rank,'median':median};
 						}
 					}
 				}

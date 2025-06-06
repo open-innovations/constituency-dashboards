@@ -18,7 +18,7 @@
 		console.error("No rating found for "+label,num,value);
 	}
 }}
-				<div class="card {{ theme }}" data-region="{{ region }}"><h4><a href="https://constituencies.open-innovations.org{{link}}">{{ title }}</a></h4>
+				<div class="card {{ theme }}"><h4><a href="https://constituencies.open-innovations.org{{link}}">{{ title }}</a></h4>
 				{{- if subtitle?.show == true -}}
 					<p class="subtitle">{{ subtitle.value }}</p>
 				{{- /if }}
@@ -43,11 +43,11 @@
 						}
 					-}}
 					{{- if ratings.length == 1 -}}
-						<p class="ratings"><span data-rate="{{ ratings[0].rating.direction }}" data-median="{{ ratings[0].rating.median }}">Relative rating</span>: <span title="{{ ratings[0].rating.value }} star">{{ ratings[0].rating.label }}</span></p>
+						<p><span rate="{{ ratings[0].rating.direction }}">Relative rating</span>: <span title="{{ ratings[0].rating.value }} star">{{ ratings[0].rating.label }}</span></p>
 					{{- else if ratings.length > 1 -}}
 						<h5>Relative ratings:</h5><ul class="ratings">
 							{{- for item of ratings -}}
-								<li><span data-rate="{{ item.rating.direction }}" data-median="{{ item.rating.median }}">{{ item.title }}</span>: <span title="{{ item.rating.value }} star">{{ item.rating.label }}</span></li>
+								<li><span rate="{{ item.rating.direction }}">{{ item.title }}</span>: <span title="{{ item.rating.value }} star">{{ item.rating.label }}</span></li>
 							{{- /for -}}
 						</ul>
 					{{- /if }}
@@ -63,6 +63,6 @@
 						{{- /if }}
 					{{- /if }}
 					{{- if attribution }}
-						{{- if visDate }} | {{ /if }} <span class="attribution">Data: {{ attribution }}</span>
+						{{- if visDate }} | {{ /if }} Data: {{ attribution }}
 					{{- /if -}}
 				</div></div>

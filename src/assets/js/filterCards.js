@@ -56,11 +56,11 @@ OI.ready(function(){
 	OI.filterCards();
 
 	// Add rating help
-	document.querySelectorAll('[data-rate]').forEach(el => {
+	document.querySelectorAll('[rate]').forEach(el => {
 		var r = el.closest('[data-region]');
 		var region = "UK";
 		if(r) region = r.getAttribute('data-region');
-		var dir = el.getAttribute('data-rate')||"";
+		var dir = el.getAttribute('rate')||"";
 		var median = el.getAttribute('data-median')||"";
 		// Build tooltip text
 		var txt = 'More stars awarded for a '+(dir=="h" ? "higher":"lower")+' number';
