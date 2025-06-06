@@ -1,5 +1,6 @@
-{{> let title = key.replace(/ \([^\)]*\)$/,'') }}
 {{>
+	let region = "UK";
+	let title = key.replace(/ \(([^\)]*)\)$/,function(m,p1){ region = p1; return ''; });
 	const thresholds = [
 		{ value: 5, label: "★★★★★", min: 0, max: 0.2 },
 		{ value: 4, label: "★★★★", min: 0.2, max: 0.4 },
@@ -29,20 +30,11 @@
 						let ratings = new Array();
 						let rankKey,r;
 
-						/*const ranking = ranked_constituencies[code];
-						for(item of ratingData){
-							if(key in ranking[theme]){
-								if(item.measure in ranking[theme][key]) rankKey = ranking[theme][key][item.measure];
-								if(theme in rankIndicator && key in rankIndicator[theme] && item.measure in rankIndicator[theme][key]){
-									r = rating(rankKey,rankIndicator[theme][key][item.measure]);
-									ratings.push({'title':item.measure,'rating':r});
-								}
-							}
-						}*/
 						if("length" in ratingData){
 							for(let i = 0; i < ratingData.length; i++){
 								if("rank" in ratingData[i] && "measure" in ratingData[i] && ratingData[i].measure in rankIndicator[theme][key]){
 									r = rating(ratingData[i].rank,rankIndicator[theme][key][ratingData[i].measure],theme+' '+key);
+									//r = {'value':ratingData[i].median,'label':(ratingData[i].preunit||"") + ratingData[i].median.toLocaleString() + (ratingData[i].postunit||"")};
 									ratings.push({'title':ratingData[i].measure,'rating':r});
 								}
 							}

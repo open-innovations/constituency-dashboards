@@ -238,7 +238,7 @@ export default async function* (page) {
 	const index = page.api||{'themes':[]};
 
 	// Calculate rankings
-	let pcon,v,val,viz,key,label,i,arr,rank,title,theme,frequencies,quantiles = 5,quantile;
+	let pcon,v,val,viz,key,label,i,arr,rank,title,theme,frequencies,quantiles = 5,quantile,median;
 
 	for(theme in index.themes){
 		for(viz = 0; viz < index.themes[theme].visualisations.length; viz++){
@@ -255,13 +255,22 @@ export default async function* (page) {
 					arr = [];
 					key = index.themes[theme].visualisations[viz].json.values[v].value;
 					label = index.themes[theme].visualisations[viz].json.values[v].label||key;
-					
 					if(label in page.rankIndicator[theme][title]){
 						for(pcon in index.themes[theme].visualisations[viz].json.data.constituencies){
 							arr.push({'id':pcon,'value':index.themes[theme].visualisations[viz].json.data.constituencies[pcon][key]});
 						}
 						// Sort the array by the values
 						arr.sort((a, b) => a.value - b.value);
+						median = 0;
+						if(arr.length > 0){
+							if(arr.length%2==0){
+								// Even array
+								median = (arr[arr.length/2].value + arr[(arr.length/2)+1].value)/2;
+							}else{
+								// Odd array
+								median = arr[(arr.length+1)/2].value;
+							}
+						}
 						frequencies = {};
 						for(i = 0; i < arr.length; i++){
 							val = (arr[i].value||0)+'';
@@ -283,7 +292,7 @@ export default async function* (page) {
 							// Limit range just in case
 							rank = Math.max(0,Math.min(1,rank));
 
-							index.themes[theme].visualisations[viz].json.data.constituencies[pcon].ranks[label] = {'rank':rank,'freq':frequencies[arr[i].value+''],'i':i,'quintile':quantile,'n':arr.length};
+							index.themes[theme].visualisations[viz].json.data.constituencies[pcon].ranks[label] = {'rank':rank,'freq':frequencies[arr[i].value+''],'quintile':quantile,'n':arr.length,'median':median};
 						}
 					}
 				}
@@ -291,21 +300,6 @@ export default async function* (page) {
 		}
 	}
 
-/*
-	theme = "economy";
-	title = "ATMs: total (UK)";
-	v = 0;
-	pcon = "W07000081";
-	for(viz = 0; viz < index.themes[theme].visualisations.length; viz++){
-		if(index.themes[theme].visualisations[viz].json.title == title){
-			v = viz;
-		}
-	}
-	console.log('Theme: '+theme)
-	console.log('Title: '+title)
-	console.log('JS',index.themes[theme].visualisations[v].json.data.constituencies[pcon].ranks);
-	//console.log('Python',page.ranked_constituencies[pcon][theme][title]);
-*/
 	const n = (DEV ? 20 : pcons.length);
 
 	for(let p = 0; p < n; p++){
@@ -399,7 +393,11 @@ export default async function* (page) {
 						let key = vis.json.values[i].label||vis.json.values[i].value;
 
 						let rank = -1;
-						if(key in constituencyData.ranks && "rank" in constituencyData.ranks[key]) rank = constituencyData.ranks[key].rank;
+						let median = null;
+						if(key in constituencyData.ranks){
+							if("rank" in constituencyData.ranks[key]) rank = constituencyData.ranks[key].rank;
+							if("median" in constituencyData.ranks[key]) median = constituencyData.ranks[key].median;
+						}
 
 						// If the value is a number, apply the scale if it exists, or multiply by 1.
 						if(typeof val==="number"){
@@ -422,6 +420,8 @@ export default async function* (page) {
 							"value": val,
 						};
 						if(rank >= 0) datum.rank = rank;
+						if(median!=null) datum.median = median;
+						
 						if(typeof unit.pre!=="undefined" && unit.pre != "") datum.preunit = unit.pre;
 						if(typeof unit.post!=="undefined" && unit.post != "") datum.postunit = unit.post;
 						if(typeof unit.notes!=="undefined" && unit.notes != "") datum.notes = unit.notes;
