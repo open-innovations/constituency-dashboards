@@ -32,16 +32,25 @@ site.process([".html"], (pages) => {
 		// Trim pages to save memory
 		page.text = page.text.replace(/\t+/g,"\t");
 		page.text = page.text.replace(/ data-dependencies="[^\"]+"/g,"");	// We've manually included the JS to avoid a document processing
+		page.text = page.text.replace(/(<svg[^\>]*) style="max-width:100%;width:100%;height:auto;"/g,function(m,p1){ return p1; });	// Put these in CSS instead
+		page.text = page.text.replace(/(<svg[^\>]*) overflow="visible"/g,function(m,p1){ return p1; });	// Put these in CSS instead
+		page.text = page.text.replace(/(<svg[^\>]*) width="(480|400)" height="250"/g,function(m,p1){ return p1; });	// Not really needed
 		page.text = page.text.replace(/ vector-effect="non-scaling-stroke"/g,'');	// Not necessary for this site
 		page.text = page.text.replace(/<text class="axis-grid-title"[^\>]+><\/text>/g,'');	// Empty text
 		page.text = page.text.replace(/<g class="axis-grid axis-grid-[xy]"><\/g>/g,'');	// Empty group
 		page.text = page.text.replace(/tspan font-family="Arial,sans-serif"/g,'tspan');	// Not needed because we'll use CSS instead
+		page.text = page.text.replace(/tspan font-size="16"/g,'tspan');	// Not needed because we'll use CSS instead
 		page.text = page.text.replace(/ fill-opacity="1"/g,'');	// The default anyway
 		page.text = page.text.replace(/<div class="oi-(top|bottom) oi-(left|right)"><\/div>/g,'');	// Remove empty holders
+		page.text = page.text.replace(/<div class="oi-(left-right)"><\/div>/g,'');	// Remove empty holders
+		page.text = page.text.replace(/<div class="oi-(top|bottom)"><\/div>/g,'');	// Remove empty holders
 		page.text = page.text.replace(/<(rect|circle|text)([^\>]*) fill="#(FFFFFF|000000)"/g,function(m,p1,p2){ return '<'+p1+p2; });	// This let's them inherit currentColour
+		page.text = page.text.replace(/<(line)([^\>]*) stroke="#(B2B2B2)"/g,function(m,p1,p2){ return '<'+p1+p2; });	// Don't set the line
+		page.text = page.text.replace(/<(text)([^\>]*) font-weight="bold"/g,function(m,p1,p2){ return '<'+p1+p2; });	// Don't keep the weight
 		page.text = page.text.replace(/ fill-opacity="null"/g,'');	// Invalid anyway
 		page.text = page.text.replace(/<g data="[^\"]+"/g,'<g'); // We don't need this property
 		page.text = page.text.replace(/<g data-category="[^\"]+"/g,'<g');	// We don't need this property
+		page.text = page.text.replace(/\.000([,\)])/g,function(m,p1){ return p1; });	// Trim trailing .000
 	}
 	console.log('Processed pages in _config.ts');
 });

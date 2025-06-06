@@ -210,6 +210,7 @@ p + div {
 
 .oi-viz .axis-grid text { fill: currentColor; }
 .oi-viz .axis-grid line { stroke: currentColor; }
+.oi-viz svg { max-width:100%;width:100%;height:auto; overflow: visible; }
 
 @media only screen and (max-width:800px) {
 	.mp-wrapper {grid-template-columns: 240px;}
