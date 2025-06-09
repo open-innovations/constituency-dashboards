@@ -36,7 +36,8 @@ site.process([".html"], (pages) => {
 		page.text = page.text.replace(/(<svg[^\>]*) overflow="visible"/g,function(m,p1){ return p1; });	// Put these in CSS instead
 		page.text = page.text.replace(/(<svg[^\>]*) width="(480|400)" height="250"/g,function(m,p1){ return p1; });	// Not really needed
 		page.text = page.text.replace(/ vector-effect="non-scaling-stroke"/g,'');	// Not necessary for this site
-		page.text = page.text.replace(/<text class="axis-grid-title"[^\>]+><\/text>/g,'');	// Empty text
+		page.text = page.text.replace(/<tspan[^\>]*><\/tspan>/g,'');	// Empty text
+		page.text = page.text.replace(/<text[^\>]+><\/text>/g,'');	// Empty text
 		page.text = page.text.replace(/<g class="axis-grid axis-grid-[xy]"><\/g>/g,'');	// Empty group
 		page.text = page.text.replace(/tspan font-family="Arial,sans-serif"/g,'tspan');	// Not needed because we'll use CSS instead
 		page.text = page.text.replace(/tspan font-size="16"/g,'tspan');	// Not needed because we'll use CSS instead
@@ -51,6 +52,7 @@ site.process([".html"], (pages) => {
 		page.text = page.text.replace(/<g data="[^\"]+"/g,'<g'); // We don't need this property
 		page.text = page.text.replace(/<g data-category="[^\"]+"/g,'<g');	// We don't need this property
 		page.text = page.text.replace(/\.000([,\)])/g,function(m,p1){ return p1; });	// Trim trailing .000 e.g. in `translate()`
+		page.text = page.text.replace(/<g transform="[^\>\"]*"><line[^\>]*><\/line><\/g>/g,'');	// Chart line without text
 	}
 	console.log('Processed pages in _config.ts');
 });
