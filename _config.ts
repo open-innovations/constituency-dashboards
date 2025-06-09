@@ -50,7 +50,7 @@ site.process([".html"], (pages) => {
 		page.text = page.text.replace(/ fill-opacity="null"/g,'');	// Invalid anyway
 		page.text = page.text.replace(/<g data="[^\"]+"/g,'<g'); // We don't need this property
 		page.text = page.text.replace(/<g data-category="[^\"]+"/g,'<g');	// We don't need this property
-		page.text = page.text.replace(/\.000([,\)])/g,function(m,p1){ return p1; });	// Trim trailing .000
+		page.text = page.text.replace(/\.000([,\)])/g,function(m,p1){ return p1; });	// Trim trailing .000 e.g. in `translate()`
 	}
 	console.log('Processed pages in _config.ts');
 });

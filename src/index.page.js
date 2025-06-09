@@ -296,7 +296,7 @@ export default async function* (page) {
 							if(i==orderedscores.length-1) scores[orderedscores[i]].percentile = 100;
 						}
 						/*if(title == "Broadband: below universal service obligation (UK)"){
-							console.log(theme,' / ',title)
+							console.log(theme,' / ',title,' / ',label)
 							console.log(orderedscores);
 							console.log(scores);
 						}*/
@@ -313,8 +313,6 @@ export default async function* (page) {
 							if(typeof val!=="number") val = 0;
 							rank = scores[val].percentile;
 
-							// Switch direction of rank if necessary
-							if(page.rankIndicator[theme][title][label] == "h") rank = 1-rank;
 							// Limit range just in case
 							rank = Math.max(0,Math.min(1,rank));
 
@@ -398,6 +396,8 @@ export default async function* (page) {
 								unit.post = ' years'
 							} else if (unit.value=='ha') {
 								unit.post = ' hectares'
+							} else if (unit.value=='degC') {
+								unit.post = '&deg;C'
 							}
 							if(typeof precision==="number") unit.precision = precision;
 							if(typeof scale==="number") unit.scaleBy = scale;
