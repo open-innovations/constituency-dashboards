@@ -349,7 +349,6 @@ export default async function* (page) {
 				// Only build the page if there is json content
 				if(vis.json != null && code in vis.json.data.constituencies){
 					const constituencyData = vis.json.data.constituencies[code];
-					const attribution = vis.json.data.attribution;
 					const dataDate = vis.json.data.date||"";
 					const titleKey = vis.json.title;
 					const url = vis.json.url;
@@ -368,41 +367,40 @@ export default async function* (page) {
 					// Loop over slider values
 					for(let i = 0 ; i < vis.json.values.length ; i++){
 						const newKey = vis.json.values[i].label;
-						let unit = {};
+						units[i] = {};
 						if("units" in vis.json){
 							if(vis.json.values[i].label in vis.json.units){
-								unit = vis.json.units[vis.json.values[i].label];
+								units[i] = vis.json.units[vis.json.values[i].label];
 							}else if(vis.json.values[i].value in vis.json.units){
-								unit = vis.json.units[vis.json.values[i].value];
+								units[i] = vis.json.units[vis.json.values[i].value];
 							}
-							let scale = unit.scaleBy;
-							let precision = unit.precision;
-							if(unit.pre === undefined) unit.pre = "";
-							if(unit.pre === undefined) unit.post = "";
+							let scale = units[i].scaleBy;
+							let precision = units[i].precision;
+							if(units[i].pre === undefined) units[i].pre = "";
+							if(units[i].pre === undefined) units[i].post = "";
 							// Set some pre/post-fixes based on specific units
-							if (unit.category == 'currency' && unit.value=='GBP'){ 
-								unit.pre = '£';
-							} else if (unit.value=='percent') {
-								unit.post = '%';
+							if(units[i].category == 'currency' && units[i].value=='GBP'){ 
+								units[i].pre = '£';
+							}else if (units[i].value=='percent'){
+								units[i].post = '%';
 								if(!precision) precision = 0.1;
-							} else if (unit.value=='hr') {
-								unit.post = ' hr';
+							}else if (units[i].value=='hr'){
+								units[i].post = ' hr';
 								if(!precision) precision = 0.1;
-							} else if (unit.value=='Mb/s') {
-								unit.post = ' Mb/s';
-							} else if (unit.value=='MW') {
-								unit.post = ' MW';
-							} else if (unit.value=='yr') {
-								unit.post = ' years'
-							} else if (unit.value=='ha') {
-								unit.post = ' hectares'
-							} else if (unit.value=='degC') {
-								unit.post = '&deg;C'
+							}else if (units[i].value=='Mb/s'){
+								units[i].post = ' Mb/s';
+							}else if (units[i].value=='MW'){
+								units[i].post = ' MW';
+							}else if (units[i].value=='yr'){
+								units[i].post = ' years'
+							}else if (units[i].value=='ha'){
+								units[i].post = ' hectares'
+							}else if (units[i].value=='degC'){
+								units[i].post = '&deg;C'
 							}
-							if(typeof precision==="number") unit.precision = precision;
-							if(typeof scale==="number") unit.scaleBy = scale;
+							if(typeof precision==="number") units[i].precision = precision;
+							if(typeof scale==="number") units[i].scaleBy = scale;
 						}
-						units[i] = unit;
 					}
 
 					// Create variables/constants
@@ -411,6 +409,7 @@ export default async function* (page) {
 						
 					let nonzero = 0;
 					let unit;
+
 					// Iterate through the different "values" in the data
 					for(let i = 0 ; i < vis.json.values.length ; i++){
 						unit = units[i];
@@ -465,6 +464,12 @@ export default async function* (page) {
 					if(vis.json.values.length==1 || (vis.json.values.length > 1 && nonzero > 0)){
 
 						if(!(theme in data)) data[theme] = {};
+						
+						let attribution = vis.json.data.attribution;
+
+						// Modify attribution
+						if(attribution.indexOf("https://members.parliament.uk/members/commons/interests/publications") > 0) attribution = attribution.replace("https://members.parliament.uk/members/commons/interests/publications","https://members.parliament.uk/member/"+mp['ID']+"/registeredinterests")
+						
 						data[theme][titleKey] = {"data": dataArray, "url": url, "opts": opts, "attribution": attribution, "date": dataDate};
 
 					}
