@@ -70,7 +70,7 @@ layout: template/base.vto
 								title: visTitle, 
 								value: "value", 
 								colour: fontColour || '#ffffff',
-								tooltip: '{{ measure }}: <strong>{{ preunit }}{{ value }}{{ postunit }}</strong>'
+								tooltip: '{{ measure }}: <strong>{{ preunit }}{{ value | toLocaleString() }}{{ postunit }}</strong>'
 							}
 						],
 						axis: { 
