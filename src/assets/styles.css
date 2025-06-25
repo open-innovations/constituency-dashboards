@@ -130,6 +130,7 @@ h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; font-weight: 600; li
 .card *:last-child { margin-bottom: 0; }
 .card a:hover, .card a:focus { background-color: black; padding:0.25em; transition-duration: 0.4s; color: white;}
 .card .oi-viz .skip-link:focus, .card .oi-viz .skip-link:active { padding-top: 0; margin-top: 0; }
+.card .oi-viz circle.selected { outline: 4px solid currentColor; }
 .card h4 + .oi-viz { margin-top: 1rem; }
 .card .details {
 	border-top: 0.15em solid;

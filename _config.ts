@@ -5,7 +5,7 @@ import google_fonts from "lume/plugins/google_fonts.ts";
 import postcss from "lume/plugins/postcss.ts";
 
 // Importing the OI Lume charts and utilities
-import oiViz from "https://deno.land/x/oi_lume_viz@v0.17.1/mod.ts";
+import oiViz from "https://deno.land/x/oi_lume_viz@v0.17.4/mod.ts";
 import jsonLoader from "lume/core/loaders/json.ts";
 import date from "lume/plugins/date.ts";
 import getAPIData from "./api.js";
@@ -53,6 +53,8 @@ site.process([".html"], (pages) => {
 		page.text = page.text.replace(/<g data-category="[^\"]+"/g,'<g');	// We don't need this property
 		page.text = page.text.replace(/\.000([,\)])/g,function(m,p1){ return p1; });	// Trim trailing .000 e.g. in `translate()`
 		page.text = page.text.replace(/<g transform="[^\>\"]*"><line[^\>]*><\/line><\/g>/g,'');	// Chart line without text
+		//console.log(Deno.memoryUsage().heapTotal,Deno.memoryUsage().rss);
+		//console.log(Object.keys(page));
 	}
 	console.log('Processed pages in _config.ts');
 });
