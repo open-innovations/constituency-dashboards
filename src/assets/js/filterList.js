@@ -18,7 +18,7 @@ function filterList(){
 				el = el.closest('li');
 				el = el.nextElementSibling;
 				if(el){
-					while(el.hasAttribute('aria-hidden')){
+					while(el && el.hasAttribute('aria-hidden')){
 						el = el.nextElementSibling;
 					}
 					if(el){
@@ -38,7 +38,7 @@ function filterList(){
 				el = el.closest('li');
 				el = el.previousElementSibling;
 				if(el){
-					while(el.hasAttribute('aria-hidden')){
+					while(el && el.hasAttribute('aria-hidden')){
 						el = el.previousElementSibling;
 					}
 					if(el){
