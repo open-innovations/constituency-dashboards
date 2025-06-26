@@ -18,8 +18,8 @@ const site = lume({
 site.add([".css"]);
 
 site.use(google_fonts({
-	cssFile: "fonts.css",
-    fonts: "https://fonts.google.com/share?selection.family=Poppins:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700"
+	cssFile: "assets/fonts.css",
+    fonts: "https://fonts.google.com/share?selection.family=Poppins:ital,wght@0,600;1,600"
 }));
 
 import oiVizConfig from "./oi-viz-config.ts";

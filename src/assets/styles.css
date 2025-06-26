@@ -165,7 +165,7 @@ h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; font-weight: 600; li
 
 .series-1 .line, .data-series-1 .line {stroke: currentColor;}
 .oi-legend-inner{color: inherit;}
-.bigNum{ margin-right: auto; font-weight: 700; font-size: 2.4rem; margin-block: 1rem; }
+.bigNum{ margin-right: auto; font-weight: 600; font-size: 2.4rem; margin-block: 1rem; }
 p + .bigNum { margin-top: 0; }
 details {margin-top: auto;}
 
@@ -209,7 +209,7 @@ p + div {
 .mp-party { background-color:var(--party-colour);color:var(--party-colour-text); padding:0.25em; border-radius:4px; font-weight: bold; }
 
 .links { display:flex; gap:0.5rem; width:100%; margin-top:0rem; flex-wrap:wrap; margin-bottom: 4px; }
-.links a { padding:0.5rem; text-decoration:none; flex-grow:1; text-align:center; font-family: Poppins; font-weight: bold; }
+.links a { padding:0.5rem; text-decoration:none; flex-grow:1; text-align:center; font-family: Poppins; font-weight: 600; }
 
 .oi-viz .axis-grid text { fill: currentColor; }
 .oi-viz .axis-grid line { stroke: currentColor; }
@@ -283,6 +283,24 @@ input[type=text] {
 text tspan {
 	font-weight: 500;
 }
+
+.anchor {
+	display: inline;
+	text-decoration: none;
+	color: inherit;
+	opacity: 0.1;
+	margin-left: 0.25em;
+}
+.anchor:focus {
+	outline: 2px solid #2254F4;
+	opacity: 1;
+}
+.anchor svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: bottom;
+}
+h3:hover .anchor { opacity: 1; }
 
 /* rect.marker {
 	fill: inherit;
