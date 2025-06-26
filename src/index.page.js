@@ -106,11 +106,20 @@ function axisType(arr){
 
 function looksLikeDate(d){
 	if(typeof d==="number") d = d + "";
-	return d.match(/^[0-9]{4}-?([0-9]{2})?-?([0-9]{2})?$/);
+	// YYYY-MM-DD or YYYY-MM or YYYY
+	if(d.match(/^[0-9]{4}-?([0-9]{2})?-?([0-9]{2})?$/)) return true;
+	// YYYY/Y or YYYY/YY
+	if(d.match(/^[0-9]{4}\/([0-9]{1,2})$/)) return true;
+	return false;
 }
 
 function decimalYear(date){
-	let match = date.match(/^([0-9]{4})-?([0-9]{2})?-?([0-9]{2})?$/);
+	// If it is of the form YYYY/YY we return midway through the year
+	let match = date.match(/^([0-9]{4})\/([0-9]{1,2})$/);
+	if(match) return parseInt(match[1])+0.5;
+
+	// If it is of the form YYYY-MM-DD
+	match = date.match(/^([0-9]{4})-?([0-9]{2})?-?([0-9]{2})?$/);
 	let y,m,d,sy,ey;
 	if(!match) return 0;
 	y = parseInt(match[1]);
