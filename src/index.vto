@@ -7,11 +7,11 @@ title: Welcome
 <p class='bottom'>A data dashboard for every UK constituency. Search by constituency, MP name, or <a href="E14001290/" class="luckydip">pick a random constituency</a>...</p>
 
 <div class='oi-filter searching'>
-	<input type="text" id="searchInput" onkeyup="filterList()" placeholder="Search constituencies...">
+	<input type="text" id="searchInput" placeholder="Search constituencies...">
 </div>
 <ul id='searchable'>
   {{ for page of search.pages("constituency") }}
-    <li style='display: none' class="grey-bg"><a href="{{page.url}}">{{ page.title }} ({{ currentMPs[page.code].MP }})</a></li>
+    <li class="grey-bg"><a href="{{page.url}}">{{ page.title }} ({{ currentMPs[page.code].MP }})</a></li>
   {{ /for }}
 </ul>
 

@@ -215,6 +215,8 @@ p + div {
 .oi-viz .axis-grid line { stroke: currentColor; }
 .oi-viz svg { max-width:100%;width:100%;height:auto; overflow: visible; }
 
+[aria-hidden="true"] { display: none; }
+
 @media only screen and (max-width:800px) {
 	.mp-wrapper {grid-template-columns: 240px;}
 	.mp-info h2 { margin-bottom: 1rem; }
@@ -270,7 +272,11 @@ input[type=text] {
 	color:inherit;
 	text-decoration: none;
 }
-#searchable li a:hover, #searchable li a:focus {
+#searchable li a:hover {
+	background: #bbb;
+	color: black;
+}
+#searchable li a:focus {
 	background: #444;
 	color: white;
 }
