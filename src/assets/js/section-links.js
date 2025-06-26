@@ -13,7 +13,7 @@
 
 OI.ready(function(){
 	var styles = document.createElement('style');
-	styles.innerHTML = '.anchor { display: inline; text-decoration:none; color: inherit; opacity: 0.1; margin-left: 0.25em; } .anchor:focus { outline: 2px solid #2254F4; opacity: 1; } .anchor svg { width: 1em; height: 1em; vertical-align: bottom; }';
+	styles.innerHTML = '.anchor { display: inline; text-decoration:none; color: inherit; opacity: 0.6; margin-left: 0.25em; } .anchor:focus { outline: 2px solid #2254F4; opacity: 1; } .anchor svg { width: 1em; height: 1em; vertical-align: bottom; }';
 	document.head.prepend(styles);
 
 	// Apply the offset

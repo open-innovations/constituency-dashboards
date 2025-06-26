@@ -42,6 +42,7 @@
 		input = document.createElement('input');
 		input.setAttribute('type','text');
 		input.setAttribute('placeholder','Filter dashboard panels');
+		input.setAttribute('aria-label','Filter dashboard panels');
 		el.appendChild(input);
 
 		document.querySelectorAll('section.theme').forEach(el => {

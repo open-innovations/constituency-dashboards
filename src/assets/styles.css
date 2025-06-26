@@ -84,6 +84,8 @@ body { background-color: #000000; font-family: Helvetica, sans-serif; font-size:
 .white-bg { background-color: white!important; color: #000000!important;}
 .grey-bg { background-color: #efefef!important; color: #000000!important;}
 .black-bg { background-color: #000000!important; color: white!important;}
+.msg-bg { background-color: #F9BC26; color: black; }
+.msg-bg a { color: inherit; }
 .hoc { background-color: #444; color: white; }
 
 .breadcrumb { list-style: none; margin: 0; text-align: center;}
@@ -95,12 +97,14 @@ body { background-color: #000000; font-family: Helvetica, sans-serif; font-size:
 
 .info { background-color: wheat;} 
 
+header { display: flex; justify-content: center; align-items: center; gap: 0.5em; }
+.logo { line-height: 0; }
 .sitetitle { text-align: center; }
-.sitetitle a { text-decoration: none;}
-.sitetitle a:visited { color: unset;}
+.sitetitle a { text-decoration: none; color: inherit; }
+.sitetitle a:visited { color: inherit; }
 .sitetitle a:hover, .sitetitle a:focus { text-decoration: underline; }
 
-.holder { position: relative; width: 1080px; max-width: 100%; margin: auto; }
+.holder { position: relative; width: 1140px; max-width: 100%; margin: auto; }
 .padded {padding: 1rem;}
 .tallpadded {padding-block: 3em;}
 .padded > *:last-child { margin-bottom: 0; }
@@ -124,7 +128,7 @@ h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; font-weight: 600; li
 
 .theme { padding-top: 4em; }
 
-.card { display: flex; flex-direction: column; text-decoration: none; border-radius: 4px; padding: 1rem; }
+.card { display: flex; flex-direction: column; text-decoration: none; border-radius: 4px; padding: 1em; }
 .card:focus { outline: 4px solid black; }
 .card a { color: inherit; position: relative; }
 .card *:last-child { margin-bottom: 0; }
@@ -133,13 +137,12 @@ h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; font-weight: 600; li
 .card .oi-viz circle.selected { outline: 4px solid currentColor; }
 .card h4 + .oi-viz { margin-top: 1rem; }
 .card .details {
-	border-top: 0.15em solid;
+	border-top: 1px solid currentColor;
 	font-size: 0.8em;
 	margin-bottom: 0;
 	margin-top: 1rem;
 	padding-top: 0.25rem;
 	line-height: 1.44em;
-	opacity: 0.6;
 }
 .card:focus .details, .card:hover .details, .card .details a:focus, .card .details a:hover { opacity: 1; }
 
@@ -168,12 +171,13 @@ details {margin-top: auto;}
 
 ul.ratings { list-style: none; margin: 0; padding: 0; }
 
-@media only screen and (max-width: 1080px) {
-	.grid { grid-template-columns: 100%; }
-	.line { grid-column: auto; }
+@media only screen and (max-width: 1140px) {
+	.grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media only screen and (max-width: 800px) {
+	.grid { grid-template-columns: 100%; }
+	.line { grid-column: auto; }
 	.elsewhere { float:none; margin-left: 0; margin-bottom: 1em; }
 	.doublepadded { padding: 1em; }
 	h1, .title { font-size: 1.2em; text-wrap: balance; }
@@ -207,8 +211,6 @@ p + div {
 .links { display:flex; gap:0.5rem; width:100%; margin-top:0rem; flex-wrap:wrap; margin-bottom: 4px; }
 .links a { padding:0.5rem; text-decoration:none; flex-grow:1; text-align:center; font-family: Poppins; font-weight: bold; }
 
-
-
 .oi-viz .axis-grid text { fill: currentColor; }
 .oi-viz .axis-grid line { stroke: currentColor; }
 .oi-viz svg { max-width:100%;width:100%;height:auto; overflow: visible; }
@@ -218,6 +220,10 @@ p + div {
 	.mp-info h2 { margin-bottom: 1rem; }
 	.mp-image { display: none; }
 	.tallpadded { padding-block: 1em; }
+}
+
+@media only screen and (max-width:400px) {
+	.sitetitle { text-align: left; }
 }
 
 input[type=text] {
