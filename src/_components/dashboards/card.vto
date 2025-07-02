@@ -55,7 +55,7 @@
 				<details>
 					{{- if visDate -}}
 						{{- if visDate.match(/^[0-9]{4}$/) -}}
-							As of { visDate |> date("yyyy") }}
+							As of {{ visDate |> date("yyyy") }}
 						{{- else if visDate.match(/^[0-9]{4}-[0-9]{2}$/) -}}
 							As of {{ visDate |> date("LLLL yyyy") }}
 						{{- else -}}
