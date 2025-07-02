@@ -13,7 +13,7 @@
 
 OI.ready(function(){
 	var styles = document.createElement('style');
-	styles.innerHTML = '.anchor { display: inline; text-decoration:none; color: inherit; opacity: 0.6; margin-left: 0.25em; } .anchor:focus { outline: 2px solid #2254F4; opacity: 1; } .anchor svg { width: 1em; height: 1em; vertical-align: bottom; }';
+	styles.innerHTML = '.anchor { display: none; text-decoration:none; color: inherit; opacity: 0.5; margin-left: 0.25em; } .anchor:focus,  { outline: 2px solid #2254F4; display: inline; } .anchor svg { width: 1em; height: 1em; vertical-align: bottom; }';
 	document.head.prepend(styles);
 
 	// Apply the offset
@@ -39,8 +39,8 @@ OI.ready(function(){
 			offsetAnchor();
 		});
 		var p = a.parentNode;
-		this.show = function(e){ a.style.opacity = 1; };
-		this.hide = function(e){ a.style.opacity = ''; };
+		this.show = function(e){ a.style.display = 'inline'; };
+		this.hide = function(e){ a.style.display = ''; };
 		p.style.cursor = 'pointer';
 		p.addEventListener('click',function(){ location.href = a.getAttribute('href'); offsetAnchor(); a.focus(); });
 		p.addEventListener('mouseover',this.show);

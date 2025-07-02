@@ -136,15 +136,17 @@ h1, h2, h3, h4, h5, strong, .bigNum { font-family: Poppins; font-weight: 600; li
 .card .oi-viz .skip-link:focus, .card .oi-viz .skip-link:active { padding-top: 0; margin-top: 0; }
 .card .oi-viz circle.selected { outline: 4px solid currentColor; }
 .card h4 + .oi-viz { margin-top: 1rem; }
-.card .details {
-	border-top: 1px solid currentColor;
-	font-size: 0.8em;
+.card .details, .card details {
 	margin-bottom: 0;
 	margin-top: 1rem;
 	padding-top: 0.25rem;
 	line-height: 1.44em;
 }
-.card:focus .details, .card:hover .details, .card .details a:focus, .card .details a:hover { opacity: 1; }
+.card .details {
+	font-size: 0.8em;
+	border-top: 1px solid currentColor;
+}
+.card details summary { cursor: pointer; }
 
 
 .grid {display: grid; gap: 0.5em; grid-template-columns: repeat(3, 1fr); }
@@ -284,23 +286,8 @@ text tspan {
 	font-weight: 500;
 }
 
-.anchor {
-	display: inline;
-	text-decoration: none;
-	color: inherit;
-	opacity: 0.1;
-	margin-left: 0.25em;
-}
-.anchor:focus {
-	outline: 2px solid #2254F4;
-	opacity: 1;
-}
-.anchor svg {
-	width: 1em;
-	height: 1em;
-	vertical-align: bottom;
-}
-h3:hover .anchor { opacity: 1; }
+.anchor:focus { outline: 2px solid #2254F4; }
+h3:hover .anchor { display: inline; }
 
 /* rect.marker {
 	fill: inherit;
