@@ -19,8 +19,8 @@
 	}
 }}
 				<div class="card {{ theme }}"><h4><a href="https://constituencies.open-innovations.org{{link}}">{{ title }}</a></h4>
-				{{- if subtitle?.show == true -}}
-					<p class="subtitle">{{ subtitle.value }}</p>
+				{{- if subtitle -}}
+					<p class="subtitle">{{ subtitle }}</p>
 				{{- /if }}
 				{{- if content -}}
 					{{ content }}

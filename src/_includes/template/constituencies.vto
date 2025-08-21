@@ -24,6 +24,7 @@ layout: template/base.vto
 	code,
 	theme,
 	key: visTitle,
+	subtitle: visObject.opts.subtitle,
 	attribution: visObject.attribution,
 	link: visObject.url,
 	visDate: visObject.date,
@@ -47,45 +48,47 @@ layout: template/base.vto
 		}
 	})
 }) }}
+
 			{{- else if visObject.opts.type == 'bar' && visObject.data.length > 2 }}
 				{{- set check = visObject.data |> checkNull() }}
 				{{- if check }}
 
 {{ comp.dashboards.card({
-			code,
-			theme,
-			ratingData: visObject.data,
-			key: visTitle,
-			attribution: visObject.attribution,
-			visDate: visObject.date,
-			link: visObject.url,
-			content: await comp.oi.chart.bar({ 
-					config: {
-						data: visObject.data,
-						category: "measure",
-						width: 480,
-						height: 250,
-						series: [
-							{
-								title: visTitle, 
-								value: "value", 
-								colour: fontColour || '#ffffff',
-								tooltip: '{{ measure }}: <strong>{{ preunit }}{{ value | toLocaleString() }}{{ postunit }}</strong>'
-							}
-						],
-						axis: { 
-						x: visObject.opts.xaxis, 
-						y: { 
-							grid: { 
-								show: false 
-							},
-							ticks: []
-						}
-					},
+	code,
+	theme,
+	ratingData: visObject.data,
+	key: visTitle,
+	subtitle: visObject.opts.subtitle,
+	attribution: visObject.attribution,
+	visDate: visObject.date,
+	link: visObject.url,
+	content: await comp.oi.chart.bar({ 
+			config: {
+				data: visObject.data,
+				category: "measure",
+				width: 480,
+				height: 250,
+				series: [
+					{
+						title: visTitle, 
+						value: "value", 
+						colour: fontColour || '#ffffff',
+						tooltip: '{{ measure }}: <strong>{{ preunit }}{{ value | toLocaleString() }}{{ postunit }}</strong>'
 					}
-				})
-			})
-		}}
+				],
+				axis: { 
+				x: visObject.opts.xaxis, 
+				y: { 
+					grid: { 
+						show: false 
+					},
+					ticks: []
+				}
+			},
+			}
+		})
+	})
+}}
 				{{- /if }}
 			{{- else }}
 				{{- for item of visObject.data }}
@@ -95,7 +98,7 @@ layout: template/base.vto
 	code,
 	theme,
 	key: visTitle,
-	subtitle: { "show": visObject.opts.showSubtitle, "value": item.measure },
+	subtitle: visObject.opts.subtitle,
 	ratingData: [item],
 	attribution: visObject.attribution,
 	link: visObject.url,

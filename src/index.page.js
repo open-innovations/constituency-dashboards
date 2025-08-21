@@ -110,12 +110,16 @@ function looksLikeDate(d){
 	if(d.match(/^[0-9]{4}-?([0-9]{2})?-?([0-9]{2})?$/)) return true;
 	// YYYY/Y or YYYY/YY
 	if(d.match(/^[0-9]{4}\/([0-9]{1,2})$/)) return true;
+	// something→YYYY
+	if(d.match(/→([0-9]{4})$/)) return true;
 	return false;
 }
 
 function decimalYear(date){
+	// If it is of the form blah→YYYY we return midway through the year
+	let match = date.match(/→([0-9]{4})/);
 	// If it is of the form YYYY/YY we return midway through the year
-	let match = date.match(/^([0-9]{4})\/([0-9]{1,2})$/);
+	if(!match) match = date.match(/^([0-9]{4})\/([0-9]{1,2})$/);
 	if(match) return parseInt(match[1])+0.5;
 
 	// If it is of the form YYYY-MM-DD
@@ -257,6 +261,7 @@ export default async function* (page) {
 			}
 
 			title = index.themes[theme].visualisations[viz].json.title;
+
 			if(title in page.rankIndicator[theme]){
 				for(v = 0; v < index.themes[theme].visualisations[viz].json.values.length; v++){
 					// For this value we need to work out the ranking for every constituency
@@ -354,6 +359,7 @@ export default async function* (page) {
 
 				// Visualisation-specific options
 				opts = {};
+				if(vis.json.subtitle) opts.subtitle = vis.json.subtitle;
 
 				// Only build the page if there is json content
 				if(vis.json != null && code in vis.json.data.constituencies){
@@ -368,9 +374,6 @@ export default async function* (page) {
 					// Create some options for Lume to work out what to show
 					if (vis.json.values.length > 3) {
 						opts['type'] = 'line';
-					} 
-					else if (vis.json.values.length > 1) {
-						opts['showSubtitle'] = true;
 					}
 
 					// Loop over slider values
@@ -445,6 +448,7 @@ export default async function* (page) {
 						}
 						yrange.min = Math.min(yrange.min,val);
 						yrange.max = Math.max(yrange.max,val);
+
 						let x = (axis.type=="year" || axis.type=="number") ? axis.values[i] : i;
 						if(val != 0) nonzero++;
 						// Create a new dictionary with all the info we need to generate the site.
@@ -453,6 +457,7 @@ export default async function* (page) {
 							"x": x,
 							"value": val,
 						};
+
 						if(rank >= 0) datum.rank = rank;
 						if(median!=null) datum.median = median;
 						
@@ -460,6 +465,10 @@ export default async function* (page) {
 						if(typeof unit.post!=="undefined" && unit.post != "") datum.postunit = unit.post;
 						if(typeof unit.notes!=="undefined" && unit.notes != "") datum.notes = unit.notes;
 						dataArray.push(datum);
+
+						if (vis.json.values.length < 3 && vis.json.values.length > 1){
+							opts.subtitle = vis.json.values[i].label;
+						}
 					}
 
 					opts.xaxis = getXAxis(axis);
@@ -470,7 +479,7 @@ export default async function* (page) {
 						if (vis.json.values.length > 1 && axis.type!='year') opts['type'] = 'bar';
 					}
 
-					if(vis.json.values.length==1 || (vis.json.values.length > 1 && nonzero > 0)){
+					if(vis.json.values.length==1 || (vis.json.values.length > 1)){
 
 						if(!(theme in data)) data[theme] = {};
 						
