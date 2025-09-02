@@ -466,9 +466,6 @@ export default async function* (page) {
 						if(typeof unit.notes!=="undefined" && unit.notes != "") datum.notes = unit.notes;
 						dataArray.push(datum);
 
-						if (vis.json.values.length < 3 && vis.json.values.length > 1){
-							opts.subtitle = vis.json.values[i].label;
-						}
 					}
 
 					opts.xaxis = getXAxis(axis);

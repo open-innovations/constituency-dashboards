@@ -14,7 +14,7 @@ layout: template/base.vto
 	<div id="filter"></div>
 	{{- for theme, titleObject of figures }}
 	<section id="{{theme}}" class="theme">
-		{{ comp.dashboards.themeTitle({ theme }) }}
+		<h3>{{theme |> capitalise() }}{{ comp.anchor({anchor: theme, noid:true}) }}</h3>
 		<p>See the <a href="#notes">notes</a> for more information about ratings. Click on a panel title to see a map of that metric for all constituencies.</p>
 		<div class='grid'>
 		{{- for visTitle, visObject of titleObject }}
@@ -98,7 +98,7 @@ layout: template/base.vto
 	code,
 	theme,
 	key: visTitle,
-	subtitle: visObject.opts.subtitle,
+	subtitle: (visObject.data.length <= 3 && visObject.data.length > 1 ? item.measure : visObject.opts.subtitle),
 	ratingData: [item],
 	attribution: visObject.attribution,
 	link: visObject.url,
