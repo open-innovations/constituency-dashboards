@@ -12,7 +12,7 @@ import getAPIData from "./api.js";
 
 const site = lume({
     src: "./src",
-    location: new URL("https://open-innovations.github.io/constituency-dashboards/"),
+    location: new URL("https://dashboard.constituencies.org.uk/"),
 });
 
 site.add([".css"]);
