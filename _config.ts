@@ -68,6 +68,7 @@ site.loadData([".hexjson"], jsonLoader);
 
 site.remoteFile("_data/hexjson/uk-constituencies-2024.hexjson", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/src/_data/hexjson/uk-constituencies-2024.hexjson");
 site.remoteFile("_data/currentMPs.json", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs.json");
+site.remoteFile("_data/currentMPThumbnails.json", "https://github.com/open-innovations/constituencies/raw/refs/heads/main/lookups/current-MPs-thumbnails.json");
 
 site.filter("dump", (Object) => {
     return JSON.stringify(Object);

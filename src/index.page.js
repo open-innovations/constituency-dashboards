@@ -344,6 +344,7 @@ export default async function* (page) {
 
 		const code = pcons[p];
 		const mp = page['currentMPs'][code];
+		mp['Thumbnailraw'] = page['currentMPThumbnails'][code];
 
 		//console.log("Building "+hexes[code].n+" ("+code+")");
 

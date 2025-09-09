@@ -5,7 +5,7 @@ layout: template/base.vto
 
 <div class="hoc">
 	<div class="holder padded tallpadded">
-		<div class="mp-wrapper" style="--party-colour:{{bgColour}};--party-colour-text:{{fontColour}}"><div class="mp-info"><h2>{{ title }}</h2><p>{{mpData.MP}} is the <span class="mp-party">{{ mpData['Party name'] }}</span> MP for {{ title }}, and has been an MP since {{ mpData['Start date'].split('T')[0] |> date('do LLLL yyyy') }}.</p><p>Links: <a href="https://members.parliament.uk/member/{{ mpData['ID'] }}/">Parliament</a>, <a href="{{mpData['TheyWorkForYou URI']}}" target="_blank">They Work For You</a>, <a href="https://findthatpostcode.uk/areas/{{ code }}.html">Map</a></p></div><img class="mp-image" src="{{mpData['Thumbnail']}}" alt="{{mpData.MP}} thumbnail" /></div>
+		<div class="mp-wrapper" style="--party-colour:{{bgColour}};--party-colour-text:{{fontColour}}"><div class="mp-info"><h2>{{ title }}</h2><p>{{mpData.MP}} is the <span class="mp-party">{{ mpData['Party name'] }}</span> MP for {{ title }}, and has been an MP since {{ mpData['Start date'].split('T')[0] |> date('do LLLL yyyy') }}.</p><p>Links: <a href="https://members.parliament.uk/member/{{ mpData['ID'] }}/">Parliament</a>, <a href="{{mpData['TheyWorkForYou URI']}}" target="_blank">They Work For You</a>, <a href="https://findthatpostcode.uk/areas/{{ code }}.html">Map</a></p></div><img class="mp-image" src="{{mpData['Thumbnailraw']}}" alt="{{mpData.MP}} thumbnail" /></div>
 	</div>
 </div>
 <div class='main white-bg'>
