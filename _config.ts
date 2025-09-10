@@ -5,7 +5,7 @@ import google_fonts from "lume/plugins/google_fonts.ts";
 import postcss from "lume/plugins/postcss.ts";
 
 // Importing the OI Lume charts and utilities
-import oiViz from "https://deno.land/x/oi_lume_viz@v0.17.4/mod.ts";
+import oiViz from "https://deno.land/x/oi_lume_viz@v0.17.8/mod.ts";
 import jsonLoader from "lume/core/loaders/json.ts";
 import date from "lume/plugins/date.ts";
 import getAPIData from "./api.js";
