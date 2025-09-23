@@ -198,6 +198,8 @@ function getYAxis(data,scale){
 		if(n > 6) f = 5;
 	}else{
 		spacing = 1;
+		if(min==Infinity) min = 0;
+		if(max==-Infinity || (max==0 && min==0)) max = 1;
 	}
 	// Update the tick spacing
 	spacing = (new Decimal(spacing)).times(f);
@@ -469,12 +471,16 @@ export default async function* (page) {
 
 					}
 
-					opts.xaxis = getXAxis(axis);
-					opts.yaxis = (yrange.max-yrange.min>0) ? getYAxis(dataArray,vis.json.scale) : opts.yaxis = {grid:{show:false},ticks:[]};
-
 					if(yrange.max-yrange.min == 0 || axis.type=="category"){
 						opts.xaxis = {grid:{show:false},ticks:[]};
 						if (vis.json.values.length > 1 && axis.type!='year') opts['type'] = 'bar';
+					}
+
+					// If it is a line chart we make the axes
+					if(opts.type == "line"){
+						opts.xaxis = getXAxis(axis);
+						//opts.yaxis = (yrange.max-yrange.min>0) ? getYAxis(dataArray,vis.json.scale) : opts.yaxis = {grid:{show:false},ticks:[]};
+						opts.yaxis = getYAxis(dataArray,vis.json.scale);
 					}
 
 					if(vis.json.values.length==1 || (vis.json.values.length > 1)){
